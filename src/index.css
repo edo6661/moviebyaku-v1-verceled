@@ -46,13 +46,8 @@
 		@apply font-semibold text-lg;
 	}
 	/* ! default */
-	section,
-	main {
-		@apply container;
-	}
-	nav,
 	section {
-		@apply ml-3 mr-3;
+		@apply px-2;
 	}
 	/* ! first section movies */
 	.containerPopularMovies {
