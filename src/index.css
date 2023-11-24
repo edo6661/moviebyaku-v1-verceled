@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	:root {
+		--primary-mask: linear-gradient(
+			45deg,
+			transparent,
+			white 30%,
+			white 90%,
+			transparent
+		);
+	}
+	header,
+	footer {
+		@apply font-playfair font-bold sm:text-2xl text-xl;
+	}
+	body {
+		@apply font-sans text-base dark:bg-black dark:text-myWhite text-black bg-myWhite;
+	}
+	input {
+		@apply text-black;
+	}
+	img {
+		@apply max-w-full h-auto align-middle italic font-semibold text-xl;
+	}
+	/* ! utils */
+	.uniqueWord {
+		@apply font-lobster;
+	}
+	.bgGradient {
+		@apply bg-gradient-to-br from-lightMain to-lightBlue;
+	}
+	.textGradient {
+		background: -webkit-linear-gradient(left, #928eb9, #8298e4);
+		background-clip: text;
+		-webkit-text-fill-color: transparent;
+	}
+	.container {
+		@apply max-w-7xl mx-auto;
+	}
+	.title {
+		@apply font-semibold text-lg;
+	}
+	/* ! default */
+	section,
+	main {
+		@apply container;
+	}
+	nav,
+	section {
+		@apply ml-3 mr-3;
+	}
+	/* ! first section movies */
+	.containerPopularMovies {
+		@apply grid gap-4 grid-flow-col overflow-x-auto scroll-smooth;
+	}
+	.containerPopularMovies::-webkit-scrollbar {
+		@apply w-1 h-2;
+	}
+	.menuPopularMovies {
+		@apply relative grid grid-cols-1 px-6 items-center gap-2 w-full border-b-bCard text-start mx-auto justify-center pb-1 border-opacity-20 hover:opacity-80;
+	}
+	.iconPopularMovies {
+		@apply absolute left-2;
+	}
+	.containerPopularDetails {
+		@apply flex flex-col gap-4;
+	}
+	.imagePopularDetails {
+		@apply rounded-md  object-cover;
+	}
+	.xlImagePopularDetails {
+		@apply min-w-[10rem] min-h-[10rem];
+	}
+	.smImagePopularyDetails {
+		@apply min-w-[7rem] min-h-[7rem];
+	}
+	.buttonPopularDetails {
+		@apply absolute top-1 right-1 w-fit h-fit  bg-myWhite  rounded-full;
+	}
+	.buttonMenuPopularDetails {
+		@apply bg-myWhite  text-black rounded-xl absolute top-1 -right-4  py-2 flex-flexColItCen text-sm gap-2;
+	}
+	.percentagePopularDetails {
+		@apply bg-darkBlue border-0 w-10 h-10 text-xs rounded-full flex items-center justify-center absolute -bottom-4 left-0 bg-opacity-60;
+	}
+	.containerDay {
+		@apply flex gap-2 border-2 border-opacity-70 border-bInput w-fit items-center rounded-xl relative;
+	}
+	.containerDay p {
+		@apply p-2 font-semibold;
+	}
+	.bgDay {
+		@apply bgGradient absolute inset-0 -z-10 h-[40px];
+	}
+	/* ! bg scroll bar */
+	.containerPopularMovies {
+		@apply pb-8;
+	}
+	.containerPopularMovies::-webkit-scrollbar-track {
+		@apply bg-myWhite rounded-full;
+	}
+
+	.containerPopularMovies::-webkit-scrollbar-thumb {
+		@apply bg-main rounded-full;
+	}
+
+	.containerPopularMovies::-webkit-scrollbar-thumb:hover {
+		@apply bg-lightMain;
+	}
+	.primaryMask {
+		mask: var(--primary-mask);
+	}
+}
