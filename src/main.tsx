@@ -28,6 +28,7 @@ const router = createBrowserRouter(
         path='movie/:id'
         element={<Movie />}>
         <Route index element={<SingleMovie />} />
+
       </Route>
     </Route>
   )

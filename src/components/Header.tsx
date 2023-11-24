@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 const Header = () => {
     return (
         <header className=" bg-main py-2 mb-8 mx-auto">
-            <nav className="container">
+            <nav className="casualWrapper">
                 <div className='mx-2'>
                     <div className=" mx-auto">
                         <Link to="/">

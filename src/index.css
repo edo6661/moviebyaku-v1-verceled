@@ -39,7 +39,7 @@
 		background-clip: text;
 		-webkit-text-fill-color: transparent;
 	}
-	.container {
+	.casualWrapper {
 		@apply max-w-7xl mx-auto;
 	}
 	.title {

@@ -66,7 +66,7 @@ const FirstSection = () => {
     )
 
     return (
-        <section className="containerPopularDetails ">
+        <section className="containerPopularDetails casualWrapper ">
             <h1 className='font-semibold text-xl'>Trending</h1>
             <div className='containerDay'>
                 <p onClick={toggleDayFalse} className={` ${dayTrue}`}>Day
