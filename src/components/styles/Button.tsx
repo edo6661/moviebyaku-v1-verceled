@@ -18,10 +18,10 @@ const Button = ({ children, onClick, color = 'darkPr', size = 'md', rounded = 'n
         'transition-all duration-150',
         {
             color: {
-                darkPr: 'bg-darkerMain text-myWhite shadow-md shadow-darkerMain hover:bg-main',
-                darkSc: 'bg-darkBlue text-myWhite shadow-md shadow-darkBlue',
-                lightPr: 'bg-lightMain text-black shadow-md shadow-darkerMain',
-                lightSc: 'bg-lightBlue text-black shadow-md shadow-darkBlue'
+                darkPr: 'bg-darkerMain shadow-md shadow-darkerMain hover:bg-main',
+                darkSc: 'bg-darkBlue shadow-md shadow-darkBlue',
+                lightPr: 'bg-lightMain shadow-md shadow-darkerMain',
+                lightSc: 'bg-lightBlue shadow-md shadow-darkBlue',
             },
             size: {
                 lg: 'py-3 px-6',

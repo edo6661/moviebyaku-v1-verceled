@@ -16,7 +16,7 @@
 	}
 	header,
 	footer {
-		@apply font-playfair font-bold sm:text-2xl text-xl;
+		@apply font-playfair font-bold sm:text-2xl text-lg text-white;
 	}
 	body {
 		@apply font-sans text-base dark:bg-black dark:text-myWhite text-black bg-myWhite;
@@ -31,30 +31,57 @@
 	.uniqueWord {
 		@apply font-lobster;
 	}
-	.bgGradient {
-		@apply bg-gradient-to-br from-lightMain to-lightBlue;
+	.bgLightGradient {
+		@apply bg-gradient-to-br from-lightBlue to-darkerMain text-black;
+	}
+	.bgDarkGradient {
+		@apply bg-gradient-to-br from-darkBlue to-darkerMain text-white;
 	}
 	.textGradient {
-		background: -webkit-linear-gradient(left, #928eb9, #8298e4);
+		background: -webkit-linear-gradient(90deg, #928eb9, #8298e4);
 		background-clip: text;
 		-webkit-text-fill-color: transparent;
 	}
 	.casualWrapper {
-		@apply max-w-7xl mx-auto;
+		@apply max-w-7xl px-4 mx-auto;
 	}
 	.title {
 		@apply font-semibold text-lg;
+	}
+	.btnSc {
+		@apply transition-all duration-300 text-xl bg-transparent shadow-none hover:bg-lightBlue text-white font-semibold;
 	}
 	/* ! default */
 	section {
 		@apply px-2;
 	}
+	/* ! nav */
+	header {
+		@apply bg-lightBlue dark:bg-darkBlue py-3;
+	}
+	.headerContainer {
+		@apply flex justify-between items-center;
+	}
+	.headerInner {
+		@apply flex items-center gap-6;
+	}
+	/* dropdown */
+	.activeDropdown {
+		@apply flex flex-col gap-1 absolute w-52 z-10  dark:bg-darkBlue bg-lightBlue text-white px-6 py-2 rounded-xl;
+	}
+	/* ! banner section */
+	.bannerSection {
+		background: url(../public/banner-1.jpeg);
+		@apply min-h-[40vh] bg-fixed lg:bg-top
+			lg:bg-no-repeat lg:bg-contain bg-cover bg-left-top;
+	}
+
 	/* ! first section movies */
 	.containerPopularMovies {
 		@apply grid gap-4 grid-flow-col overflow-x-auto scroll-smooth;
 	}
 	.containerPopularMovies::-webkit-scrollbar {
-		@apply w-1 h-2;
+		@apply w-1 h-3;
 	}
 	.menuPopularMovies {
 		@apply relative grid grid-cols-1 px-6 items-center gap-2 w-full border-b-bCard text-start mx-auto justify-center pb-1 border-opacity-20 hover:opacity-80;
@@ -66,7 +93,7 @@
 		@apply flex flex-col gap-4;
 	}
 	.imagePopularDetails {
-		@apply rounded-md  object-cover;
+		@apply rounded-md  object-cover opacity-100 hover:opacity-60 transition-all duration-300;
 	}
 	.xlImagePopularDetails {
 		@apply min-w-[10rem] min-h-[10rem];
@@ -90,24 +117,25 @@
 		@apply p-2 font-semibold;
 	}
 	.bgDay {
-		@apply bgGradient absolute inset-0 -z-10 h-[40px];
+		@apply dark:bgDarkGradient bgLightGradient absolute inset-0 -z-10 h-[40px];
 	}
 	/* ! bg scroll bar */
-	.containerPopularMovies {
-		@apply pb-8;
-	}
+
 	.containerPopularMovies::-webkit-scrollbar-track {
-		@apply bg-myWhite rounded-full;
+		@apply dark:bg-lightBlue bg-darkBlue rounded-full;
 	}
 
 	.containerPopularMovies::-webkit-scrollbar-thumb {
-		@apply bg-main rounded-full;
+		@apply bg-lightBlue dark:bg-darkBlue rounded-full;
 	}
 
 	.containerPopularMovies::-webkit-scrollbar-thumb:hover {
-		@apply bg-lightMain;
+		@apply dark:bg-darkBlue bg-lightBlue rounded-full;
 	}
 	.primaryMask {
 		mask: var(--primary-mask);
+	}
+	.bgUrlSlider {
+		@apply bg-no-repeat bg-center z-0 bg-cover min-h-[50vh] bg-fixed;
 	}
 }

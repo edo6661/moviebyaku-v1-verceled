@@ -4,8 +4,9 @@ import Header from "./components/Header";
 function App() {
   return (
     <>
+  
       <Header />
-      <main className="container min-h-screen">
+      <main className="flex flex-col">
         <Outlet />
       </main >
     </>

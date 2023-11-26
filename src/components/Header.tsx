@@ -1,21 +1,30 @@
+import { motion } from 'framer-motion';
+import { FaSearch } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import { movie, people, tv } from '../helpers/navDropdown';
+import NavDropdown from './dropdown/NavDropdown';
 
 const Header = () => {
     return (
-        <header className=" bg-main py-2 mb-8 mx-auto">
-            <nav className="casualWrapper">
-                <div className='mx-2'>
-                    <div className=" mx-auto">
+        <header>
+            <nav className="casualWrapper mx-auto">
+                <div className='headerContainer '>
+                    <div className="headerInner">
                         <Link to="/">
                             <img
                                 className=" h-12 object-cover"
-                                src="./logo-bg-removed.png" alt="" />
-
+                                src="./logo.png" alt="Logo"
+                            />
                         </Link>
+                        <motion.div className='flex gap-4'>
+                            <NavDropdown title='Movie' items={movie} />
+                            <NavDropdown title='Shows' items={tv} />
+                            <NavDropdown title='People' items={people} />
+                        </motion.div>
                     </div>
-                    <div></div>
-                    <div></div>
-
+                    <div className='flex items-center'>
+                        <button>{<FaSearch />}</button>
+                    </div>
                 </div>
             </nav>
         </header>

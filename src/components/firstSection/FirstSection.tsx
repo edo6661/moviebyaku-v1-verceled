@@ -7,7 +7,7 @@ import SliderMovies from './SliderMovies';
 
 const FirstSection = () => {
 
-    const { data: dayData, isError: isErrDay, error: errDay } = useTrendingMoviesDayQuery(1)
+    const { data: dayData, isError: isErrDay, error: errDay, isLoading: loadingDay } = useTrendingMoviesDayQuery(1)
     const { data: weekData, isError: isErrWeek, error: errWeek } = useTrendingMoviesWeekQuery(1)
 
     const [day, setDay] = useState(false)
@@ -49,16 +49,18 @@ const FirstSection = () => {
     const toggleDayFalse = () => setDay(false)
 
 
-    console.log(dayData)
     const dayElement = (
-        <div className={`${containerDay} containerPopularMovies will-change-transform`}>
+        <div className={`${containerDay} containerPopularMovies `}
+        >
             {dayData?.results.map((movie, i: number) =>
                 <SliderMovies key={movie.id} {...movie} i={i} />
             )}
         </div>
     )
+    
     const weekElement = (
-        <div className={`${containerWeek} containerPopularMovies will-change-transform`}>
+        <div className={`${containerWeek} containerPopularMovies`}
+        >
             {weekData?.results.map((movie, i: number) =>
                 <SliderMovies key={movie.id} {...movie} i={i} />
             )}
@@ -66,27 +68,29 @@ const FirstSection = () => {
     )
 
     return (
-        <section className="containerPopularDetails casualWrapper ">
-            <h1 className='font-semibold text-xl'>Trending</h1>
-            <div className='containerDay'>
-                <p onClick={toggleDayFalse} className={` ${dayTrue}`}>Day
-                </p>
-                <motion.div variants={day ? leftVars : rightVars} animate='animate' initial="initial" className={`bgDay ${bgWeek}`}></motion.div>
-                <p onClick={toggleDayTrue} className={` ${dayFalse}`}>Week
-                </p>
+        <section className={`py-4 ${loadingDay && 'min-h-[55vh]'}`} >
+            <div className='containerPopularDetails casualWrapper'>
+                <h1 className='font-semibold text-xl'>Trending</h1>
+                <div className='containerDay'>
+                    <p onClick={toggleDayFalse} className={` ${dayTrue}`}>Day
+                    </p>
+                    <motion.div variants={day ? leftVars : rightVars} animate='animate' initial="initial" className={`bgDay ${bgWeek}`}></motion.div>
+                    <p onClick={toggleDayTrue} className={` ${dayFalse}`}>Week
+                    </p>
+                </div>
+                <article>
+                    {errMsgDay}
+                    {errMsgWeek}
+                </article>
+                <article className="containerPopularMovies " >
+                    <AnimatePresence>
+                        {dayElement}
+                    </AnimatePresence>
+                    <AnimatePresence>
+                        {weekElement}
+                    </AnimatePresence>
+                </article>
             </div>
-            <article>
-                {errMsgDay}
-                {errMsgWeek}
-            </article>
-            <article className="containerPopularMovies will-change-transform " >
-                <AnimatePresence>
-                    {dayElement}
-                </AnimatePresence>
-                <AnimatePresence>
-                    {weekElement}
-                </AnimatePresence>
-            </article>
         </section>
     )
 }

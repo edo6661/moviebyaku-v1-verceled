@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from 'framer-motion';
-import { useState } from 'react';
+import { useState } from "react";
 import { HiOutlineDotsCircleHorizontal } from 'react-icons/hi';
 import { Link } from 'react-router-dom';
 import useWindowWidth from '../../hooks/useWindowWidth';
@@ -7,49 +7,54 @@ import { appearedCardVars, imageVars, optionVars, scrollerVars } from '../../uti
 import SliderMenu from './SliderMenu';
 
 interface Props {
-    id: number;
-    popularity?: number;
-    poster_path: string;
-    release_date: string;
-    title: string;
-    i: number;
+    adult: boolean;
     backdrop_path: string;
-    setActiveBackdropPath?: React.Dispatch<React.SetStateAction<string>>;
+    genre_ids: number[];
+    id: number;
+    origin_country: string[];
+    original_language: string;
+    original_name: string;
+    overview: string;
+    popularity: number;
+    poster_path: string;
+    first_air_date: string;
+    name: string;
+    vote_average: number;
+    vote_count: number;
+    i: number;
+    setActiveBackdropPath: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const SliderMovies = ({ id, poster_path, title, release_date, i, backdrop_path, setActiveBackdropPath }: Props) => {
+const SliderTv = ({ id, poster_path, name, first_air_date, i, backdrop_path, setActiveBackdropPath }: Props) => {
     const [button, setButton] = useState<Record<string, boolean>>({})
 
     const width = useWindowWidth()
     const handleClick = (i: string) => setButton(prev => ({ ...prev, [i]: !(prev[i] || false) }))
-    const trueBp = () => setActiveBackdropPath?.(backdrop_path)
     const imageWidth = width > 400 ? 'xlImagePopularDetails' : 'smImagePopularyDetails'
     const src = 'https://image.tmdb.org/t/p/original/'
-
 
     // const max = 2000;
     // const percentage = (popularity / max) * 100;
     // const bgColor = percentage < 25 ? 'bg-red-700' : percentage < 50 ? 'bg-red-500' :
     //     percentage < 75 ? 'bg-yellow-500' : 'bg-green-500'
+
     return (
         <motion.div key={id}
             variants={scrollerVars}
             initial="initial"
             whileInView="animation"
-            className={`containerPopularDetails`}
+            className={`containerPopularDetails pb-16`}
         >
             <div className="relative">
-                <Link to={`movie/${id}`}>
+                <Link to={`tv/${id}`}>
                     <motion.img
+                        onMouseOver={() => setActiveBackdropPath(backdrop_path)}
                         loading='lazy'
-                        onMouseOver={trueBp}
                         variants={imageVars}
                         initial="initial"
                         animate={button[i] ? 'animation' : ''}
                         className={`${imageWidth} imagePopularDetails`}
-                        src={`${src}${poster_path}`} alt={title}
-                    />
-
+                        src={`${src}${poster_path}`} alt={name} />
                 </Link>
                 <div>
                     <motion.button
@@ -78,12 +83,12 @@ const SliderMovies = ({ id, poster_path, title, release_date, i, backdrop_path, 
                 </div> */}
             </div>
             <div className="containerPopularDetails gap-2">
-                <p className='title'>{title}</p>
-                <p className=''>{release_date}</p>
+                <p className='title'>{name}</p>
+                <p className=''>{first_air_date}</p>
             </div>
         </motion.div>
 
     )
 }
 
-export default SliderMovies
+export default SliderTv

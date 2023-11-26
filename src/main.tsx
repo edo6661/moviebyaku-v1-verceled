@@ -11,8 +11,11 @@ import App from './App.tsx'
 import './index.css'
 
 import SingleMovie from './components/movie/SingleMovie.tsx'
+import SingleTv from './components/tv/SingleTv.tsx'
+import { ContextProvider } from './context/Provider.tsx'
 import HomePage from './page/public/HomePage.tsx'
 import Movie from './page/public/Movie.tsx'
+import Tv from './page/public/Tv.tsx'
 import store from './redux/store.ts'
 
 const router = createBrowserRouter(
@@ -28,7 +31,9 @@ const router = createBrowserRouter(
         path='movie/:id'
         element={<Movie />}>
         <Route index element={<SingleMovie />} />
-
+      </Route>
+      <Route path='tv/:id' element={<Tv />}>
+        <Route index element={<SingleTv />} />
       </Route>
     </Route>
   )
@@ -38,7 +43,9 @@ const router = createBrowserRouter(
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <Provider store={store}>
-      <RouterProvider router={router} />
+      <ContextProvider>
+        <RouterProvider router={router} />
+      </ContextProvider>
     </Provider>
   </React.StrictMode>,
 )

@@ -21,3 +21,7 @@ interface ResultFirstSectionMovie {
 	vote_average: number;
 	vote_count: number;
 }
+
+interface ResultPopularMovie {
+	movie: ResultFirstSectionMovie[];
+}

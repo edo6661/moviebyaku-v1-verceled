@@ -1,10 +1,20 @@
-import FirstSection from "../../components/firstSection/FirstSection"
-import useTitle from "../../hooks/useTitle"
+import BannerSection from '../../components/firstSection/BannerSection';
+import FirstSection from "../../components/firstSection/FirstSection";
+import PopularSection from "../../components/firstSection/PopularSection";
+import useTitle from "../../hooks/useTitle";
 
 const HomePage = () => {
+
     useTitle("Home")
     return (
-        <FirstSection />
+        <>
+            <BannerSection />
+            <FirstSection />
+            <PopularSection />
+            <section className=" min-h-[50vh]">
+
+            </section>
+        </>
     )
 }
 
