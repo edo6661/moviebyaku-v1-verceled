@@ -55,14 +55,15 @@ const NavDropdown = ({ title, items }: DropdownType) => {
 
     return (
         <div className='relative' onMouseEnter={open} onMouseLeave={unopen}>
-            <p className='select-none'>{title}</p>
+            <p className={`select-none hoveredLinks ${isOpen ? ' opacity-80' : 'text-white'}`}>{title}</p>
             <AnimatePresence>
                 {isOpen && (
                     <motion.ul className={`activeDropdown`}
                         variants={dropDownVars} initial="initial" animate="animate" exit="exit">
                         {items.map((item, index) => (
                             <li key={index} className="">
-                                <Link to={`${item.to}`}>{item.subtitle}</Link>
+                                <Link to={`${item.to}`}
+                                    className=' hoveredLinks hover:opacity-80 '>{item.subtitle}</Link>
                             </li>
                         ))}
                     </motion.ul>

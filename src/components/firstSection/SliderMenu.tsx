@@ -1,12 +1,8 @@
-import { FaBookmark, FaHeart, FaList, FaStar } from 'react-icons/fa';
+import { FaBookmark, FaHeart, FaStar } from 'react-icons/fa';
 
 const SliderMenu = () => {
 
     const menus = [
-        {
-            title: 'Add to list',
-            icons: <FaList size={15} />
-        },
         {
             title: 'Favorite',
             icons: <FaHeart size={15} />

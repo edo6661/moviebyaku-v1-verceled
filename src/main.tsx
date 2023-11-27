@@ -15,6 +15,7 @@ import SingleTv from './components/tv/SingleTv.tsx'
 import { ContextProvider } from './context/Provider.tsx'
 import HomePage from './page/public/HomePage.tsx'
 import Movie from './page/public/Movie.tsx'
+import SearchPage from './page/public/SearchPage.tsx'
 import Tv from './page/public/Tv.tsx'
 import store from './redux/store.ts'
 
@@ -35,6 +36,7 @@ const router = createBrowserRouter(
       <Route path='tv/:id' element={<Tv />}>
         <Route index element={<SingleTv />} />
       </Route>
+      <Route path='/:keyword' element={<SearchPage />} />
     </Route>
   )
 );

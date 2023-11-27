@@ -13,11 +13,11 @@ const baseQuery = fetchBaseQuery({
 	},
 });
 
-const apiSlice = createApi({
+const testApiSlice = createApi({
 	baseQuery,
 	// ! setiap request ke tags Movie / Series akan di invalidate ulang
 	tagTypes: ['Movie', 'Series'],
 	endpoints: () => ({}),
 });
 
-export default apiSlice;
+export default testApiSlice;

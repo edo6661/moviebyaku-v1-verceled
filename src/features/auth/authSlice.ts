@@ -2,22 +2,21 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const authSlice = createSlice({
 	name: 'auth',
-	initialState: { sessionId: null },
+	initialState: { accountId: null },
 	reducers: {
-		setSessionId: (state, action) => {
-			const { session_id } = action.payload;
-			state.sessionId = session_id;
+		setAccountId: (state, action) => {
+			const { account_id } = action.payload;
+			state.accountId = account_id;
 		},
 		logOut: (state) => {
-			state.sessionId = null;
+			state.accountId = null;
 		},
 	},
 });
 
-export const { setSessionId, logOut } = authSlice.actions;
+export const { setAccountId, logOut } = authSlice.actions;
 
 export default authSlice.reducer;
 
-export const selectSessionId = (state: {
-	auth: { sessionId: string | null };
-}) => state.auth.sessionId;
+export const getAccountId = (state: { auth: { accountId: string | null } }) =>
+	state.auth.accountId;

@@ -55,6 +55,9 @@
 	section {
 		@apply px-2;
 	}
+	input {
+		@apply placeholder:text-white placeholder:italic;
+	}
 	/* ! nav */
 	header {
 		@apply bg-lightBlue dark:bg-darkBlue py-3;
@@ -67,15 +70,30 @@
 	}
 	/* dropdown */
 	.activeDropdown {
-		@apply flex flex-col gap-1 absolute w-52 z-10  dark:bg-darkBlue bg-lightBlue text-white px-6 py-2 rounded-xl;
+		@apply flex flex-col gap-1 absolute w-48 z-10  dark:bg-darkBlue bg-lightBlue text-white px-6 py-2 sm:text-base text-sm rounded-xl;
+	}
+	.hoveredLinks {
+		@apply transition-all duration-300;
+	}
+	/* ! inner search bar */
+	.innerSearchBar {
+		@apply w-full flex items-center gap-4;
+	}
+	.innerSearchBar input {
+		@apply w-full outline-none text-black placeholder:text-placeholder;
 	}
 	/* ! banner section */
 	.bannerSection {
 		background: url(../public/banner-1.jpeg);
 		@apply min-h-[40vh] bg-fixed lg:bg-top
-			lg:bg-no-repeat lg:bg-contain bg-cover bg-left-top;
+			lg:bg-no-repeat lg:bg-contain bg-cover bg-left-top flex justify-center items-center;
 	}
-
+	.innerBanner {
+		@apply text-xl text-transparent flex items-center justify-end gap-4;
+	}
+	.innerBanner input {
+		@apply bg-transparent outline-2 outline-white border-white  border h-12 rounded-xl py-2 px-6 text-white text-2xl placeholder:text-white placeholder:italic;
+	}
 	/* ! first section movies */
 	.containerPopularMovies {
 		@apply grid gap-4 grid-flow-col overflow-x-auto scroll-smooth;

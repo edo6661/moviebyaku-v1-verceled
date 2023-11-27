@@ -30,6 +30,7 @@ export default {
 				darkerNude: '#DBA879',
 				bInput: '#868e96',
 				bCard: '#495057',
+				placeholder: '#acacac',
 			},
 			flex: {
 				flexBetItCen: 'flex justify-between items-center',
