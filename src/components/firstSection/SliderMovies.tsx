@@ -18,9 +18,10 @@ interface Props {
 }
 
 const SliderMovies = ({ id, poster_path, title, release_date, i, backdrop_path, setActiveBackdropPath }: Props) => {
-    const [button, setButton] = useState<Record<string, boolean>>({})
 
     const width = useWindowWidth()
+    const [button, setButton] = useState<Record<string, boolean>>({})
+    // ! Fungsi ini membalik nilai dari properti dengan kunci i dalam objek button. Jika properti tersebut belum ada dalam objek button, maka nilai defaultnya adalah false.
     const handleClick = (i: string) => setButton(prev => ({ ...prev, [i]: !(prev[i] || false) }))
     const trueBp = () => setActiveBackdropPath?.(backdrop_path)
     const imageWidth = width > 400 ? 'xlImagePopularDetails' : 'smImagePopularyDetails'
@@ -68,7 +69,7 @@ const SliderMovies = ({ id, poster_path, title, release_date, i, backdrop_path, 
                                 animate="animation"
                                 initial="initial"
                                 exit="exit">
-                                <SliderMenu />
+                                <SliderMenu id={id.toString()} />
                             </motion.div>}
                     </AnimatePresence>
                 </div>

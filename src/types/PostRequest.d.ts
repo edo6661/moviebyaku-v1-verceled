@@ -6,13 +6,13 @@ interface ResponsePOST {
 interface AddFavorite {
 	account_id: string;
 	media_type: string;
-	media_id: number;
+	media_id: string;
 	favorite: boolean;
 }
 interface AddWatchList {
 	account_id: string;
 	media_type: string;
-	media_id: number;
+	media_id: string;
 	watchlist: boolean;
 }
 interface AddRating {
@@ -28,4 +28,4 @@ interface DeleteRating {
 	guest_session_id: string;
 }
 
-interface 
+interface;

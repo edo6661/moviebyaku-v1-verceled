@@ -58,6 +58,10 @@
 	input {
 		@apply placeholder:text-white placeholder:italic;
 	}
+	.toastContainer {
+		@apply rounded-xl bg-contain bg-left;
+		background: url(../public/toast.png);
+	}
 	/* ! nav */
 	header {
 		@apply bg-lightBlue dark:bg-darkBlue py-3;
@@ -75,7 +79,10 @@
 	.hoveredLinks {
 		@apply transition-all duration-300;
 	}
-	/* ! inner search bar */
+	/* ! search bar */
+	.containerSearchBar {
+		@apply bg-white p-2 text-white absolute w-full text-lg;
+	}
 	.innerSearchBar {
 		@apply w-full flex items-center gap-4;
 	}
@@ -102,13 +109,13 @@
 		@apply w-1 h-3;
 	}
 	.menuPopularMovies {
-		@apply relative grid grid-cols-1 px-6 items-center gap-2 w-full border-b-bCard text-start mx-auto justify-center pb-1 border-opacity-20 hover:opacity-80;
+		@apply relative grid grid-cols-1 px-6 items-center gap-2 w-full border-b-bCard text-start mx-auto justify-center pb-1 border-opacity-20 hover:opacity-80 text-base;
 	}
 	.iconPopularMovies {
 		@apply absolute left-2;
 	}
 	.containerPopularDetails {
-		@apply flex flex-col gap-4;
+		@apply flex flex-col gap-4 mb-4;
 	}
 	.imagePopularDetails {
 		@apply rounded-md  object-cover opacity-100 hover:opacity-60 transition-all duration-300;

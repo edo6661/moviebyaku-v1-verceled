@@ -14,5 +14,6 @@ type Cast = {
 };
 
 type Movie = {
+    id: number;
 	cast: Cast[];
 };

@@ -321,6 +321,26 @@ export const tvApiSlice = apiSlice.injectEndpoints({
 					  ]
 					: [{ type: 'Tv', id: 'GENRES' }],
 		}),
+		getTvRatedGuest: builder.query<RatedData, GuestRatedMovie>({
+			query: ({ guest_session_id, page }) => ({
+				url: `guest_session/${guest_session_id}/rated/tv?language=en-US&page=${page}&sort_by=created_at.asc`,
+				validateStatus: (response, result) => {
+					return response.status === 200 && !result.isError;
+				},
+			}),
+			providesTags: (result) =>
+				result
+					? [
+							...result.results.map(
+								(tv) => ({
+									type: 'Tv' as const,
+									id: tv.id,
+								}),
+								{ type: 'Tv', id: 'GUEST' }
+							),
+					  ]
+					: [{ type: 'Tv', id: 'GUEST' }],
+		}),
 	}),
 });
 
@@ -343,4 +363,5 @@ export const {
 	useGetFavoriteTvQuery,
 	useGetWatchlistTvQuery,
 	useGenresTvQuery,
+	useGetTvRatedGuestQuery,
 } = tvApiSlice;

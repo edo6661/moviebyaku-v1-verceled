@@ -9,7 +9,6 @@ const FirstSection = () => {
 
     const { data: dayData, isError: isErrDay, error: errDay, isLoading: loadingDay } = useTrendingMoviesDayQuery(1)
     const { data: weekData, isError: isErrWeek, error: errWeek } = useTrendingMoviesWeekQuery(1)
-
     const [day, setDay] = useState(false)
 
     const dayTrue = day && 'textGradient cursor-pointer'
@@ -57,7 +56,7 @@ const FirstSection = () => {
             )}
         </div>
     )
-    
+
     const weekElement = (
         <div className={`${containerWeek} containerPopularMovies`}
         >

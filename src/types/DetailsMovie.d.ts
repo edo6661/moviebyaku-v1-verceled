@@ -40,3 +40,13 @@ type MovieDetails = {
 	vote_average: number;
 	vote_count: number;
 };
+
+interface GuestRatedMovie {
+	guest_session_id: string;
+	page: number;
+}
+
+interface getResponseAccontId {
+	account_id: string;
+	page: string;
+}

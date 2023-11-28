@@ -1,31 +1,84 @@
+import { useState } from 'react';
 import { FaBookmark, FaHeart, FaStar } from 'react-icons/fa';
+import { toast } from 'react-toastify';
+import { useFavoriteMovieMutation, useWatchListMovieMutation } from '../../features/movie/movieApiSlice';
+import useProvider from '../../hooks/useProvider';
+import { toggleStatus } from '../../hooks/useStatus';
 
-const SliderMenu = () => {
+const SliderMenu = ({ id }: { id: string }) => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const [_, setActiveStar] = useState(false)
+    const { favorite, watchlist, setFavorite, setWatchlist } = useProvider()
+    const [addFavorite, { isLoading: loadingFav, isError: isErrFav }] = useFavoriteMovieMutation();
+    const [addWatchlist, { isLoading: loadingWl, isError: isErrWl }] = useWatchListMovieMutation();
+
+    const initialArg = {
+        account_id: '20730095',
+        media_type: 'movie',
+        media_id: id,
+    }
+    const argFav = {
+        ...initialArg,
+        favorite: !favorite[id]
+    }
+    const argWl = {
+        ...initialArg,
+        watchlist: !watchlist[id],
+    }
+
+    const handleFav = async () => {
+        if (isErrFav) {
+            return toast('you must have an account id')
+        } else {
+            await addFavorite(argFav)
+            toggleStatus(setFavorite, id)
+        }
+    }
+    const handleWl = async () => {
+        if (isErrWl) {
+            return toast('you must have an account id')
+        } else {
+            await addWatchlist(argWl)
+            toggleStatus(setWatchlist, id)
+        }
+    }
+
+    const heartColor = !isErrFav && !loadingFav && favorite[id] ? 'red' : 'black';
+    const bookMarkColor = !isErrWl && !loadingWl && watchlist[id] ? 'green' : 'black';
+    const fav = !loadingFav ? 'Favorite' : 'Loading...'
+    const wl = !loadingWl ? 'Watchlist' : 'Loading...'
 
     const menus = [
         {
-            title: 'Favorite',
-            icons: <FaHeart size={15} />
+            title: fav,
+            icons: <FaHeart size={15} color={heartColor} />,
+            onClick: () => handleFav()
         },
         {
-            title: 'Watch list',
-            icons: <FaBookmark size={15} />
+            title: wl,
+            icons: <FaBookmark size={15} color={bookMarkColor} />,
+            onClick: () => handleWl()
         },
         {
             title: 'Your Rating',
-            icons: <FaStar size={15} />
+            icons: <FaStar size={15} />,
+            onClick: () => setActiveStar(prev => !prev)
         },
     ]
 
-    return menus.map((menu, i) =>
-        <button className='menuPopularMovies' key={i}>
-            <span className='iconPopularMovies'>
-                {menu.icons}
-            </span>
-            <span className='ml-2'>
-                {menu.title}
-            </span>
-        </button>
+    return (
+        <>
+            {menus.map((menu, i) =>
+                <button className='menuPopularMovies' key={i} onClick={menu.onClick}>
+                    <span className='iconPopularMovies'>
+                        {menu.icons}
+                    </span>
+                    <span className='ml-2'>
+                        {menu.title}
+                    </span>
+                </button>
+            )}
+        </>
     )
 }
 

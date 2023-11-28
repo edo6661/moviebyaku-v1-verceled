@@ -19,7 +19,7 @@ const Header = () => {
                         <Link to="/">
                             <img
                                 className=" h-12 object-cover"
-                                src="logo.png" alt="Logo"
+                                src="/logo.png" alt="Logo"
                             />
                         </Link>
                         <motion.div className='flex gap-4'>
