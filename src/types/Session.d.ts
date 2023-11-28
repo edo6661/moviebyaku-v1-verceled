@@ -8,3 +8,8 @@ interface ResponseGuest {
 	request_token: string;
 	expires_at: string;
 }
+
+interface ResponseSessionId {
+	success: boolean;
+	session_id: string;
+}

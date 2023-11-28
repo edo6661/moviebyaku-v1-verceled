@@ -1,15 +1,16 @@
 import { motion } from 'framer-motion';
 import { FaSearch } from 'react-icons/fa';
+import { RiLoginCircleLine } from "react-icons/ri";
 import { Link } from 'react-router-dom';
 import { movie, people, tv } from '../helpers/navDropdown';
 import useProvider from '../hooks/useProvider';
 import NavDropdown from './dropdown/NavDropdown';
 
+
 const Header = () => {
-    const { setSearch } = useProvider()
+    const { setSearch, requestToken } = useProvider()
 
     const handleSearch = () => setSearch(prev => !prev)
-
 
     return (
         < header >
@@ -28,8 +29,11 @@ const Header = () => {
                             <NavDropdown title='People' items={people} />
                         </motion.div>
                     </div>
-                    <div className='flex items-center'>
-                        <button onClick={handleSearch}>{<FaSearch />}</button>
+                    <div className='flex items-center gap-4'>
+                        <a href={`https://www.themoviedb.org/authenticate/${requestToken}?redirect_to=http://localhost:5173/`} target='_blank'>
+                            <RiLoginCircleLine size={24} />
+                        </a>
+                        <button onClick={handleSearch}>{<FaSearch size={21} />}</button>
                     </div>
                 </div>
             </nav>

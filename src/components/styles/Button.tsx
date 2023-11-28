@@ -51,7 +51,6 @@ const Button = ({ children, onClick, color = 'darkPr', size = 'md', rounded = 'n
 
     return (
         <button type={type} disabled={disabled} className={`${buttonStyle({ color, size, rounded, border })} ${className}`} onClick={onClick}>{children}</button>
-
     )
 }
 

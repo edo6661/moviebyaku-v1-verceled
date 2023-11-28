@@ -10,6 +10,13 @@ interface Context {
 	watchlist: Record<string, boolean>;
 	setWatchlist: React.Dispatch<React.SetStateAction<Record<string, boolean>>>;
 	setFavorite: React.Dispatch<React.SetStateAction<Record<string, boolean>>>;
+	// ! token
+	requestToken: string;
+	setRequestToken: React.Dispatch<React.SetStateAction<string>>;
+	localToken: string;
+	setLocalToken: React.Dispatch<React.SetStateAction<string>>;
+	profile: ResponseAccount;
+	setProfile: React.Dispatch<React.SetStateAction<ResponseAccount>>;
 }
 
 type Status = { results: { id: number }[] };

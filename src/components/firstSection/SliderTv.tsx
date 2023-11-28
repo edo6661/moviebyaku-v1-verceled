@@ -73,7 +73,7 @@ const SliderTv = ({ id, poster_path, name, first_air_date, i, backdrop_path, set
                                 animate="animation"
                                 initial="initial"
                                 exit="exit">
-                                <SliderMenu />
+                                <SliderMenu id={id.toString()} />
                             </motion.div>}
                     </AnimatePresence>
                 </div>
