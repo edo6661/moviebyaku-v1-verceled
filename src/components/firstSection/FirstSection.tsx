@@ -70,11 +70,13 @@ const FirstSection = () => {
         <section className={`py-4 ${loadingDay && 'min-h-[55vh]'}`} >
             <div className='containerPopularDetails casualWrapper'>
                 <h1 className='font-semibold text-xl'>Trending</h1>
-                <div className='containerDay -z-10'>
-                    <p onClick={toggleDayFalse} className={` ${dayTrue}`}>Day
+                <div className='containerDay'>
+                    <p onClick={toggleDayFalse} className={` ${dayTrue} text-white`}>Day
                     </p>
-                    <motion.div variants={day ? leftVars : rightVars} animate='animate' initial="initial" className={`bgDay ${bgWeek}`}></motion.div>
-                    <p onClick={toggleDayTrue} className={` ${dayFalse}`}>Week
+                    <motion.div variants={day ? leftVars : rightVars} animate='animate' initial="initial" className={`bgDay ${bgWeek}`}>
+
+                    </motion.div>
+                    <p onClick={toggleDayTrue} className={` ${dayFalse} text-white`}>Week
                     </p>
                 </div>
                 <article>

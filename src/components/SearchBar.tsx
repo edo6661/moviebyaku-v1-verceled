@@ -47,7 +47,7 @@ const SearchBar = () => {
     return (
         <AnimatePresence>
             {search && (
-                <motion.section className='containerSearchBar z-50 bg-opacity-90 bg-myWhite'
+                <motion.section className='containerSearchBar z-40 bg-opacity-90 bg-white'
                     variants={searchBarVars} initial="initial" animate="animate" exit="exit">
                     <div className='casualWrapper flex flex-col gap-2 '>
                         <form action="" className='innerSearchBar' onSubmit={handleSubmitTerm}>

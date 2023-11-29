@@ -1,7 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import SearchBar from '../../components/SearchBar';
 import BannerSection from '../../components/firstSection/BannerSection';
 import FirstSection from "../../components/firstSection/FirstSection";
 import PopularSection from "../../components/firstSection/PopularSection";
@@ -61,7 +60,6 @@ const HomePage = () => {
     useTitle("Home")
     return (
         <>
-            <SearchBar />
             <BannerSection />
             <FirstSection />
             <PopularSection />

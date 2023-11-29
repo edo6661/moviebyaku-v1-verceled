@@ -16,11 +16,12 @@
 	}
 	header,
 	footer {
-		@apply font-playfair font-bold sm:text-2xl text-lg text-white;
+		@apply font-playfair font-bold sm:text-2xl text-xl text-white;
 	}
 	body {
 		@apply font-sans text-base dark:bg-black dark:text-myWhite text-black bg-myWhite;
 	}
+
 	input {
 		@apply text-black;
 	}
@@ -78,6 +79,12 @@
 	}
 	.hoveredLinks {
 		@apply transition-all duration-300;
+	}
+	.containerMobileNav {
+		@apply top-14 bg-lightBlue dark:bg-darkBlue w-60 min-h-screen z-50 px-4 py-4 overflow-x-hidden fixed flex flex-col text-3xl;
+	}
+	.containerMobileNav ul li div {
+		@apply text-2xl;
 	}
 	/* ! search bar */
 	.containerSearchBar {

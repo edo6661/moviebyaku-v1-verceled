@@ -6,8 +6,10 @@ const Movie = () => {
     return (
         <>
             <SearchBar />
-            <SecondNavMovie />
-            <Outlet />
+            <section className=" py-20">
+                <SecondNavMovie />
+                <Outlet />
+            </section>
         </>
     )
 }

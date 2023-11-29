@@ -11,7 +11,7 @@ const SingleMovie = () => {
     console.log(data)
 
     return (
-        <article>
+        <article className=' '>
             singleMovie {id}
         </article>
     )

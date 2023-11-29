@@ -18,7 +18,7 @@ const SliderMenu = ({ id }: { id: string }) => {
         media_id: id,
         session_id: sessionId
     }
-    const argFav = {
+    const argFav = {    
         ...initialArg,
         favorite: !favorite[id]
     }
