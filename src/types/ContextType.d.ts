@@ -13,10 +13,10 @@ interface Context {
 	// ! token
 	requestToken: string;
 	setRequestToken: React.Dispatch<React.SetStateAction<string>>;
-	localToken: string;
-	setLocalToken: React.Dispatch<React.SetStateAction<string>>;
 	profile: ResponseAccount;
 	setProfile: React.Dispatch<React.SetStateAction<ResponseAccount>>;
+	sessionId: string;
+	setSessionId: React.Dispatch<React.SetStateAction<string>>;
 }
 
 type Status = { results: { id: number }[] };

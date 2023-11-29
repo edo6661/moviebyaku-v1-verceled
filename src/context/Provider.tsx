@@ -1,6 +1,6 @@
-import { ReactNode, useEffect, useState } from 'react';
+import { ReactNode, useState } from 'react';
 import { useFavoriteStatusQuery, useGetWatchListMovQuery } from '../features/movie/movieApiSlice';
-import { getItemFromLocalStorage, setItemInLocalStorage } from '../helpers/getSetLocal';
+import { initialProfile } from '../helpers/initialProfile';
 import useStatus from '../hooks/useStatus';
 import context from './context';
 interface Props {
@@ -12,17 +12,9 @@ export const ContextProvider = ({ children }: Props) => {
     const [favorite, setFavorite] = useState<Record<string, boolean>>({});
     const [watchlist, setWatchlist] = useState<Record<string, boolean>>({});
     const [requestToken, setRequestToken] = useState("")
-
-    const [profile, setProfile] = useState<ResponseAccount>({
-        avatar: { gravatar: { hash: '' }, tmdb: { avatar_path: '' } },
-        id: 0,
-        iso_639_1: '',
-        iso_3166_1: '',
-        name: '',
-        include_adult: false,
-        username: '',
-    });
-    const temporaryArg = { account_id: '20730095', page: '1' };
+    const [profile, setProfile] = useState<ResponseAccount>(initialProfile);
+    const [sessionId, setSessionId] = useState('')
+    const temporaryArg = { account_id: profile.id.toString(), page: '1', session_id: sessionId };
     const { data: favoriteStatus } = useFavoriteStatusQuery(temporaryArg);
     const { data: watchListStatus } = useGetWatchListMovQuery(temporaryArg);
 
@@ -33,12 +25,6 @@ export const ContextProvider = ({ children }: Props) => {
     useStatus(favoriteStatus, setFavorite)
     useStatus(watchListStatus, setWatchlist)
 
-    // ! save token
-    const [localToken, setLocalToken] = useState(getItemFromLocalStorage('initialToken'));
-
-    useEffect(() => {
-        setItemInLocalStorage('token', localToken);
-    }, [localToken]);
 
     return (
         <context.Provider value={{
@@ -47,7 +33,7 @@ export const ContextProvider = ({ children }: Props) => {
             // ! check and toggle post data
             favorite, watchlist, setWatchlist, setFavorite,
             // ! request token
-            requestToken, setRequestToken, localToken, setLocalToken, profile, setProfile
+            requestToken, setRequestToken, profile, setProfile, setSessionId, sessionId,
         }}>
             {children}
         </context.Provider>

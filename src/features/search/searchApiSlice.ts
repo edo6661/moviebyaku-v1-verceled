@@ -75,6 +75,24 @@ const searchApiSlice = apiSlice.injectEndpoints({
 					  ]
 					: [{ type: 'Search', id: 'PERSON' }],
 		}),
+		searchMulti: build.query<DataMulti, { query: string; page: string }>({
+			query: ({ query, page }) => ({
+				url: `search/multi?query=${query}&include_adult=false&language=en-US&page=${page}`,
+				validateStatus: (res, resu) => {
+					return res.status === 200 && !resu.isError;
+				},
+			}),
+			providesTags: (result) =>
+				result
+					? [
+							...result.results.map((movie) => ({
+								type: 'Search' as const,
+								id: movie.id,
+							})),
+							{ type: 'Search', id: 'SEARCHMULTI' },
+					  ]
+					: [{ type: 'Search', id: 'SEARCHMULTI' }],
+		}),
 	}),
 });
 
@@ -83,4 +101,5 @@ export const {
 	useSearchMovieQuery,
 	useSearchTvQuery,
 	useSearchPersonQuery,
+	useSearchMultiQuery,
 } = searchApiSlice;

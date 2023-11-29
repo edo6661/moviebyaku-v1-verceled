@@ -8,14 +8,15 @@ import { toggleStatus } from '../../hooks/useStatus';
 const SliderMenu = ({ id }: { id: string }) => {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [_, setActiveStar] = useState(false)
-    const { favorite, watchlist, setFavorite, setWatchlist } = useProvider()
+    const { favorite, watchlist, setFavorite, setWatchlist, profile, sessionId } = useProvider()
     const [addFavorite, { isLoading: loadingFav, isError: isErrFav }] = useFavoriteMovieMutation();
     const [addWatchlist, { isLoading: loadingWl, isError: isErrWl }] = useWatchListMovieMutation();
 
     const initialArg = {
-        account_id: '20730095',
+        account_id: profile.id.toString(),
         media_type: 'movie',
         media_id: id,
+        session_id: sessionId
     }
     const argFav = {
         ...initialArg,

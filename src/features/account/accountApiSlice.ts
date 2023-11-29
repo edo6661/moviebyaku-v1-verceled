@@ -12,14 +12,14 @@ const accountApiSlice = apiSlice.injectEndpoints({
 				}
 				return {
 					url,
-					validateStatus: (response, result) => {
-						return response.status === 200 && !result.isError;
-					},
+					// validateStatus: (response, result) => {
+					// 	return response.status === 200 && !result.isError;
+					// },
 				};
 			},
-			providesTags: (_result, _error, { session_id }) => [
-				{ type: 'Account', id: session_id },
-			],
+			// providesTags: (_result, _error, { session_id }) => [
+			// 	{ type: 'Account', id: session_id },
+			// ],
 		}),
 		guestSessionId: build.query<ResponseGuest, void>({
 			query: () => ({
@@ -37,7 +37,7 @@ const accountApiSlice = apiSlice.injectEndpoints({
 					return response.status === 200 && !result.isError;
 				},
 			}),
-			providesTags: [{ type: 'Account', id: 'REQUESTTOKEN' }],
+			// providesTags: [{ type: 'Account', id: 'REQUESTTOKEN' }],
 		}),
 		sessionId: build.mutation<ResponseSessionId, string>({
 			query: (request_token) => ({
@@ -47,6 +47,17 @@ const accountApiSlice = apiSlice.injectEndpoints({
 					request_token: request_token,
 				},
 			}),
+			// invalidatesTags: [{ type: 'Account' }],
+		}),
+		deleteSessionId: build.mutation<Partial<ResponseSessionId>, string>({
+			query: (sessionId) => ({
+				url: 'authentication/session',
+				method: 'DELETE',
+				body: {
+					session_id: sessionId,
+				},
+			}),
+			// invalidatesTags: [{ type: 'Account' }],
 		}),
 	}),
 });
@@ -56,4 +67,5 @@ export const {
 	useGuestSessionIdQuery,
 	useRequestTokenQuery,
 	useSessionIdMutation,
+	useDeleteSessionIdMutation,
 } = accountApiSlice;

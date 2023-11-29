@@ -272,12 +272,13 @@ export const movieApiSlice = apiSlice.injectEndpoints({
 			keepUnusedDataFor: 60 * 30,
 		}),
 		favoriteMovie: builder.mutation<ResponsePOST, AddFavorite>({
-			query: ({ account_id, media_type, media_id, favorite }) => {
-				if (!account_id.length) {
+			query: ({ account_id, media_type, media_id, favorite, session_id }) => {
+				const url = `account/${account_id}/favorite?session_id${session_id}`;
+				if (account_id === undefined && account_id !== '') {
 					throw new Error('you must have account_id');
 				}
 				return {
-					url: `account/${account_id}/favorite`,
+					url,
 					method: 'POST',
 					body: {
 						media_type,
@@ -292,12 +293,18 @@ export const movieApiSlice = apiSlice.injectEndpoints({
 		}),
 		favoriteStatus: builder.query<
 			ResponseFavoriteStatus,
-			{ account_id: string; page: string }
+			{ account_id: string; page: string; session_id: string }
 		>({
-			query: ({ account_id, page }) => ({
-				url: `account/${account_id}/favorite/movies?page=${page}`,
-				method: 'GET',
-			}),
+			query: ({ account_id, page, session_id }) => {
+				if (account_id === undefined && account_id !== '') {
+					throw new Error('you must have account_id');
+				}
+				const url = `account/${account_id}/favorite/movies?page=${page}&session_id=${session_id}`;
+				return {
+					url,
+					method: 'GET',
+				};
+			},
 		}),
 		watchListMovie: builder.mutation<ResponsePOST, AddWatchList>({
 			query: ({ account_id, media_type, media_id, watchlist }) => ({
@@ -312,8 +319,11 @@ export const movieApiSlice = apiSlice.injectEndpoints({
 			invalidatesTags: [{ type: 'Movie' }],
 		}),
 		ratingMovie: builder.mutation<ResponsePOST, AddFavorite>({
-			query: ({ media_id, media_type, account_id, favorite }) => {
-				const url = `account/{account_id}/favorite`;
+			query: ({ media_id, media_type, account_id, favorite, session_id }) => {
+				let url = `account/{account_id}/favorite`;
+				if (session_id) {
+					url += `?session_id=${session_id}`;
+				}
 				if (!account_id) {
 					throw new Error('must have account tmdb');
 				}
@@ -349,26 +359,6 @@ export const movieApiSlice = apiSlice.injectEndpoints({
 				};
 			},
 			invalidatesTags: [{ type: 'Movie' }],
-		}),
-		getMovieRatedGuest: builder.query<RatedData, GuestRatedMovie>({
-			query: ({ guest_session_id, page }) => ({
-				url: `guest_session/${guest_session_id}/rated/movies?language=en-US&page=${page}&sort_by=created_at.asc`,
-				validateStatus: (response, result) => {
-					return response.status === 200 && !result.isError;
-				},
-			}),
-			providesTags: (result) =>
-				result
-					? [
-							...result.results.map(
-								(movie) => ({
-									type: 'Movie' as const,
-									id: movie.id,
-								}),
-								{ type: 'Movie', id: 'GUEST' }
-							),
-					  ]
-					: [{ type: 'Movie', id: 'GUEST' }],
 		}),
 		getWatchListMov: builder.query<ResponseWatchlist, getResponseAccontId>({
 			query: ({ account_id, page }) => {
@@ -418,6 +408,5 @@ export const {
 	useRatedMoviesQuery,
 	useGetFavoriteMovieQuery,
 	useGenresMovieQuery,
-	useGetMovieRatedGuestQuery,
 	useFavoriteStatusQuery,
 } = movieApiSlice;

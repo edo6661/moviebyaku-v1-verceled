@@ -8,6 +8,7 @@ interface AddFavorite {
 	media_type: string;
 	media_id: string;
 	favorite: boolean;
+	session_id: string;
 }
 interface AddWatchList {
 	account_id: string;
