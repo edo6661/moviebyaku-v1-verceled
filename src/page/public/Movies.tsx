@@ -1,7 +1,8 @@
 import { Outlet } from "react-router-dom"
 import SecondNavMovie from "../../components/movie/SecondNavMovie"
 
-const Movie = () => {
+const Movies = () => {
+
     return (
         <>
             <SecondNavMovie />
@@ -10,4 +11,4 @@ const Movie = () => {
     )
 }
 
-export default Movie
+export default Movies

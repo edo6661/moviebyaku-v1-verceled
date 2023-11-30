@@ -1,11 +1,11 @@
 import { useParams } from "react-router-dom"
-import SearchBar from "../../components/SearchBar"
+import SecondNavMovie from "../../components/movie/SecondNavMovie"
 const SearchPage = () => {
     const { keyword } = useParams()
     return (
         <>
-            <SearchBar />
-            <section>
+            <SecondNavMovie />
+            <section className="">
                 the {keyword}
             </section>
         </>

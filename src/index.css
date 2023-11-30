@@ -64,7 +64,8 @@
 		background: url(../public/toast.png);
 	}
 	/* ! nav */
-	header {
+	header,
+	footer {
 		@apply bg-lightBlue dark:bg-darkBlue py-3;
 	}
 	.headerContainer {
@@ -81,7 +82,7 @@
 		@apply transition-all duration-300;
 	}
 	.containerMobileNav {
-		@apply top-14 bg-lightBlue dark:bg-darkBlue w-60 min-h-screen z-50 px-4 py-4 overflow-x-hidden fixed flex flex-col text-3xl;
+		@apply top-14 bg-lightBlue dark:bg-darkBlue gap-24 w-60 min-h-screen z-50 px-4 py-4 overflow-x-hidden fixed flex flex-col text-3xl;
 	}
 	.containerMobileNav ul li div {
 		@apply text-2xl;
@@ -99,7 +100,7 @@
 	/* ! banner section */
 	.bannerSection {
 		background: url(../public/banner-1.jpeg);
-		@apply min-h-[40vh] bg-fixed lg:bg-top
+		@apply min-h-[60vh] bg-fixed lg:bg-top
 			lg:bg-no-repeat lg:bg-contain bg-cover bg-left-top flex justify-center items-center;
 	}
 	.innerBanner {
@@ -169,5 +170,24 @@
 	}
 	.bgUrlSlider {
 		@apply bg-no-repeat bg-center z-0 bg-cover min-h-[50vh] bg-fixed;
+	}
+	/* ! container second nav movies */
+	.containerSecondNav {
+		@apply mt-[4.5rem] p-4 bg-white text-black;
+	}
+	.containerSecondNav article {
+		@apply mx-auto flex casualWrapper justify-center gap-4;
+	}
+	.innerSecondNav {
+		@apply flex relative flex-col;
+	}
+	.detailsSecondNav {
+		@apply flex items-center gap-2;
+	}
+	.detailsSecondNav p {
+		@apply text-xl font-semibold;
+	}
+	.dropDownSecondNav {
+		@apply absolute flex flex-col gap-2 mt-8 text-black font-[600] text-lg bg-white w-max py-3 px-5 rounded-xl;
 	}
 }

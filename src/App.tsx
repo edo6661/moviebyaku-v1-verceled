@@ -1,6 +1,7 @@
 import { Outlet } from "react-router-dom";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Footer from './components/Footer';
 import Header from "./components/Header";
 function App() {
   const toastStyle = {
@@ -13,7 +14,7 @@ function App() {
         position="bottom-right"
         toastStyle={toastStyle}
         autoClose={1500}
-        closeOnClick  
+        closeOnClick
         pauseOnHover
         theme="colored"
       />
@@ -21,6 +22,7 @@ function App() {
       <main className="flex flex-col">
         <Outlet />
       </main >
+      <Footer />
     </>
   )
 }

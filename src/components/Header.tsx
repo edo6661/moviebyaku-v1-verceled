@@ -7,7 +7,7 @@ import { movie, people, tv } from '../helpers/navDropdown';
 import useMenuAnimation from '../hooks/useMenuAnimation';
 import useProvider from '../hooks/useProvider';
 import useWindowWidth from '../hooks/useWindowWidth';
-import { buttonVars, containerMobile } from '../locale/HeaderVars';
+import { containerMobile, smRotateVars } from '../locale/HeaderVars';
 import SearchBar from './SearchBar';
 import NavDropdown from './dropdown/NavDropdown';
 
@@ -39,9 +39,6 @@ const Header = () => {
 
     const toggle = () => setOpen(prev => !prev)
 
-
-
-
     return (
         < header className=' fixed w-full z-50 ' ref={scope} >
             <nav className="casualWrapper mx-auto ">
@@ -65,7 +62,7 @@ const Header = () => {
                         <div className='flex items-center gap-4 re'>
                             <button onClick={handleSearch}>{<FaSearch size={21} />}</button>
                             <motion.button onClick={toggle}
-                                variants={buttonVars}
+                                variants={smRotateVars}
                                 animate={open ? 'open' : 'close'}>
                                 <GiHamburgerMenu size={24} />
                             </motion.button>

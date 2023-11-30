@@ -1,36 +1,36 @@
 const movie = [
 	{
 		subtitle: 'Popular',
-		to: 'movie-popular',
+		to: '/movies/popular',
 	},
 	{
 		subtitle: 'Upcoming',
-		to: 'upcoming',
+		to: '/movies/upcoming',
 	},
 	{
 		subtitle: 'Top Rated',
-		to: 'movie-top',
+		to: '/movies/toprated',
 	},
 ];
 const tv = [
 	{
 		subtitle: 'Popular',
-		to: 'tv-popular',
+		to: '/tv/popular',
 	},
 	{
 		subtitle: 'Airing',
-		to: 'tv-airing',
+		to: '/tv/airing',
 	},
 	{
 		subtitle: 'Top Rated',
-		to: 'tv-top',
+		to: '/tv/toprated',
 	},
 ];
 
 const people = [
 	{
 		subtitle: 'Popular People',
-		to: 'people-popular',
+		to: 'popular-people',
 	},
 ];
 

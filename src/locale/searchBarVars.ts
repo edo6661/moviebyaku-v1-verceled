@@ -4,7 +4,7 @@ const searchBarVars = {
 		opacity: 0,
 	},
 	animate: {
-		y: '-1px',
+		y: '12px',
 		transition: {
 			duration: 0.3,
 			ease: [0.12, 0, 0.39, 0],

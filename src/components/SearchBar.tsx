@@ -13,7 +13,7 @@ const SearchBar = () => {
     const navigate = useNavigate()
     const handleSubmitTerm = (e: React.SyntheticEvent) => {
         e.preventDefault();
-        navigate(`/${searchTerm}`)
+        navigate(`/search/${searchTerm}`)
     }
 
     const { data, isError, error } = useSearchMultiQuery({ query: searchTerm, page: '1' })

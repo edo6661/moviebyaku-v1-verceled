@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { FaBookmark, FaHeart, FaStar } from 'react-icons/fa';
+import { FaBookmark, FaHeart } from 'react-icons/fa';
 import { toast } from 'react-toastify';
 import { useFavoriteMovieMutation, useWatchListMovieMutation } from '../../features/movie/movieApiSlice';
 import useProvider from '../../hooks/useProvider';
@@ -18,7 +18,7 @@ const SliderMenu = ({ id }: { id: string }) => {
         media_id: id,
         session_id: sessionId
     }
-    const argFav = {    
+    const argFav = {
         ...initialArg,
         favorite: !favorite[id]
     }
@@ -59,11 +59,6 @@ const SliderMenu = ({ id }: { id: string }) => {
             title: wl,
             icons: <FaBookmark size={15} color={bookMarkColor} />,
             onClick: () => handleWl()
-        },
-        {
-            title: 'Your Rating',
-            icons: <FaStar size={15} />,
-            onClick: () => setActiveStar(prev => !prev)
         },
     ]
 
