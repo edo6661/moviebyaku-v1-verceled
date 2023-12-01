@@ -14,6 +14,9 @@
 			transparent
 		);
 	}
+	* {
+		text-wrap: balance;
+	}
 	header,
 	footer {
 		@apply font-playfair font-bold sm:text-2xl text-xl text-white;
@@ -113,7 +116,8 @@
 	.containerPopularMovies {
 		@apply grid gap-4 grid-flow-col overflow-x-auto scroll-smooth;
 	}
-	.containerPopularMovies::-webkit-scrollbar {
+	.containerPopularMovies::-webkit-scrollbar,
+	.containerScrollSingleMovie::-webkit-scrollbar {
 		@apply w-1 h-3;
 	}
 	.menuPopularMovies {
@@ -154,15 +158,18 @@
 	}
 	/* ! bg scroll bar */
 
-	.containerPopularMovies::-webkit-scrollbar-track {
+	.containerPopularMovies::-webkit-scrollbar-track,
+	.containerScrollSingleMovie::-webkit-scrollbar-track {
 		@apply dark:bg-lightBlue bg-darkBlue rounded-full;
 	}
 
-	.containerPopularMovies::-webkit-scrollbar-thumb {
+	.containerPopularMovies::-webkit-scrollbar-thumb,
+	.containerScrollSingleMovie::-webkit-scrollbar-thumb {
 		@apply bg-lightBlue dark:bg-darkBlue rounded-full;
 	}
 
-	.containerPopularMovies::-webkit-scrollbar-thumb:hover {
+	.containerPopularMovies::-webkit-scrollbar-thumb:hover,
+	.containerScrollSingleMovie::-webkit-scrollbar-thumb:hover {
 		@apply dark:bg-darkBlue bg-lightBlue rounded-full;
 	}
 	.primaryMask {
@@ -173,21 +180,104 @@
 	}
 	/* ! container second nav movies */
 	.containerSecondNav {
-		@apply mt-[4.5rem] p-4 bg-white text-black;
+		@apply mt-[4.5rem] p-4 bg-white text-black z-40;
 	}
 	.containerSecondNav article {
-		@apply mx-auto flex casualWrapper justify-center gap-4;
+		@apply mx-auto flex casualWrapper justify-center lg:gap-8 md:gap-6 sm:gap-4 gap-2;
 	}
 	.innerSecondNav {
 		@apply flex relative flex-col;
 	}
+	.transitionSecondNav {
+		@apply transition-all duration-200;
+	}
 	.detailsSecondNav {
-		@apply flex items-center gap-2;
+		@apply flex items-center gap-2 transitionSecondNav;
 	}
 	.detailsSecondNav p {
-		@apply text-xl font-semibold;
+		@apply sm:text-xl md:text-2xl text-lg font-semibold;
 	}
 	.dropDownSecondNav {
-		@apply absolute flex flex-col gap-2 mt-8 text-black font-[600] text-lg bg-white w-max py-3 px-5 rounded-xl;
+		@apply absolute flex flex-col gap-2 mt-8 text-black font-[600] text-lg bg-white w-max py-3 px-5 rounded-xl -z-10;
+	}
+	/* ! single movie */
+	.containerSingleMovie {
+		@apply dark:text-white sm:text-white text-black relative lg:text-2xl sm:text-xl text-base;
+	}
+	.backDrop {
+		@apply absolute w-full sm:h-full h-[32rem];
+	}
+	.backdropSingleMovie {
+		@apply absolute w-full h-full sm:block hidden;
+		background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+	}
+	.containerPoster {
+		@apply z-10 mx-auto sm:col-span-1 col-span-full;
+	}
+	.containerPoster img {
+		@apply rounded-2xl sm:w-full w-80;
+	}
+	.innerSingleMovie {
+		@apply grid grid-cols-2 sm:grid-cols-3 z-10 casualWrapper my-8 sm:gap-1 gap-8;
+	}
+	.detailsSingleMovie {
+		@apply col-span-2 flex flex-col z-10 ml-10 gap-2;
+	}
+	.detailsSingleMovie h2 {
+		@apply sm:text-2xl md:text-3xl lg:text-4xl text-xl  font-semibold md:mt-10 mt-0;
+	}
+	.secondDetailsSingleMovie {
+		@apply flex gap-2 md:flex-row flex-col;
+	}
+	.score-circle {
+		position: relative;
+		width: 70px;
+		height: 70px;
+	}
+	.score-circle .circle-bg,
+	.score-circle .circle {
+		/* ! bg nya */
+		fill: none;
+		/* ! width bordernya */
+		stroke-width: 4;
+	}
+
+	.score-circle .circle-bg {
+		@apply stroke-white;
+	}
+
+	.score-circle .circle {
+		@apply dark:stroke-darkBlue stroke-lightBlue;
+	}
+
+	.score-circle p {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		margin: 0;
+		@apply font-semibold;
+	}
+	/* ! second section single movie */
+	.containerScrollSingleMovie {
+		@apply col-span-4 flex overflow-x-auto gap-4 scroll-smooth;
+	}
+	.singleMovieTitle {
+		@apply xl:text-xl text-lg font-semibold;
+	}
+	.secondContainerSingleDetails {
+		@apply grid-cols-5 grid mt-3 gap-8;
+	}
+	.singleDetailsCrsl {
+		@apply flex min-w-[9rem] min-h-[9rem] flex-col rounded-xl gap-2 pb-6;
+	}
+	.singleDetailsCrsl img {
+		@apply rounded-xl mb-2;
+	}
+	.containerDetailsSingleMovie {
+		@apply flex flex-col gap-4;
+	}
+	.secondInnerSingleMovie {
+		@apply flex flex-col gap-1;
 	}
 }

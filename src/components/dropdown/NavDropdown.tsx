@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
@@ -13,23 +14,27 @@ interface DropdownType {
 }
 
 const NavDropdown = ({ title, items }: DropdownType) => {
-
-
+    const [isOpen, setIsOpen] = useState(false)
     const windowWidth = useWindowWidth()
+
+    const mobileWidth = windowWidth > 640
 
     useEffect(() => {
         setIsOpen(false)
     }, [])
 
     useEffect(() => {
-        if (windowWidth > 768) setIsOpen(false)
+        if (mobileWidth) {
+            setIsOpen(false)
+        } else {
+            setIsOpen(true)
+        }
     }, [windowWidth])
 
 
     const open = () => setIsOpen(true)
     const unopen = () => setIsOpen(false)
 
-    const [isOpen, setIsOpen] = useState(false)
     const dropDownVars = {
         initial: {
             y: "8px",
@@ -54,7 +59,9 @@ const NavDropdown = ({ title, items }: DropdownType) => {
     }
 
     return (
-        <div className='relative' onMouseEnter={open} onMouseLeave={unopen}>
+        <div className='relative'
+            onMouseEnter={open}
+            {...(mobileWidth && { onMouseLeave: unopen })}>
             <p className={`select-none hoveredLinks ${isOpen ? ' opacity-80' : 'text-white'}`}>{title}</p>
             <AnimatePresence>
                 {isOpen && (

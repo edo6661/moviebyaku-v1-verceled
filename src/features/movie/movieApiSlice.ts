@@ -258,7 +258,7 @@ export const movieApiSlice = apiSlice.injectEndpoints({
 			// ! 30 menit
 			keepUnusedDataFor: 60 * 30,
 		}),
-		ImagesMovie: builder.query<ImageData, string>({
+		ImagesMovie: builder.query<MovieImagesData, string>({
 			query: (id) => ({
 				url: `movie/${id}/images`,
 				validateStatus: (response, result) => {
@@ -383,6 +383,66 @@ export const movieApiSlice = apiSlice.injectEndpoints({
 					  ]
 					: [{ type: 'Movie', id: 'WATCHLIST' }],
 		}),
+		MovieKeywords: builder.query<DataKeywords, string>({
+			query: (id) => ({
+				url: `movie/${id}/keywords`,
+				validateStatus: (response, result) => {
+					return response.status === 200 && !result.isError;
+				},
+			}),
+			providesTags: (result) =>
+				result
+					? [
+							...result.keywords.map(
+								(keyword) => ({
+									type: 'Movie' as const,
+									id: keyword.id,
+								}),
+								{ type: 'Movie', id: 'KEYWORD' }
+							),
+					  ]
+					: [{ type: 'Movie', id: 'KEYWORD' }],
+		}),
+		MovieWatchProviders: builder.query<DataKeywords, string>({
+			query: (id) => ({
+				url: `movie/${id}/watch/providers`,
+				validateStatus: (response, result) => {
+					return response.status === 200 && !result.isError;
+				},
+			}),
+			providesTags: (result) =>
+				result
+					? [
+							...result.keywords.map(
+								(result) => ({
+									type: 'Movie' as const,
+									id: result.id,
+								}),
+								{ type: 'Movie', id: 'PROVIDERS' }
+							),
+					  ]
+					: [{ type: 'Movie', id: 'PROVIDERS' }],
+		}),
+		MovieSimiliar: builder.query<DataKeywords, { id: string; page: string }>({
+			query: ({ id, page }) => ({
+				url: `movie/${id}/similar?page=${page}`,
+				validateStatus: (response, result) => {
+					return response.status === 200 && !result.isError;
+				},
+			}),
+			providesTags: (result) =>
+				result
+					? [
+							...result.keywords.map(
+								(result) => ({
+									type: 'Movie' as const,
+									id: result.id,
+								}),
+								{ type: 'Movie', id: 'SIMILIAR' }
+							),
+					  ]
+					: [{ type: 'Movie', id: 'SIMILIAR' }],
+		}),
 	}),
 });
 
@@ -401,12 +461,16 @@ export const {
 	useAlterTitleMovieQuery,
 	useCreditsMovieQuery,
 	useImagesMovieQuery,
-	useFavoriteMovieMutation,
-	useWatchListMovieMutation,
-	useRatingMovieMutation,
-	useRemoveRatingMovieMutation,
 	useRatedMoviesQuery,
 	useGetFavoriteMovieQuery,
 	useGenresMovieQuery,
 	useFavoriteStatusQuery,
+	useMovieWatchProvidersQuery,
+	useMovieKeywordsQuery,
+	useMovieSimiliarQuery,
+	// ! post request
+	useFavoriteMovieMutation,
+	useWatchListMovieMutation,
+	useRatingMovieMutation,
+	useRemoveRatingMovieMutation,
 } = movieApiSlice;

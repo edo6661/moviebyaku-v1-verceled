@@ -38,22 +38,23 @@ const router = createBrowserRouter(
       <Route
         path='movie/:id'
         element={<Movie />}>
-
         <Route index element={<SingleMovie />} />
-
       </Route>
+      
       <Route path='tv/:id' element={<Tv />}>
         <Route index element={<SingleTv />} />
       </Route>
+
       <Route path='search/:keyword' element={<SearchPage />} />
       <Route path="*" element={<NotfoundTemporary />} />
+
       <Route path="movies" element={<Movies />} >
-      <Route index element={<HomePageMovies />} />
+        <Route index element={<HomePageMovies />} />
         <Route element={<PopularMovies />} path='popular' />
         <Route element={<UpcomingMovie />} path='upcoming' />
         <Route element={<TopRatedMovie />} path='toprated' />
       </Route>
-    </Route>  
+    </Route>
   )
 );
 

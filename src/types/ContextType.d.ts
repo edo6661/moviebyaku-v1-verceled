@@ -17,6 +17,10 @@ interface Context {
 	setProfile: React.Dispatch<React.SetStateAction<ResponseAccount>>;
 	sessionId: string;
 	setSessionId: React.Dispatch<React.SetStateAction<string>>;
+	imageExpand: boolean;
+	setImageExpand: React.Dispatch<React.SetStateAction<boolean>>;
+	expanded: () => void;
+	notExpanded: () => void;
 }
 
 type Status = { results: { id: number }[] };

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { FaSearch } from 'react-icons/fa';
@@ -19,9 +20,15 @@ const Header = () => {
     const handleSearch = () => setSearch(prev => !prev)
     const scope = useMenuAnimation(open);
 
+    const mobileWidth = width > 640
+
     useEffect(() => {
         setSearch(false)
     }, [location.pathname])
+
+    useEffect(() => {
+        if (mobileWidth) setOpen(false)
+    }, [width])
 
     const dropdown = <motion.div className='flex gap-4'>
         <NavDropdown title='Movie' items={movie} />
@@ -42,7 +49,7 @@ const Header = () => {
     return (
         < header className=' fixed w-full z-50 ' ref={scope} >
             <nav className="casualWrapper mx-auto ">
-                {width > 560 ? (
+                {mobileWidth ? (
                     <div className='headerContainer '>
                         <div className="headerInner">
                             {img}

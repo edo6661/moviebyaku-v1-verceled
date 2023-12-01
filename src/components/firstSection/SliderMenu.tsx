@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { FaBookmark, FaHeart } from 'react-icons/fa';
 import { toast } from 'react-toastify';
 import { useFavoriteMovieMutation, useWatchListMovieMutation } from '../../features/movie/movieApiSlice';
@@ -7,7 +6,6 @@ import { toggleStatus } from '../../hooks/useStatus';
 
 const SliderMenu = ({ id }: { id: string }) => {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const [_, setActiveStar] = useState(false)
     const { favorite, watchlist, setFavorite, setWatchlist, profile, sessionId } = useProvider()
     const [addFavorite, { isLoading: loadingFav, isError: isErrFav }] = useFavoriteMovieMutation();
     const [addWatchlist, { isLoading: loadingWl, isError: isErrWl }] = useWatchListMovieMutation();
@@ -46,8 +44,8 @@ const SliderMenu = ({ id }: { id: string }) => {
 
     const heartColor = !isErrFav && !loadingFav && favorite[id] ? 'red' : 'black';
     const bookMarkColor = !isErrWl && !loadingWl && watchlist[id] ? 'green' : 'black';
-    const fav = !loadingFav ? 'Favorite' : 'Loading...'
-    const wl = !loadingWl ? 'Watchlist' : 'Loading...'
+    const fav = !loadingFav ? 'Favorite' : 'Temporary loading nanti dibenerin puh...'
+    const wl = !loadingWl ? 'Watchlist' : 'Temporary loading nanti dibenerin puh...'
 
     const menus = [
         {
