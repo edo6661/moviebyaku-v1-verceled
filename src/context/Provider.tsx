@@ -14,7 +14,7 @@ export const ContextProvider = ({ children }: Props) => {
     const [requestToken, setRequestToken] = useState("")
     const [profile, setProfile] = useState<ResponseAccount>(initialProfile);
     const [sessionId, setSessionId] = useState('')
-    const [imageExpand, setImageExpand] = useState(true)
+const [imageExpand, setImageExpand] = useState(true)
 
     const temporaryArg = { account_id: profile.id.toString(), page: '1', session_id: sessionId };
     const { data: favoriteStatus } = useFavoriteStatusQuery(temporaryArg);

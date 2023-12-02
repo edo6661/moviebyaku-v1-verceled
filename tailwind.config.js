@@ -18,6 +18,7 @@ export default {
 				'base-auto-fit': 'repeat(auto-fit,minmax(13rem,1fr))',
 				'md-auto-fit': 'repeat(auto-fit,minmax(9.30rem,1fr))',
 				'links-auto-fit': 'repeat(auto-fit,minmax(11rem,1fr))',
+				'keyword-auto-fit': 'repeat(auto-fit,minmax(8.8rem,1fr))',
 			},
 			colors: {
 				myWhite: '#DFE8F1',

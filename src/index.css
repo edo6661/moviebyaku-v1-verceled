@@ -260,13 +260,13 @@
 	}
 	/* ! second section single movie */
 	.containerScrollSingleMovie {
-		@apply col-span-4 flex overflow-x-auto gap-4 scroll-smooth;
+		@apply col-span-3 flex overflow-x-auto gap-4 scroll-smooth;
 	}
 	.singleMovieTitle {
 		@apply xl:text-xl text-lg font-semibold;
 	}
 	.secondContainerSingleDetails {
-		@apply grid-cols-5 grid mt-3 gap-8;
+		@apply grid-cols-4 grid mt-3 gap-8;
 	}
 	.singleDetailsCrsl {
 		@apply flex min-w-[9rem] min-h-[9rem] flex-col rounded-xl gap-2 pb-6;
@@ -279,5 +279,10 @@
 	}
 	.secondInnerSingleMovie {
 		@apply flex flex-col gap-1;
+	}
+	.keyword {
+		@apply py-2 px-3 rounded-xl lg:text-lg text-base shadow-inner dark:shadow-darkBlue shadow-lightBlue ;
+		/* background-color: rgb(0, 0, 0, 0.1); */
+		/* border: 1px #d7d7d7 solid; */
 	}
 }

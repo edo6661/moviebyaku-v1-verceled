@@ -206,7 +206,7 @@ export const movieApiSlice = apiSlice.injectEndpoints({
 			// ! 30 menit
 			keepUnusedDataFor: 60 * 30,
 		}),
-		ReviewsMovie: builder.query<ReviewsData, string>({
+		ReviewsMovie: builder.query<MovieReviews, string>({
 			query: (id) => ({
 				url: `movie/${id}/reviews`,
 				validateStatus: (response, result) => {

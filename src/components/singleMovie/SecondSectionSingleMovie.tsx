@@ -1,5 +1,8 @@
 import { useCreditsMovieQuery } from "../../features/movie/movieApiSlice";
 import ErrorMessage from "../errAndLoading/TemporaryError";
+import MediaMovie from "./MediaMovie";
+import MovieKeywords from "./MovieKeywords";
+import ReviewsSection from "./ReviewsSection";
 interface Props {
     id: string;
     status?: string;
@@ -9,13 +12,13 @@ interface Props {
 const SecondSectionSingleMovie = ({ id, status, budget, revenue }: Props) => {
     const { data: credits, isError, error } = useCreditsMovieQuery(id ?? '')
 
-    const errMsg = isError && error && <ErrorMessage error={error} />
 
+    const errMsg = isError && error && <ErrorMessage error={error} />
     return (
         <>
-            <h4>Top Billed Cast</h4>
+            <h4 className="text-black dark:text-white">Top Billed Cast</h4>
             {errMsg}
-            <article className=' secondContainerSingleDetails'>
+            <article className=' secondContainerSingleDetails text-black dark:text-white'>
                 <div className='containerScrollSingleMovie'>
                     {credits?.cast.slice(0, 30).map((credit) => {
                         return (
@@ -43,13 +46,19 @@ const SecondSectionSingleMovie = ({ id, status, budget, revenue }: Props) => {
                         <p className='text-base'>{revenue?.toLocaleString('id-ID')}</p>
                     </div>
                 </div>
-                <div className=" col-span-4">
-                    <p>Reviews</p>
+                <div className=" col-span-3">
+                    <ReviewsSection id={id} />
                 </div>
                 <div className="containerDetailsSingleMovie">
-                    <p>Keyword</p>
+                    <MovieKeywords id={id} />
                 </div>
-                <div className=" col-span-4">
+                <div className=" col-span-3">
+                    <MediaMovie id={id} />
+                </div>
+                <div className="containerDetailsSingleMovie">
+                    <p>Something</p>
+                </div>
+                <div className=" col-span-3">
                     <p>Recoms</p>
                 </div>
                 <div className="containerDetailsSingleMovie">

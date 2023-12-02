@@ -11,9 +11,6 @@ const SecondNavMovie = () => {
     const trueDd = (i: string) => setShowDd(prev => ({ ...prev, [i]: true }))
     const falseDd = (i: string) => setShowDd(prev => ({ ...prev, [i]: false }))
 
-
-
-
     return (
         <section className="containerSecondNav relative">
             <article className='' >
