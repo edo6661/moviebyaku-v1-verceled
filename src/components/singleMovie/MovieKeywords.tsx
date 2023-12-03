@@ -9,7 +9,7 @@ const MovieKeywords = ({ id }: { id: string }) => {
         <>
             {errMsgK}
             <h6 className="headersSingleMovie">{!isErrK && !isLoading && keywords?.keywords.length ? 'Keywords' : "No Keyword"}</h6>
-            <div className=" grid grid-cols-1 gap-y-2 gap-x-4">
+            <div className=" innerKeywordAlter">
                 {keywords?.keywords.slice(0, 6).map((keyword) => {
                     return (
                         <div className=" w-full" key={keyword.id}>

@@ -58,10 +58,10 @@ const MediaMovie = ({ id }: { id: string }) => {
     return (
         <>
             <div className="">
-                <div className="flex items-center mb-3 gap-4">
+                <div className="sm:flex grid grid-cols-3 items-center mb-3 gap-4">
                     {errMsgV}
                     {errMsgI}
-                    <h5 className="headersSingleMovie  ">Media</h5>
+                    <h5 className="headersSingleMovie col-span-full sm:col-span-1  ">Media</h5>
                     <MyButton
                         active={videosTrue}
                         setActive={activeVideos}

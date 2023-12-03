@@ -10,8 +10,8 @@ const AlterTitles = ({ id }: { id: string }) => {
         <>
             {errMsgK}
             <h6 className="headersSingleMovie">{!isErrK && !isLoading && alters?.titles.length ? 'Alter Title' : "No Alter Title"}</h6>
-            <div className=" grid grid-cols-1 gap-y-2 gap-x-4">
-                {alters?.titles.slice(0, 7).map((title) => {
+            <div className=" innerKeywordAlter">
+                {alters?.titles.slice(0, 6).map((title) => {
                     return (
                         <div className=" w-full" key={title.iso_3166_1}>
                             <div className="buttonKeywordMovie flex items-center gap-2">

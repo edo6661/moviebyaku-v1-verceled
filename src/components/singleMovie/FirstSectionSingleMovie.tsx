@@ -1,10 +1,11 @@
-import { FaBookmark, FaHeart } from "react-icons/fa";
+import { FaBookmark, FaFacebook, FaHeart, FaImdb, FaInstagram, FaTwitter, FaWikipediaW } from "react-icons/fa";
 import { toast } from "react-toastify";
-import { useFavoriteMovieMutation, useWatchListMovieMutation } from "../../features/movie/movieApiSlice";
+import { useExternalIdQuery, useFavoriteMovieMutation, useWatchListMovieMutation } from "../../features/movie/movieApiSlice";
 import useProvider from '../../hooks/useProvider';
 import { toggleStatus } from "../../hooks/useStatus";
 import baseImageUrl from "../../utils/baseImgUrl";
 import ErrorMessage from "../errAndLoading/TemporaryError";
+import HoverIcon from "./HoverIcon";
 
 const FirstSectionSingleMovie = ({ title, release_date, backdrop_path, poster_path, id, idParams, vote_average, genres, tagline, overview }: MovieDetails) => {
 
@@ -74,6 +75,11 @@ const FirstSectionSingleMovie = ({ title, release_date, backdrop_path, poster_pa
     const backdrop = `${baseImageUrl}${backdrop_path}`
 
 
+    const { data: external, isError: isErrE, isLoading: loadingE, error: errE } = useExternalIdQuery(id ?? '')
+    const errMsgE = isErrE && errE && <ErrorMessage error={errE} />
+
+
+
 
     return (
         <>
@@ -121,8 +127,18 @@ const FirstSectionSingleMovie = ({ title, release_date, backdrop_path, poster_pa
 
                     </div>
                     <p className=' text-myWhite opacity-80'>{tagline}</p>
-                    <p>{overview?.length ? 'Overview' : 'No Overview'}</p>
+                    <p className="sm:text-xl text-lg font-semibold">{overview?.length ? 'Overview' : 'No Overview'}</p>
                     <p className="sm:text-lg text-base">{overview?.length ? overview : ''}</p>
+                    {!isErrE && !loadingE && external ?
+                        <div className="flex gap-2 mt-2 ">
+                            {errMsgE}
+                            {external?.facebook_id ? <HoverIcon IconComponent={FaFacebook} color="#4267B2" to={`https://www.facebook.com//${external?.facebook_id}`} /> : ''}
+                            {external?.twitter_id ? <HoverIcon IconComponent={FaTwitter} color="#1DA1F2" to={`https://twitter.com/${external?.twitter_id}`} /> : ''}
+                            {external?.instagram_id ? <HoverIcon IconComponent={FaInstagram} color="#405DE6" to={`https://www.instagram.com/${external?.instagram_id}`} /> : ''}
+                            {external?.wikidata_id ? <HoverIcon IconComponent={FaWikipediaW} color="#C0C0C0" to={`https://www.wikidata.org/wiki/${external?.wikidata_id}`} /> : ''}
+                            {external?.imdb_id ? <HoverIcon IconComponent={FaImdb} color="#deb522" to={`https://www.imdb.com/title/${external?.imdb_id}`} /> : ''}
+                        </div> : ''
+                    }
                     {errMsgFav}
                     {errMsgWl}
                 </div>
