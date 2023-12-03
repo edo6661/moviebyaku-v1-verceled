@@ -3,6 +3,7 @@ import { toast } from "react-toastify";
 import { useFavoriteMovieMutation, useWatchListMovieMutation } from "../../features/movie/movieApiSlice";
 import useProvider from '../../hooks/useProvider';
 import { toggleStatus } from "../../hooks/useStatus";
+import baseImageUrl from "../../utils/baseImgUrl";
 import ErrorMessage from "../errAndLoading/TemporaryError";
 
 const FirstSectionSingleMovie = ({ title, release_date, backdrop_path, poster_path, id, idParams, vote_average, genres, tagline, overview }: MovieDetails) => {
@@ -70,7 +71,7 @@ const FirstSectionSingleMovie = ({ title, release_date, backdrop_path, poster_pa
 
     if (vote_average) percentageVote = Math.round(vote_average * 10)
 
-    const backdrop = `https://image.tmdb.org/t/p/original${backdrop_path}`
+    const backdrop = `${baseImageUrl}${backdrop_path}`
 
 
 
@@ -80,7 +81,7 @@ const FirstSectionSingleMovie = ({ title, release_date, backdrop_path, poster_pa
             <img className='backDrop -z-10' src={backdrop} alt="" />
             <div className='innerSingleMovie'>
                 <div className={`containerPoster bg-[url()] z-20`} onClick={expanded}>
-                    <img src={`https://image.tmdb.org/t/p/original${poster_path}`} alt={title} />
+                    <img src={`${baseImageUrl}${poster_path}`} alt={title} />
                 </div>
                 <div className='detailsSingleMovie  '>
                     <h2 className=' '>{title} <span className='text-myWhite'>({release_date.substring(0, 4)})</span></h2>
@@ -120,8 +121,8 @@ const FirstSectionSingleMovie = ({ title, release_date, backdrop_path, poster_pa
 
                     </div>
                     <p className=' text-myWhite opacity-80'>{tagline}</p>
-                    <p>Overview</p>
-                    <p className="sm:text-lg text-base">{overview}</p>
+                    <p>{overview?.length ? 'Overview' : 'No Overview'}</p>
+                    <p className="sm:text-lg text-base">{overview?.length ? overview : ''}</p>
                     {errMsgFav}
                     {errMsgWl}
                 </div>

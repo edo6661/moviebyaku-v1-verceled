@@ -6,6 +6,7 @@ import useWindowWidth from '../../hooks/useWindowWidth';
 import ErrorMessage from '../errAndLoading/TemporaryError';
 import SliderMovies from './SliderMovies';
 import SliderTv from './SliderTv';
+import baseImageUrl from '../../utils/baseImgUrl';
 
 const PopularSection = () => {
 
@@ -104,7 +105,7 @@ const PopularSection = () => {
                     exit="exit"
                     key={activeBackdropPath}
                     animate="animate"
-                    style={{ backgroundImage: width >= 700 ? `url(https://image.tmdb.org/t/p/original/${activeBackdropPath})` : undefined }}>
+                    style={{ backgroundImage: width >= 700 ? `url(${baseImageUrl}/${activeBackdropPath})` : undefined }}>
                 </motion.div>
             </AnimatePresence>
             <div className='containerPopularDetails casualWrapper'>

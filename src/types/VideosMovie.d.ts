@@ -9,6 +9,8 @@ type VideoResult = {
 	official: boolean;
 	published_at: string;
 	id: string;
+	paramsId: string;
+	videoKey: string;
 };
 
 type MovieVideosData = {

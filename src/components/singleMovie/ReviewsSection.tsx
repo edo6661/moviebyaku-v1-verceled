@@ -1,51 +1,56 @@
+import { useState } from 'react';
 import { FaStar } from "react-icons/fa";
 import { useReviewsMovieQuery } from "../../features/movie/movieApiSlice";
+import baseImageUrl from "../../utils/baseImgUrl";
 import ErrorMessage from "../errAndLoading/TemporaryError";
 
 const ReviewsSection = ({ id }: { id: string }) => {
-    const { data, isError, error } = useReviewsMovieQuery(id);
-
+    const { data, isError, error, isLoading } = useReviewsMovieQuery(id);
 
     const errMsg = isError && error && <ErrorMessage error={error} />
+
+    const [rest, setRest] = useState(false)
 
 
     return (
         <>
             {errMsg}
-            <div className="flex items-center mb-3 gap-4">
-                <p>Social</p>
-                <button className="">Reviews <span className=" text-myWhite opacity-80">{data?.results.length}</span></button>
+            <div className="containerSingleMovieReview">
+                {!isError && !isLoading && data?.results.length ? <p className=" headersSingleMovie">Reviews <span className=" text-myWhite opacity-80">{data?.results.length}</span></p> : <p className="headersSingleMovie ">Empty Reviews</p>}
             </div>
-            {data?.results.filter(review => review.author_details.avatar_path !== null).slice(0, 1).map((review) => {
+            {data?.results.length ? data?.results.filter(review => review.author_details.avatar_path !== null).slice(0, 1).map((review) => {
                 return (
-                    <div key={review.id} className="  shadow-inner dark:shadow-darkBlue shadow-lightBlue rounded-xl flex flex-col">
-                        <div className="flex m-3 gap-6">
+                    <div key={review.id} className="  innerSingleMovieReview">
+                        <div className="detailsSingleMovieReview">
                             <div>
-                                <img className=" w-16 h-16 rounded-full" src={`https://image.tmdb.org/t/p/original${review.author_details.avatar_path}`} alt={review.author} />
+                                <img src={`${baseImageUrl}${review.author_details.avatar_path}`} alt={review.author} />
                             </div>
                             <div>
                                 <p className=" font-semibold">
                                     {review.author}
                                 </p>
-                                <div className="flex items-center gap-3">
-                                    <div className="flex items-center gap-1">
+                                <div className="secondDetailsSingleMovieReviews gap-3">
+                                    <div className="secondDetailsSingleMovieReviews gap-1">
                                         <p>{<FaStar />}</p>
                                         <p>{review.author_details.rating}.0</p>
                                     </div>
-                                    <p className="text-myWhite opacity-80 font-light">on {new Date(review.created_at.split('T')[0]).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+                                    <p className="dateSingleMovie">on {new Date(review.created_at.split('T')[0]).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
                                 </div>
                             </div>
                         </div>
                         <div className="m-3">
                             <p className=" lg:text-lg text-base">
-                                {review.content.length > 400 ? review.content.slice(0, 400) + '...' : review.content}
+                                {!rest ? review.content.length ? review.content.length > 400 ? review.content.slice(0, 400) + '...' : review.content : 'No Content' : review.content}
                             </p>
-                            <button className="lg:text-lg text-base font-semibold">Read rest</button>
+                            <div className='flex my-2 gap-2'>
+                                <button className="lg:text-lg text-base font-semibold" onClick={() => setRest(prev => !prev)}>{rest ? 'Show Less' : 'Show More'}</button>
+                                <button className='lg:text-lg text-base font-semibold'>More Reviews</button>
+                            </div>
                         </div>
 
                     </div>
                 )
-            })}
+            }) : null}
         </>
     )
 }

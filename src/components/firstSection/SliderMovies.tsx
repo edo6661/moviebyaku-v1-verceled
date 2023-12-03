@@ -38,6 +38,7 @@ const SliderMovies = ({ id, poster_path, title, release_date, i, backdrop_path, 
             initial="initial"
             whileInView="animation"
             className={`containerPopularDetails`}
+            viewport={{ once: true }}
         >
             <div className="relative">
                 <Link to={`movie/${id}`}>

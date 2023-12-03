@@ -1,4 +1,4 @@
-type Backdrop = {
+type Images = {
 	aspect_ratio: number;
 	height: number;
 	iso_639_1: string | null;
@@ -9,5 +9,7 @@ type Backdrop = {
 };
 
 type MovieImagesData = {
-	backdrops: Backdrop[];
+	backdrops: Images[];
+	logo: Images[];
+	posters: Images[];
 };

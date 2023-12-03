@@ -44,6 +44,7 @@ const SliderTv = ({ id, poster_path, name, first_air_date, i, backdrop_path, set
             initial="initial"
             whileInView="animation"
             className={`containerPopularDetails pb-16`}
+            viewport={{ once: true }}
         >
             <div className="relative">
                 <Link to={`tv/${id}`}>

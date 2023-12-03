@@ -423,7 +423,10 @@ export const movieApiSlice = apiSlice.injectEndpoints({
 					  ]
 					: [{ type: 'Movie', id: 'PROVIDERS' }],
 		}),
-		MovieSimiliar: builder.query<DataKeywords, { id: string; page: string }>({
+		MovieSimiliar: builder.query<
+			MovieRecommendationData,
+			{ id: string; page: string }
+		>({
 			query: ({ id, page }) => ({
 				url: `movie/${id}/similar?page=${page}`,
 				validateStatus: (response, result) => {
@@ -433,7 +436,7 @@ export const movieApiSlice = apiSlice.injectEndpoints({
 			providesTags: (result) =>
 				result
 					? [
-							...result.keywords.map(
+							...result.results.map(
 								(result) => ({
 									type: 'Movie' as const,
 									id: result.id,
@@ -442,6 +445,14 @@ export const movieApiSlice = apiSlice.injectEndpoints({
 							),
 					  ]
 					: [{ type: 'Movie', id: 'SIMILIAR' }],
+		}),
+		externalId: builder.query<SocialMediaIds, string>({
+			query: (id: string) => ({
+				url: `movie/${id}/external_ids`,
+				validateStatus: (response, result) => {
+					return response.status === 200 && !result.isError;
+				},
+			}),
 		}),
 	}),
 });
@@ -460,6 +471,7 @@ export const {
 	useVideosMovieQuery,
 	useAlterTitleMovieQuery,
 	useCreditsMovieQuery,
+	useExternalIdQuery,
 	useImagesMovieQuery,
 	useRatedMoviesQuery,
 	useGetFavoriteMovieQuery,

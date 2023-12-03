@@ -32,6 +32,9 @@
 		@apply max-w-full h-auto align-middle italic font-semibold text-xl;
 	}
 	/* ! utils */
+	.hoveredPoster {
+		@apply opacity-100 hover:opacity-60 transition-all duration-300;
+	}
 	.uniqueWord {
 		@apply font-lobster;
 	}
@@ -281,8 +284,48 @@
 		@apply flex flex-col gap-1;
 	}
 	.keyword {
-		@apply py-2 px-3 rounded-xl lg:text-lg text-base shadow-inner dark:shadow-darkBlue shadow-lightBlue ;
-		/* background-color: rgb(0, 0, 0, 0.1); */
-		/* border: 1px #d7d7d7 solid; */
+		@apply py-2 px-3 rounded-xl lg:text-lg text-base shadow-inner dark:shadow-darkBlue shadow-lightBlue;
+	}
+	.buttonKeywordMovie {
+		@apply keyword w-full text-start textGradient;
+	}
+	.containerSingleMovieReview {
+		@apply flex items-center mb-3 gap-4;
+	}
+	.innerSingleMovieReview {
+		@apply shadow-inner dark:shadow-darkBlue shadow-lightBlue rounded-xl flex flex-col;
+	}
+	.detailsSingleMovieReview {
+		@apply flex m-3 gap-6;
+	}
+	.detailsSingleMovieReview img {
+		@apply w-16 h-16 rounded-full;
+	}
+	.secondDetailsSingleMovieReviews {
+		@apply flex items-center;
+	}
+	.dateSingleMovie {
+		@apply text-myWhite opacity-80 font-light;
+	}
+	.singleMovieScrollContainer {
+		@apply w-fit h-fit mb-4;
+	}
+	.imgSliderMedia {
+		@apply h-[315px] mb-4 mr-2 rounded-xl;
+	}
+	.shadowButtonImgSliderMedia {
+		@apply shadow-inner shadow-lightBlue dark:shadow-darkBlue opacity-80;
+	}
+	.buttonImgSliderMedia {
+		@apply lg:text-2xl md:text-xl sm:text-base text-sm transition-all duration-150 outline-none p-1;
+	}
+	.buttonImgSliderMedia span {
+		@apply dark:text-myWhite dark:opacity-80 text-black opacity-40;
+	}
+	.headersSingleMovie {
+		@apply sm:text-2xl text-xl font-semibold;
+	}
+	.containerRecomsSingleMovie {
+		@apply flex flex-col gap-2 mb-4;
 	}
 }
