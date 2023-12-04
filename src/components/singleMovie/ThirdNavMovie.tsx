@@ -16,7 +16,7 @@ const ThirdNavMovie = () => {
             {!isLoading && (
                 <div className=''>
                     <div>
-                        <img className=" w-24" src={baseImageUrl + data?.poster_path} alt={data?.title} />
+                        <img className=" w-24 rounded-xl" src={baseImageUrl + data?.poster_path} alt={data?.title} />
                     </div>
                     <div className="innerThirdNavMovie">
                         <h1 className='text-white' >{data?.title}

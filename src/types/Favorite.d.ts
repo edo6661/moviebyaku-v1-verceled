@@ -17,7 +17,7 @@ interface FavoriteResult {
 
 interface FavoriteResponse {
 	page: number;
-	results: Result[];
+	results: FavoriteResult[];
 	total_pages: number;
 	total_results: number;
 }

@@ -14,7 +14,7 @@ const CreditSingleMovie = ({ name, character, profile_path, id }: CastMember) =>
         >
             <Link to={`person/${id}`}>
                 <img src={`${baseImageUrl}${profile_path}`} alt={name}
-                    className=' min-h-[216px] hoveredPoster '
+                    className=' h-[216px] hoveredPoster '
                 />
 
             </Link>

@@ -131,7 +131,7 @@ export const movieApiSlice = apiSlice.injectEndpoints({
 							...result.results.map(
 								(movie) => ({
 									type: 'Movie' as const,
-									id: movie.iso_3166_1,
+									id: movie.id,
 								}),
 								{ type: 'Movie', id: 'UPCOMING' }
 							),
@@ -154,7 +154,7 @@ export const movieApiSlice = apiSlice.injectEndpoints({
 							...result.results.map(
 								(movie) => ({
 									type: 'Movie' as const,
-									id: movie.iso_3166_1,
+									id: movie.id,
 								}),
 								{ type: 'Movie', id: 'FAVORITE' }
 							),
@@ -174,7 +174,7 @@ export const movieApiSlice = apiSlice.injectEndpoints({
 							...result.results.map(
 								(movie) => ({
 									type: 'Movie' as const,
-									id: movie.iso_3166_1,
+									id: movie.id,
 								}),
 								{ type: 'Movie', id: 'GENRES' }
 							),

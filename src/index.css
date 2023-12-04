@@ -208,7 +208,7 @@
 	}
 	/* ! single movie */
 	.containerSingleMovie {
-		@apply dark:text-white sm:text-white text-black relative lg:text-2xl sm:text-xl text-base;
+		@apply dark:text-white sm:text-white text-black relative lg:text-2xl text-xl;
 	}
 	.backDrop {
 		@apply absolute w-full sm:h-full h-[32rem];
@@ -358,6 +358,33 @@
 	}
 	/* ! sub single movie */
 	.containerSubSingleMovie {
-		@apply containerSingleMovie casualWrapper my-8;
+		@apply containerSingleMovie my-8;
+	}
+	.containerAlterSingleMovie {
+		@apply sm:grid sm:grid-cols-3 gap-8 casualWrapper p-0;
+	}
+	.innerAlterSingleMovie {
+		@apply grid grid-cols-4 justify-between gap-4 dark:bgDarkGradient bgLightGradient px-6 py-4 rounded-t-xl items-center;
+	}
+	.detailsAlterSingleMovie {
+		@apply col-span-3 text-white font-semibold;
+	}
+	.detailsNumberAlter {
+		@apply fadeWord text-end;
+	}
+	.secondContainerAlterSingleMovie {
+		@apply grid grid-cols-3 justify-between gap-4  px-6 py-4  items-center shadowButtonImgSliderMedia dark:text-white text-black cursor-pointer hover:opacity-60 hover:blur-[1px] transition-all duration-150;
+	}
+	.secondDetailsAlterSingleMovie {
+		@apply col-span-2 flex flex-col gap-8;
+	}
+	.thirdDetailsAlterSingleMovie {
+		@apply col-span-2 flex dark:bgDarkGradient bgLightGradient px-6 py-4 rounded-t-xl items-center gap-4;
+	}
+	.fourthDetailsAlterSingleAnime {
+		@apply grid grid-cols-2 col-span-2 px-6 py-4 font-semibold dark:text-white text-black;
+	}
+	.fifthDetailsAlterSingleAnime {
+		@apply grid grid-cols-2 col-span-2 px-6 py-4 shadow-inner dark:shadow-darkBlue shadow-lightBlue dark:text-white text-black;
 	}
 }

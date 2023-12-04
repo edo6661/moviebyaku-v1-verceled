@@ -16,4 +16,5 @@ type CastMember = {
 type CreditsData = {
 	id: number;
 	cast: CastMember[];
+	crew: CastMember[];
 };

@@ -69,7 +69,7 @@ const SearchBar = () => {
                                         const release = movie.release_date;
                                         const firstAir = movie.first_air_date;
                                         const vote = movie.vote_average;
-                                        const url = tv ? `/tv/${movie.id}` : `/movie/${movie.id}`
+                                        const url = tv ? `/tv/${movie.id}/main` : `/movie/${movie.id}/main`
                                         return (
                                             <div
                                                 key={movie.id}

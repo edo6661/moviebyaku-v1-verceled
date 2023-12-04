@@ -18,7 +18,7 @@ interface RatedResult {
 
 interface RatedData {
 	page: number;
-	results: Result[];
+	results: RatedResult[];
 	total_pages: number;
 	total_results: number;
 }

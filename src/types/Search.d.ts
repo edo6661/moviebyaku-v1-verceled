@@ -122,11 +122,13 @@ interface ResultMulti {
 	video: boolean;
 	vote_average: number;
 	vote_count: number;
+	first_air_date: string;
+	name: string;
 }
 
 interface DataMulti {
 	page: number;
-	results: Result[];
+	results: ResultMulti[];
 	total_pages: number;
 	total_results: number;
 }
