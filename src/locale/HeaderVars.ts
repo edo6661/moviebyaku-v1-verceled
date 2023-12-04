@@ -35,7 +35,7 @@ export const ddVars = {
 	initial: {
 		opacity: 0,
 		scale: 0,
-		filter: 'blur(30px)',
+		filter: 'blur(18px)',
 	},
 	animate: {
 		opacity: [0.2, 0.4, 0.6, 0.8, 1],
@@ -48,7 +48,7 @@ export const ddVars = {
 	},
 	exit: {
 		opacity: [1, 0.9, 0.8, 0.7, 0.6, 0.5, 0.4, 0.3, 0.2, 0.1, 0],
-		filter: 'blur(30px)',
+		filter: 'blur(18px)',
 		transition: {
 			duration: 0.2,
 			ease: [0.12, 0, 0.39, 0],

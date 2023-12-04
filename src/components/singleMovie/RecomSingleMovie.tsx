@@ -40,7 +40,7 @@ const RecomSingleMovie = ({ poster_path, title, release_date, id }: MovieRecomme
                             <SliderMenu id={id.toString()} />
                         </motion.div>}
                 </AnimatePresence>
-                <Link to={`/movie/${id}`} className='imgSliderMedia block w-52 '>
+                <Link to={`/movie/${id}/main`} className='imgSliderMedia block w-52 '>
                     <img className="imgSliderMedia hoveredPoster" src={baseImageUrl + poster_path} alt={title} />
                 </Link>
                 <p className='sm:text-xl text-lg font-semibold '>{title}</p>

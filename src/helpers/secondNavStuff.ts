@@ -14,6 +14,10 @@ const secondNavStuff = [
 				title: 'Cast & Crew',
 				to: 'cast-crew',
 			},
+			{
+				title: 'Release Dates',
+				to: 'release-dates',
+			},
 		],
 	},
 	{

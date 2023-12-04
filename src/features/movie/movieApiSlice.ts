@@ -131,7 +131,7 @@ export const movieApiSlice = apiSlice.injectEndpoints({
 							...result.results.map(
 								(movie) => ({
 									type: 'Movie' as const,
-									id: movie.id,
+									id: movie.iso_3166_1,
 								}),
 								{ type: 'Movie', id: 'UPCOMING' }
 							),
@@ -154,7 +154,7 @@ export const movieApiSlice = apiSlice.injectEndpoints({
 							...result.results.map(
 								(movie) => ({
 									type: 'Movie' as const,
-									id: movie.id,
+									id: movie.iso_3166_1,
 								}),
 								{ type: 'Movie', id: 'FAVORITE' }
 							),
@@ -174,7 +174,7 @@ export const movieApiSlice = apiSlice.injectEndpoints({
 							...result.results.map(
 								(movie) => ({
 									type: 'Movie' as const,
-									id: movie.id,
+									id: movie.iso_3166_1,
 								}),
 								{ type: 'Movie', id: 'GENRES' }
 							),
@@ -453,12 +453,27 @@ export const movieApiSlice = apiSlice.injectEndpoints({
 					return response.status === 200 && !result.isError;
 				},
 			}),
+			providesTags: (_result, _error, id) => [
+				{ type: 'Movie', id: `EXTERNAL${id}` },
+			],
+		}),
+		releaseDates: builder.query<ReleaseDateData, string>({
+			query: (id: string) => ({
+				url: `movie/${id}/release_dates`,
+				validateStatus: (response, result) => {
+					return response.status === 200 && !result.isError;
+				},
+			}),
+			providesTags: (_result, _error, id) => [
+				{ type: 'Movie', id: `RELEASE${id}` },
+			],
 		}),
 	}),
 });
 
 export const {
 	usePopularMoviesQuery,
+	useReleaseDatesQuery,
 	useGetWatchListMovQuery,
 	useUpComingMoviesQuery,
 	useTopRatedMoviesQuery,

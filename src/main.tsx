@@ -17,8 +17,16 @@ import { ContextProvider } from './context/Provider.tsx'
 import HomePage from './page/public/HomePage.tsx'
 import HomePageMovies from './page/public/HomePageMovies.tsx'
 import Movie from './page/public/Movie.tsx'
+import MovieAlterTitle from './page/public/MovieAlterTitle.tsx'
+import MovieBackdrops from './page/public/MovieBackdrops.tsx'
+import MovieCastCrew from './page/public/MovieCastCrew.tsx'
+import MovieLogos from './page/public/MovieLogos.tsx'
+import MoviePosters from './page/public/MoviePosters.tsx'
+import MovieReviews from './page/public/MovieReviews.tsx'
+import MovieVideos from './page/public/MovieVideos.tsx'
 import Movies from './page/public/Movies.tsx'
 import PopularMovies from './page/public/PopularMovies.tsx'
+import ReleaseMovie from './page/public/ReleaseMovie.tsx'
 import SearchPage from './page/public/SearchPage.tsx'
 import TopRatedMovie from './page/public/TopRatedMovie.tsx'
 import Tv from './page/public/Tv.tsx'
@@ -39,8 +47,18 @@ const router = createBrowserRouter(
         path='movie/:id'
         element={<Movie />}>
         <Route index element={<SingleMovie />} />
+        <Route path='main' element={<SingleMovie />} />
+        <Route path='alternative-titles' element={<MovieAlterTitle />} />
+        <Route path='cast-crew' element={<MovieCastCrew />} />
+        <Route path='release-dates' element={<ReleaseMovie />} />
+        <Route path='backdrops' element={<MovieBackdrops />} />
+        <Route path='logos' element={<MovieLogos />} />
+        <Route path='posters' element={<MoviePosters />} />
+        <Route path='videos' element={<MovieVideos />} />
+        <Route path='reviews' element={<MovieReviews />} />
+
       </Route>
-      
+
       <Route path='tv/:id' element={<Tv />}>
         <Route index element={<SingleTv />} />
       </Route>

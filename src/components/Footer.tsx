@@ -1,9 +1,14 @@
 
 const Footer = () => {
+
+    const scrolltoTop = () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+    }
+
     return (
         <footer>
             <div className="casualWrapper">
-                <p>footer</p>
+                <button onClick={scrolltoTop}>Scroll to Top</button>
             </div>
         </footer>
     )
