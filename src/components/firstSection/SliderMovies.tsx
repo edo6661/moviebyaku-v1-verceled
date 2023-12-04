@@ -4,6 +4,7 @@ import { HiOutlineDotsCircleHorizontal } from 'react-icons/hi';
 import { Link } from 'react-router-dom';
 import useWindowWidth from '../../hooks/useWindowWidth';
 import { appearedCardVars, imageVars, optionVars, scrollerVars } from '../../utils/sliderVars';
+import PercentageVote from '../singleMovie/PercentageVote';
 import SliderMenu from './SliderMenu';
 
 interface Props {
@@ -15,10 +16,10 @@ interface Props {
     i: number;
     backdrop_path: string;
     setActiveBackdropPath?: React.Dispatch<React.SetStateAction<string>>;
+    vote_average: number;
 }
 
-const SliderMovies = ({ id, poster_path, title, release_date, i, backdrop_path, setActiveBackdropPath }: Props) => {
-
+const SliderMovies = ({ id, poster_path, title, release_date, i, backdrop_path, setActiveBackdropPath, vote_average }: Props) => {
     const width = useWindowWidth()
     const [button, setButton] = useState<Record<string, boolean>>({})
     // ! Fungsi ini membalik nilai dari properti dengan kunci i dalam objek button. Jika properti tersebut belum ada dalam objek button, maka nilai defaultnya adalah false.
@@ -27,11 +28,10 @@ const SliderMovies = ({ id, poster_path, title, release_date, i, backdrop_path, 
     const imageWidth = width > 400 ? 'xlImagePopularDetails' : 'smImagePopularyDetails'
     const src = 'https://image.tmdb.org/t/p/original/'
 
+    let percentageVote;
 
-    // const max = 2000;
-    // const percentage = (popularity / max) * 100;
-    // const bgColor = percentage < 25 ? 'bg-red-700' : percentage < 50 ? 'bg-red-500' :
-    //     percentage < 75 ? 'bg-yellow-500' : 'bg-green-500'
+    if (vote_average) percentageVote = Math.round(vote_average * 10)
+
     return (
         <motion.div key={id}
             variants={scrollerVars}
@@ -51,6 +51,9 @@ const SliderMovies = ({ id, poster_path, title, release_date, i, backdrop_path, 
                         className={`${imageWidth} imagePopularDetails`}
                         src={`${src}${poster_path}`} alt={title}
                     />
+                    <motion.div className='absolute -bottom-6 left-0'>
+                        <PercentageVote percentageVote={percentageVote ?? 0} />
+                    </motion.div>
 
                 </Link>
                 <div>
@@ -74,10 +77,6 @@ const SliderMovies = ({ id, poster_path, title, release_date, i, backdrop_path, 
                             </motion.div>}
                     </AnimatePresence>
                 </div>
-                {/* <div className={`percentagePopularDetails ${bgColor}
-            }`} >
-                    <p>{Math.round(percentage)}%</p>
-                </div> */}
             </div>
             <div className="containerPopularDetails gap-2">
                 <p className='title'>{title}</p>

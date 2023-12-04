@@ -32,6 +32,9 @@
 		@apply max-w-full h-auto align-middle italic font-semibold text-xl;
 	}
 	/* ! utils */
+	.shadowCard {
+		@apply shadow-inner dark:shadow-darkBlue shadow-lightBlue;
+	}
 	.fadeWord {
 		@apply dark:text-myWhite text-black opacity-80;
 	}
@@ -237,19 +240,19 @@
 	}
 	.score-circle {
 		position: relative;
-		width: 70px;
-		height: 70px;
+		width: 50px;
+		height: 50px;
 	}
 	.score-circle .circle-bg,
 	.score-circle .circle {
 		/* ! bg nya */
-		fill: none;
+		@apply dark:fill-lightBlue fill-darkBlue opacity-50;
 		/* ! width bordernya */
 		stroke-width: 4;
 	}
 
 	.score-circle .circle-bg {
-		@apply stroke-white;
+		@apply dark:stroke-lightBlue stroke-darkBlue  opacity-60;
 	}
 
 	.score-circle .circle {
@@ -290,7 +293,7 @@
 		@apply flex flex-col gap-1;
 	}
 	.keyword {
-		@apply py-2 px-3 rounded-xl lg:text-lg text-base shadow-inner dark:shadow-darkBlue shadow-lightBlue;
+		@apply py-2 px-3 rounded-xl lg:text-lg text-base shadowCard;
 	}
 	.buttonKeywordMovie {
 		@apply keyword w-full text-start textGradient;
@@ -299,7 +302,7 @@
 		@apply flex items-center mb-3 gap-4;
 	}
 	.innerSingleMovieReview {
-		@apply shadow-inner dark:shadow-darkBlue shadow-lightBlue rounded-xl flex flex-col;
+		@apply shadowCard rounded-xl flex flex-col;
 	}
 	.detailsSingleMovieReview {
 		@apply flex m-3 gap-6;
@@ -320,7 +323,7 @@
 		@apply h-[315px] mb-4 mr-2 rounded-xl;
 	}
 	.shadowButtonImgSliderMedia {
-		@apply shadow-inner shadow-lightBlue dark:shadow-darkBlue opacity-80;
+		@apply shadowCard opacity-80;
 	}
 	.buttonImgSliderMedia {
 		@apply lg:text-2xl md:text-xl sm:text-base text-sm font-semibold transition-all duration-150 outline-none  sm:px-1 sm:py-1 px-1 py-2 rounded-md sm:rounded-sm;
@@ -385,7 +388,7 @@
 		@apply grid grid-cols-2 col-span-2 px-6 py-4 font-semibold dark:text-white text-black;
 	}
 	.fifthDetailsAlterSingleAnime {
-		@apply grid grid-cols-2 col-span-2 px-6 py-4 shadow-inner dark:shadow-darkBlue shadow-lightBlue dark:text-white text-black;
+		@apply grid grid-cols-2 col-span-2 px-6 py-4 shadowCard dark:text-white text-black;
 	}
 	.detailsReleaseSingleAnime {
 		@apply grid grid-cols-4 col-span-2 px-6 py-4 text-center;

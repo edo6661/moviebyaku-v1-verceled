@@ -6,6 +6,7 @@ import { toggleStatus } from "../../hooks/useStatus";
 import baseImageUrl from "../../utils/baseImgUrl";
 import ErrorMessage from "../errAndLoading/TemporaryError";
 import HoverIcon from "./HoverIcon";
+import PercentageVote from './PercentageVote';
 
 const FirstSectionSingleMovie = ({ title, release_date, backdrop_path, poster_path, id, idParams, vote_average, genres, tagline, overview }: MovieDetails) => {
 
@@ -100,23 +101,7 @@ const FirstSectionSingleMovie = ({ title, release_date, backdrop_path, poster_pa
                         </div>
                     </div>
                     <div className='flex gap-4 items-center mb-1 mt-2'>
-                        <div className="score-circle">
-                            <svg viewBox="0 0 36 36">
-                                <path className="circle-bg"
-                                    d="M18 2.0845
-                a 15.9155 15.9155 0 0 1 0 31.831
-                a 15.9155 15.9155 0 0 1 0 -31.831"
-                                />
-                                <path className="circle"
-                                    // !  membuat efek “dash” pada stroke, dan panjang dash diatur berdasarkan percentageVote.
-                                    strokeDasharray={`${percentageVote}, 100`}
-                                    d="M18 2.0845
-                a 15.9155 15.9155 0 0 1 0 31.831
-                a 15.9155 15.9155 0 0 1 0 -31.831"
-                                />
-                            </svg>
-                            <p>{percentageVote}%</p>
-                        </div>
+                        <PercentageVote percentageVote={percentageVote ?? 0} />
                         {menus.map((menu, i) =>
                             <button className='gap-2 flex items-center justify-center' key={i} onClick={menu.onClick}>
                                 <p className=''>

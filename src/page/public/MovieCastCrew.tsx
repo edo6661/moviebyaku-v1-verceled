@@ -33,7 +33,6 @@ const MovieCastCrew = () => {
             <h3 className="text-white font-semibold">Crew <span className="detailsNumberAlter">{data?.crew.length}</span></h3>
         </div>
     )
-
     const uniqueCrew = data?.crew.reduce((acc: typeof data.crew, current) => {
         const x = acc.find(item => item.id === current.id);
         if (!x) {
@@ -43,7 +42,7 @@ const MovieCastCrew = () => {
         }
     }, []);
 
-    console.log(uniqueCrew)
+
 
     return (
         <section className="containerSubSingleMovie  ">
@@ -53,7 +52,8 @@ const MovieCastCrew = () => {
                 <div className="flex flex-col gap-6 ">
                     {data?.cast.length ? data?.cast.filter(cast => cast.profile_path !== null).map((cast, i) => {
                         return (
-                            <div key={i} className="flex gap-4 shadow-inner dark:shadow-darkBlue shadow-lightBlue rounded-xl">
+                            <div key={i} className="flex gap-4 shadowCardl
+                             rounded-xl">
                                 <img className=" w-20 rounded-xl" src={baseImageUrl + cast.profile_path} alt={cast.name} />
                                 <div className="flex flex-col mt-2">
                                     <p className=" font-semibold dark:text-white text-black">{cast.name}</p>
@@ -67,7 +67,7 @@ const MovieCastCrew = () => {
                 <div className="flex flex-col gap-6">
                     {data?.crew.length && uniqueCrew && uniqueCrew.filter(crew => crew.profile_path !== null).map((crew, i) => {
                         return (
-                            <div key={i} className="flex gap-4 shadow-inner dark:shadow-darkBlue shadow-lightBlue rounded-xl">
+                            <div key={i} className="flex gap-4 shadowCard rounded-xl">
                                 <img className=" w-20 rounded-xl" src={baseImageUrl + crew.profile_path} alt={crew.name} />
                                 <div className="flex flex-col mt-2">
                                     <p className=" font-semibold dark:text-white text-black">{crew.name}</p>

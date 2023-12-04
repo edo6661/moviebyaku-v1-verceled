@@ -24,7 +24,7 @@ const MovieReviews = () => {
                 <div className=" grid md:grid-cols-2 ">
                     {data?.results.length ? data?.results.filter(result => result.author_details.avatar_path !== null).map((result, i) => {
                         return (
-                            <div className=" shadow-inner dark:shadow-darkBlue shadow-lightBlue rounded-xl flex flex-col "
+                            <div className=" shadowCard rounded-xl flex flex-col "
                                 key={result.id}>
                                 <div className="m-3 flex gap-6">
                                     <img className="w-16 h-16 rounded-full"
