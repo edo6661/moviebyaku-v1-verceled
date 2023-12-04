@@ -31,8 +31,12 @@ const ReviewsSection = ({ id }: { id: string }) => {
                                 </p>
                                 <div className="secondDetailsSingleMovieReviews gap-3">
                                     <div className="secondDetailsSingleMovieReviews gap-1">
-                                        <p>{<FaStar />}</p>
-                                        <p>{review.author_details.rating}.0</p>
+                                        {review.author_details.rating && (
+                                            <>
+                                                <p>{<FaStar />}</p>
+                                                <p>{review.author_details.rating}</p>
+                                            </>
+                                        )}
                                     </div>
                                     <p className="dateSingleMovie">on {new Date(review.created_at.split('T')[0]).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
                                 </div>
@@ -44,7 +48,6 @@ const ReviewsSection = ({ id }: { id: string }) => {
                             </p>
                             <div className='flex my-2 gap-2'>
                                 <button className="lg:text-lg text-base font-semibold" onClick={() => setRest(prev => !prev)}>{rest ? 'Show Less' : 'Show More'}</button>
-                                <button className='lg:text-lg text-base font-semibold'>More Reviews</button>
                             </div>
                         </div>
 

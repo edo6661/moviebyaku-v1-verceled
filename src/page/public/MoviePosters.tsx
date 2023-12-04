@@ -11,7 +11,7 @@ const MoviePosters = () => {
 
     const { id } = useParams()
     const { data, isError, error,
-        // isLoading
+        isLoading
     } = useImagesMovieQuery(id ?? '')
     const errMsg = isError && error && <ErrorMessage error={error} />
     console.log(data)
@@ -20,14 +20,14 @@ const MoviePosters = () => {
 
             <article className="containerAlterSingleMovie grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-0">
                 {errMsg}
-                {data?.posters.map((logo, i) => {
+                {data?.posters.length ? data?.posters.slice(0, 25).map((logo, i) => {
                     return (
                         <div key={i}>
                             <img className='' loading='lazy'
                                 src={baseImageUrl + logo.file_path} alt={i.toString()} />
                         </div>
                     )
-                })}
+                }) : !isLoading && <h2 className='text-3xl font-bold text-center'>No Posters</h2>}
             </article>
         </section>
     )

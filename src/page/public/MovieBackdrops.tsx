@@ -11,7 +11,7 @@ const MovieBackdrops = () => {
 
     const { id } = useParams()
     const { data, isError, error,
-        // isLoading
+        isLoading
     } = useImagesMovieQuery(id ?? '')
     const errMsg = isError && error && <ErrorMessage error={error} />
     console.log(data)
@@ -21,14 +21,14 @@ const MovieBackdrops = () => {
 
             <article className="containerAlterSingleMovie grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-0">
                 {errMsg}
-                {data?.backdrops.map((backdrop, i) => {
+                {data?.backdrops.length ? data?.backdrops.slice(0, 25).map((backdrop, i) => {
                     return (
                         <div key={i}>
                             <img className=''
                                 src={baseImageUrl + backdrop.file_path} alt={i.toString()} />
                         </div>
                     )
-                })}
+                }) : !isLoading && <h2 className='text-3xl font-bold text-center'>No Backdrops</h2>}
             </article>
         </section>
     )

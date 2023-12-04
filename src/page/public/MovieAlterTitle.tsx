@@ -32,7 +32,7 @@ const MovieAlterTitle = () => {
     return (
         <section className="containerSubSingleMovie">
             {errMsg}
-            {!isLoading && (
+            {data?.titles.length ? !isLoading && (
                 <article className="containerAlterSingleMovie">
                     <div className="mb-8">
                         <div className="innerAlterSingleMovie">
@@ -43,7 +43,7 @@ const MovieAlterTitle = () => {
                                 <p className="detailsNumberAlter">{data?.titles.length}</p>
                             </div>
                         </div>
-                        {data?.titles.map((title, i) => {
+                        {data?.titles.length ? data?.titles.map((title, i) => {
                             const countryName = countries.getName(title.iso_3166_1, 'en', { select: 'official' });
                             const scroller = () => {
                                 if (title && title.iso_3166_1) {
@@ -60,10 +60,10 @@ const MovieAlterTitle = () => {
                                     <p className="detailsNumberAlter dark:text-white text-black">{countryCounts[title.iso_3166_1]}</p>
                                 </div>
                             )
-                        })}
+                        }) : <h2 className='text-3xl font-bold text-center'>No Videos</h2>}
                     </div>
                     <div className=" secondDetailsAlterSingleMovie">
-                        {data?.titles.map((title) => {
+                        {data?.titles.length && data?.titles.map((title) => {
                             return (
                                 <div className='grid grid-cols-2' id={title.iso_3166_1} >
                                     <div className=' thirdDetailsAlterSingleMovie'>
@@ -83,7 +83,7 @@ const MovieAlterTitle = () => {
                         })}
                     </div>
                 </article>
-            )}
+            ) : !isLoading && <h2 className='text-3xl font-bold text-center'>No Alter Title</h2>}
         </section>
     )
 }

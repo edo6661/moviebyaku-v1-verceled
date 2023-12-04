@@ -1,10 +1,10 @@
+import countries from 'i18n-iso-countries';
+import english from 'i18n-iso-countries/langs/en.json';
 import { useEffect, useState } from 'react';
 import { useParams } from "react-router-dom";
 import Flag from 'react-world-flags';
 import ErrorMessage from "../../components/errAndLoading/TemporaryError";
 import { useReleaseDatesQuery } from "../../features/movie/movieApiSlice";
-import countries from 'i18n-iso-countries';
-import english from 'i18n-iso-countries/langs/en.json';
 
 countries.registerLocale(english);
 
@@ -32,7 +32,7 @@ const MovieRelease = () => {
     return (
         <section className="containerSubSingleMovie">
             {errMsg}
-            {!isLoading && (
+            {data?.results.length ? !isLoading && (
                 <article className="containerAlterSingleMovie">
                     <div className="mb-8">
                         <div className="innerAlterSingleMovie">
@@ -94,7 +94,7 @@ const MovieRelease = () => {
                         })}
                     </div>
                 </article>
-            )}
+            ) : !isLoading && <h2 className='text-3xl font-bold text-center'>No Release Dates</h2>}
         </section>
     )
 }

@@ -18,7 +18,7 @@ type MovieReview = {
 type MovieReviews = {
 	id: number;
 	page: number;
-	results: Review[];
+	results: MovieReview[];
 	total_pages: number;
 	total_results: number;
 };

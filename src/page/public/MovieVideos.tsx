@@ -10,7 +10,7 @@ const MovieVideos = () => {
 
     const { id } = useParams()
     const { data, isError, error,
-        // isLoading
+        isLoading
     } = useVideosMovieQuery(id ?? '')
     const errMsg = isError && error && <ErrorMessage error={error} />
     return (
@@ -18,7 +18,7 @@ const MovieVideos = () => {
 
             <article className="containerAlterSingleMovie flex flex-wrap gap-0 items-center justify-center">
                 {errMsg}
-                {data?.results.map((logo) => {
+                {data?.results.length ? data?.results.map((logo) => {
                     return (
                         <div className=" w-fit" key={logo.id}
                         >
@@ -32,7 +32,7 @@ const MovieVideos = () => {
                             />
                         </div >
                     )
-                })}
+                }) : !isLoading && <h2 className='text-3xl font-bold text-center'>No Videos</h2>}
             </article>
         </section>
     )
