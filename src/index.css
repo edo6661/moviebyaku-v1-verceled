@@ -33,7 +33,7 @@
 	}
 	/* ! utils */
 	.fadeWord {
-		@apply text-myWhite opacity-80;
+		@apply dark:text-myWhite text-black opacity-80;
 	}
 	.hoveredPoster {
 		@apply opacity-100 hover:opacity-60 transition-all duration-300;
@@ -386,5 +386,8 @@
 	}
 	.fifthDetailsAlterSingleAnime {
 		@apply grid grid-cols-2 col-span-2 px-6 py-4 shadow-inner dark:shadow-darkBlue shadow-lightBlue dark:text-white text-black;
+	}
+	.detailsReleaseSingleAnime {
+		@apply grid grid-cols-4 col-span-2 px-6 py-4 text-center;
 	}
 }

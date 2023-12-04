@@ -16,16 +16,16 @@ const MovieCastCrew = () => {
     const title = width > 640 ? (
         <>
             <div>
-                <h2 className="text-white font-semibold">Cast <span className="detailsNumberAlter">{data?.cast.length}</span></h2>
+                <h2 className="dark:text-white text-black font-semibold">Cast <span className="detailsNumberAlter">{data?.cast.length}</span></h2>
             </div>
             <div>
-                <h3 className="text-white font-semibold">Crew <span className="detailsNumberAlter">{data?.crew.length}</span></h3>
+                <h3 className="dark:text-white text-black font-semibold">Crew <span className="detailsNumberAlter">{data?.crew.length}</span></h3>
             </div>
 
         </>
     ) : (
         <div>
-            <h2 className="text-white font-semibold">Cast <span className="detailsNumberAlter">{data?.cast.length}</span></h2>
+            <h2 className="dark:text-white text-black font-semibold">Cast <span className="detailsNumberAlter">{data?.cast.length}</span></h2>
         </div>
     )
 
@@ -47,7 +47,7 @@ const MovieCastCrew = () => {
                             <div key={i} className="flex gap-4 shadow-inner dark:shadow-darkBlue shadow-lightBlue rounded-xl">
                                 <img className=" w-20 rounded-xl" src={baseImageUrl + cast.profile_path} alt={cast.name} />
                                 <div className="flex flex-col mt-2">
-                                    <p className=" font-semibold">{cast.name}</p>
+                                    <p className=" font-semibold dark:text-white text-black">{cast.name}</p>
                                     <p className="detailsNumberAlter text-start">{cast.known_for_department}</p>
                                 </div>
                             </div>
@@ -61,7 +61,7 @@ const MovieCastCrew = () => {
                             <div key={i} className="flex gap-4 shadow-inner dark:shadow-darkBlue shadow-lightBlue rounded-xl">
                                 <img className=" w-20 rounded-xl" src={baseImageUrl + crew.profile_path} alt={crew.name} />
                                 <div className="flex flex-col mt-2">
-                                    <p className=" font-semibold">{crew.name}</p>
+                                    <p className=" font-semibold dark:text-white text-black">{crew.name}</p>
                                     <p className="detailsNumberAlter text-start">{crew.known_for_department}</p>
                                 </div>
                             </div>

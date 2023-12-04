@@ -49,7 +49,8 @@ const MovieAlterTitle = () => {
                                 if (title && title.iso_3166_1) {
                                     const element = document.getElementById(title.iso_3166_1);
                                     if (element) {
-                                        element.scrollIntoView({ behavior: "smooth" });
+                                        const y = element.getBoundingClientRect().top + window.scrollY - 73;
+                                        window.scrollTo({ top: y, behavior: "smooth" });
                                     }
                                 }
                             }

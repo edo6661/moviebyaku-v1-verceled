@@ -10,6 +10,6 @@ type Images = {
 
 type MovieImagesData = {
 	backdrops: Images[];
-	logo: Images[];
+	logos: Images[];
 	posters: Images[];
 };
