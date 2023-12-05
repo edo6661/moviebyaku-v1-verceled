@@ -13,6 +13,7 @@ type PopularTv = {
 	name: string;
 	vote_average: number;
 	vote_count: number;
+	title: string;
 };
 
 type PopularTvResult = {

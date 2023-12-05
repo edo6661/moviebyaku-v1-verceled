@@ -31,7 +31,7 @@ const SecondSectionSingleMovie = ({ id, status, budget, revenue }: Props) => {
                 <div className='containerScrollSingleMovie'>
                     {credits?.cast.slice(0, 12).map((credit) => {
                         return (
-                            <CreditSingleMovie key={credit.id} {...credit} />
+                        <CreditSingleMovie key={credit.id} {...credit} />
                         )
                     })}
                 </div>

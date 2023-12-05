@@ -31,6 +31,11 @@ import SearchPage from './page/public/SearchPage.tsx'
 import TopRatedMovie from './page/public/TopRatedMovie.tsx'
 import Tv from './page/public/Tv.tsx'
 import UpcomingMovie from './page/public/UpcomingMovie.tsx'
+import AiringTv from './page/public/tv/AiringTv.tsx'
+import HomePageTvs from './page/public/tv/HomePageTvs.tsx'
+import PopularTv from './page/public/tv/PopularTv.tsx'
+import TopRatedTv from './page/public/tv/TopRatedTv.tsx'
+import Tvs from './page/public/tv/Tvs.tsx'
 import store from './redux/store.ts'
 
 const router = createBrowserRouter(
@@ -56,11 +61,16 @@ const router = createBrowserRouter(
         <Route path='posters' element={<MoviePosters />} />
         <Route path='videos' element={<MovieVideos />} />
         <Route path='reviews' element={<MovieReviews />} />
-
       </Route>
 
-      <Route path='tv/:id' element={<Tv />}>
+      <Route path='tv/:id' element={<Tv />} >
         <Route index element={<SingleTv />} />
+      </Route>
+      <Route path='tvs' element={<Tvs />}>
+        <Route index element={<HomePageTvs />} />
+        <Route path='popular' element={<PopularTv />} />
+        <Route path='airing' element={<AiringTv />} />
+        <Route path='top-rated' element={<TopRatedTv />} />
       </Route>
 
       <Route path='search/:keyword' element={<SearchPage />} />

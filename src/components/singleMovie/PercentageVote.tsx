@@ -18,7 +18,7 @@ a 15.9155 15.9155 0 0 1 0 31.831
 a 15.9155 15.9155 0 0 1 0 -31.831"
                 />
             </svg>
-            <p className="text-base text-white">{percentageVote}<sup>%</sup></p>
+            <p className="text-base text-white">{percentageVote !== 0 ? percentageVote : 'NR'}<sup>%</sup></p>
         </div>
 
     )

@@ -393,4 +393,33 @@
 	.detailsReleaseSingleAnime {
 		@apply grid grid-cols-4 col-span-2 px-6 py-4 text-center;
 	}
+	/* ! links nav */
+	.containerMediaLinks {
+		@apply grid grid-cols-3 gap-6;
+	}
+	.innerMediaLinks {
+		@apply flex flex-col gap-4;
+	}
+	.sortButton {
+		@apply flex justify-between w-full  flex-1 text-start px-5 py-4 rounded-xl text-xl font-semibold cursor-pointer;
+	}
+	.detailsMediaLinks {
+		@apply col-span-2  grid-cols-links-auto-fit grid gap-x-3 gap-y-6;
+	}
+	.buttonShowMore {
+		@apply col-span-full bg-darkBlue rounded-xl p-3;
+	}
+	/* ! sorting  */
+	.containerSorting {
+		@apply flex flex-col shadowCard rounded-xl relative z-40;
+	}
+	.innerSorting {
+		@apply sortButton items-center absolute top-0;
+	}
+	.iconSorting {
+		@apply absolute right-4 -bottom-4 transition-all duration-150;
+	}
+	.detailsSorting {
+		@apply text-start px-5 py-4 rounded-xl mt-8;
+	}
 }

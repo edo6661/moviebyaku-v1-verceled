@@ -2,7 +2,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { FaRegStar, FaSearch } from "react-icons/fa";
 import { PiTelevisionSimpleBold } from "react-icons/pi";
 import { TbMovie } from "react-icons/tb";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from 'react-router-dom';
 import { useSearchMultiQuery } from '../features/search/searchApiSlice';
 import useProvider from "../hooks/useProvider";
 import searchBarVars from '../locale/searchBarVars';
@@ -75,7 +75,7 @@ const SearchBar = () => {
                                                 key={movie.id}
                                                 className="  flex items-center gap-3 py-[2px] border-b-bInput border-opacity-20 border-solid border-b-2">
                                                 <span>{media}</span>
-                                                <a href={url} className="flex gap-1 hover:opacity-60 transition-all duration-150 justify-between w-full">
+                                                <Link to={url} className="flex gap-1 hover:opacity-60 transition-all duration-150 justify-between w-full">
                                                     <div className="flex gap-1">
                                                         <p> {title ? title : 'empty from api'}</p>
                                                         <p>{release && `(${release.substring(0, 4)})`}</p>
@@ -89,7 +89,7 @@ const SearchBar = () => {
                                                             </>
                                                         ) : <p>empty</p>}
                                                     </div>
-                                                </a>
+                                                </Link>
                                             </div>
                                         )
                                     })}

@@ -19,7 +19,7 @@ function App() {
         theme="colored"
       />
       <Header />
-      <main className="flex flex-col">
+      <main className="flex flex-col min-h-screen">
         <Outlet />
       </main >
       <Footer />

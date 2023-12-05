@@ -15,15 +15,15 @@ const movie = [
 const tv = [
 	{
 		subtitle: 'Popular',
-		to: '/tv/popular',
+		to: '/tvs/popular',
 	},
 	{
 		subtitle: 'Airing',
-		to: '/tv/airing',
+		to: '/tvs/airing',
 	},
 	{
 		subtitle: 'Top Rated',
-		to: '/tv/toprated',
+		to: '/tvs/top-rated',
 	},
 ];
 

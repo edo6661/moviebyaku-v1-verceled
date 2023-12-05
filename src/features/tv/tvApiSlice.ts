@@ -21,7 +21,7 @@ export const tvApiSlice = apiSlice.injectEndpoints({
 					  ]
 					: [{ type: 'Tv', id: 'POPULAR' }],
 		}),
-		topRatedTv: builder.query<ResultTopRatedTv, number>({
+		topRatedTv: builder.query<PopularTvResult, number>({
 			query: (page) => ({
 				url: `tv/top_rated?language=en-US&page=${page}`,
 				validateStatus: (response, result) => {
@@ -57,7 +57,7 @@ export const tvApiSlice = apiSlice.injectEndpoints({
 					  ]
 					: [{ type: 'Tv', id: 'ONTHEAIR' }],
 		}),
-		airingTodayTv: builder.query<ResultOnTheAirTv, number>({
+		airingTodayTv: builder.query<PopularTvResult, number>({
 			query: (page) => ({
 				url: `tv/airing_today?language=en-US&page=${page}`,
 				validateStatus: (response, result) => {
@@ -166,29 +166,37 @@ export const tvApiSlice = apiSlice.injectEndpoints({
 			// ! 30 menit
 			keepUnusedDataFor: 60 * 30,
 		}),
-		favoriteTv: builder.mutation<ResponsePOST, AddFavorite>({
-			query: ({ account_id, media_type, media_id, favorite }) => ({
-				url: `account/${account_id}/favorite`,
-				method: 'POST',
-				body: {
-					media_type,
-					media_id,
-					favorite,
-				},
-			}),
-			invalidatesTags: [{ type: 'Tv' }],
+		FavoriteTv: builder.mutation<ResponsePOST, AddFavorite>({
+			query: ({ account_id, media_type, media_id, favorite, session_id }) => {
+				const url = `account/${account_id}/favorite?session_id${session_id}`;
+				if (account_id === undefined && account_id !== '') {
+					throw new Error('you must have account_id');
+				}
+				return {
+					url,
+					method: 'POST',
+					body: {
+						media_type,
+						media_id,
+						favorite,
+					},
+				};
+			},
+			invalidatesTags: (_result, _error, { media_id }) => [
+				{ type: 'Movie', id: media_id },
+			],
 		}),
-		watchListTv: builder.mutation<ResponsePOST, AddFavorite>({
-			query: ({ account_id, media_type, media_id, favorite }) => ({
+		WatchListTv: builder.mutation<ResponsePOST, AddWatchList>({
+			query: ({ account_id, media_type, media_id, watchlist }) => ({
 				url: `account/${account_id}/watchlist`,
 				method: 'POST',
 				body: {
 					media_type,
 					media_id,
-					favorite,
+					watchlist,
 				},
 			}),
-			invalidatesTags: [{ type: 'Tv' }],
+			invalidatesTags: [{ type: 'Movie' }],
 		}),
 		ratingTv: builder.mutation<ResponsePOST, AddRating>({
 			query: ({ id, session_id, guest_session_id, value }) => {

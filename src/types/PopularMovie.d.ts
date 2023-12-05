@@ -20,6 +20,11 @@ interface ResultFirstSectionMovie {
 	video: boolean;
 	vote_average: number;
 	vote_count: number;
+	name: string;
+	original_name: string;
+	origin_country: string;
+	original_name: string;
+	first_air_date: string;
 }
 
 interface ResultPopularMovie {

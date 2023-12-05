@@ -1,16 +1,16 @@
 import { useEffect, useState } from 'react';
-import ErrorMessage from "../../components/errAndLoading/TemporaryError";
-import NavMovies from '../../components/movie/NavMovies';
-import { usePopularMoviesQuery } from "../../features/movie/movieApiSlice";
-import { sortingDropdownStuff } from '../../utils/SortDropdownVars';
+import ErrorMessage from '../../../components/errAndLoading/TemporaryError';
+import NavTvs from '../../../components/tv/NavTvs';
+import { useAiringTodayTvQuery } from '../../../features/tv/tvApiSlice';
+import { sortingDropdownStuff } from '../../../utils/SortDropdownVars';
 
-const PopularMovies = () => {
+const AiringTv = () => {
     const [page, setPage] = useState(1)
     const [button, setButton] = useState<Record<string, boolean>>({})
     const [svg, setSvg] = useState(false)
     const [dropdown, setDropdown] = useState(false)
-    const [allMovies, setAllMovies] = useState<ResultFirstSectionMovie[]>([])
-    const { data, isError, error, isLoading } = usePopularMoviesQuery(page);
+    const [allMovies, setAllMovies] = useState<PopularTv[]>([])
+    const { data, isError, error, isLoading } = useAiringTodayTvQuery(page);
 
     const errMsg = (error && isError) ? <ErrorMessage error={error} /> : null;
 
@@ -31,8 +31,8 @@ const PopularMovies = () => {
         }
     }, [svg, dropdown])
 
-    return <NavMovies
-        title="Popular Movies"
+    return <NavTvs
+        title="Airing Tv"
         errMsg={errMsg ?? undefined}
         data={data}
         allMovies={allMovies}
@@ -48,4 +48,4 @@ const PopularMovies = () => {
     />
 }
 
-export default PopularMovies
+export default AiringTv
