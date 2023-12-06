@@ -6,5 +6,6 @@ type AlternativeTitle = {
 
 type AlternativeTitlesData = {
 	id: number;
+	results: AlternativeTitle[];
 	titles: AlternativeTitle[];
 };

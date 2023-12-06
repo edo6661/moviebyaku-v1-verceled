@@ -17,8 +17,11 @@ type CastCredit = {
 	credit_id: string;
 	order: number;
 	media_type: string;
+	name: string;
+	first_air_date: string;
 };
 
 type PeopleCreditsData = {
 	cast: CastCredit[];
+	crew: CastCredit[];
 };

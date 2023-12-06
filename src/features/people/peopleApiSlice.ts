@@ -4,8 +4,8 @@ import { apiSlice } from '../../api/apiSlice';
 const peopleApiSlice = apiSlice.injectEndpoints({
 	endpoints: (build) => ({
 		PopularPeople: build.query<PersonSearchData, string>({
-			query: () => ({
-				url: `person/popular`,
+			query: (page) => ({
+				url: `person/popular?page=${page}`,
 				validateStatus(response, result) {
 					return response.status === 200 && !result.isError;
 				},
@@ -32,7 +32,7 @@ const peopleApiSlice = apiSlice.injectEndpoints({
 			// ! 30 menit
 			keepUnusedDataFor: 60 * 30,
 		}),
-		ImagesPeople: build.query<ImageData, string>({
+		ImagesPeople: build.query<Profiles, string>({
 			query: (id) => ({
 				url: `person/${id}/images`,
 				validateStatus: (response, result) => {
@@ -54,6 +54,19 @@ const peopleApiSlice = apiSlice.injectEndpoints({
 			}),
 			providesTags: (_result, _error, id) => [
 				{ type: 'People', id: `Credits${id}` },
+			],
+			// ! 30 menit
+			keepUnusedDataFor: 60 * 30,
+		}),
+		ProfilePeople: build.query<Translations, string>({
+			query: (id) => ({
+				url: `person/${id}/translations`,
+				validateStatus: (response, result) => {
+					return response.status === 200 && !result.isError;
+				},
+			}),
+			providesTags: (_result, _error, id) => [
+				{ type: 'People', id: `Profile${id}` },
 			],
 			// ! 30 menit
 			keepUnusedDataFor: 60 * 30,

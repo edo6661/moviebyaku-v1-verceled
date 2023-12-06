@@ -41,7 +41,7 @@ const SliderMovies = ({ id, poster_path, title, release_date, i, backdrop_path, 
             viewport={{ once: true }}
         >
             <div className="relative">
-                <Link to={`movie/${id}/main`}>
+                <Link to={`movie/${id}`}>
                     <motion.img
                         loading='lazy'
                         onMouseOver={trueBp}

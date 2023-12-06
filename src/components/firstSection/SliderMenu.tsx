@@ -4,15 +4,17 @@ import { useFavoriteMovieMutation, useWatchListMovieMutation } from '../../featu
 import useProvider from '../../hooks/useProvider';
 import { toggleStatus } from '../../hooks/useStatus';
 
-const SliderMenu = ({ id }: { id: string }) => {
+const SliderMenu = ({ id, media_type }: { id: string; media_type?: string; }) => {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { favorite, watchlist, setFavorite, setWatchlist, profile, sessionId } = useProvider()
     const [addFavorite, { isLoading: loadingFav, isError: isErrFav }] = useFavoriteMovieMutation();
     const [addWatchlist, { isLoading: loadingWl, isError: isErrWl }] = useWatchListMovieMutation();
 
+    const type = media_type ? media_type : 'movie'
+
     const initialArg = {
         account_id: profile.id.toString(),
-        media_type: 'movie',
+        media_type: type,
         media_id: id,
         session_id: sessionId
     }

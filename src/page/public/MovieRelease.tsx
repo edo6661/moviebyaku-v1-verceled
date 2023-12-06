@@ -27,7 +27,9 @@ const MovieRelease = () => {
         setCountryCounts(counts);
     }, [data]);
 
-    // ! terahir
+    if (isError) {
+        return errMsg
+    }
 
     return (
         <section className="containerSubSingleMovie">

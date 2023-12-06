@@ -47,7 +47,7 @@ const SliderTv = ({ id, poster_path, name, first_air_date, i, backdrop_path, set
             viewport={{ once: true }}
         >
             <div className="relative">
-                <Link to={`tv/${id}/main`}>
+                <Link to={`tv/${id}`}>
                     <motion.img
                         onMouseOver={() => setActiveBackdropPath(backdrop_path)}
                         loading='lazy'

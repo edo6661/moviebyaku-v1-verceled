@@ -52,4 +52,25 @@ const secondNavStuff = [
 	},
 ];
 
+export const secondNavPerson = [
+	{
+		title: 'Overview',
+		items: [
+			{
+				title: 'Main',
+				to: 'main',
+			},
+		],
+	},
+	{
+		title: 'Media',
+		items: [
+			{
+				title: 'Profile',
+				to: 'profile',
+			},
+		],
+	},
+];
+
 export default secondNavStuff;

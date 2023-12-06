@@ -88,7 +88,7 @@ export const tvApiSlice = apiSlice.injectEndpoints({
 			// ! 30 menit
 			keepUnusedDataFor: 60 * 30,
 		}),
-		ReviewsTv: builder.query<ReviewsData, string>({
+		ReviewsTv: builder.query<MovieReviews, string>({
 			query: (id) => ({
 				url: `tv/${id}/reviews`,
 				validateStatus: (response, result) => {
@@ -153,7 +153,7 @@ export const tvApiSlice = apiSlice.injectEndpoints({
 			// ! 30 menit
 			keepUnusedDataFor: 60 * 30,
 		}),
-		ImagesTv: builder.query<ImageData, string>({
+		ImagesTv: builder.query<MovieImagesData, string>({
 			query: (id) => ({
 				url: `tv/${id}/images`,
 				validateStatus: (response, result) => {
@@ -183,7 +183,7 @@ export const tvApiSlice = apiSlice.injectEndpoints({
 				};
 			},
 			invalidatesTags: (_result, _error, { media_id }) => [
-				{ type: 'Movie', id: media_id },
+				{ type: 'Tv', id: media_id },
 			],
 		}),
 		WatchListTv: builder.mutation<ResponsePOST, AddWatchList>({
@@ -196,7 +196,7 @@ export const tvApiSlice = apiSlice.injectEndpoints({
 					watchlist,
 				},
 			}),
-			invalidatesTags: [{ type: 'Movie' }],
+			invalidatesTags: [{ type: 'Tv' }],
 		}),
 		ratingTv: builder.mutation<ResponsePOST, AddRating>({
 			query: ({ id, session_id, guest_session_id, value }) => {
@@ -349,6 +349,49 @@ export const tvApiSlice = apiSlice.injectEndpoints({
 					  ]
 					: [{ type: 'Tv', id: 'GUEST' }],
 		}),
+		TvKeywords: builder.query<DataKeywords, string>({
+			query: (id) => ({
+				url: `tv/${id}/keywords`,
+				validateStatus: (response, result) => {
+					return response.status === 200 && !result.isError;
+				},
+			}),
+			providesTags: (result) =>
+				result
+					? [
+							...result.results.map(
+								(keyword) => ({
+									type: 'Tv' as const,
+									id: keyword.id,
+								}),
+								{ type: 'Tv', id: 'KEYWORD' }
+							),
+					  ]
+					: [{ type: 'Tv', id: 'KEYWORD' }],
+		}),
+		TvSimiliar: builder.query<
+			TvRecommendationData,
+			{ id: string; page: string }
+		>({
+			query: ({ id, page }) => ({
+				url: `tv/${id}/similar?page=${page}`,
+				validateStatus: (response, result) => {
+					return response.status === 200 && !result.isError;
+				},
+			}),
+			providesTags: (result) =>
+				result
+					? [
+							...result.results.map(
+								(result) => ({
+									type: 'Tv' as const,
+									id: result.id,
+								}),
+								{ type: 'Tv', id: 'SIMILIAR' }
+							),
+					  ]
+					: [{ type: 'Tv', id: 'SIMILIAR' }],
+		}),
 	}),
 });
 
@@ -372,4 +415,6 @@ export const {
 	useGetWatchlistTvQuery,
 	useGenresTvQuery,
 	useGetTvRatedGuestQuery,
+	useTvKeywordsQuery,
+	useTvSimiliarQuery,
 } = tvApiSlice;

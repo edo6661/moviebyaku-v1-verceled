@@ -8,6 +8,9 @@ const ThirdNavMovie = () => {
     const { data, isError, error, isLoading } = useMovieByIdQuery(id ?? '')
     const errMsg = isError && error && <ErrorMessage error={error} />
 
+    if (isError) {
+        return errMsg
+    }
 
     return (
         <section className="containerThirdNavMovie"

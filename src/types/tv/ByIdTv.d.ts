@@ -63,7 +63,7 @@ type ResultByIdTv = {
 	first_air_date: string;
 	genres: Genre[];
 	homepage: string;
-	id: number;
+	id: string;
 	in_production: boolean;
 	languages: string[];
 	last_air_date: string;
@@ -88,4 +88,5 @@ type ResultByIdTv = {
 	type: string;
 	vote_average: number;
 	vote_count: number;
+	idParams: string;
 };

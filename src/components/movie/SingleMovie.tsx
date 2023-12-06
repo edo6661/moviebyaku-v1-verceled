@@ -13,17 +13,17 @@ const SingleMovie = () => {
 
     if (isLoading) return <h1>Temporary loading nanti dibenerin puh...`</h1>
 
-
+    if (isError) {
+        return errMsg
+    }
     return (
         <>
-            {errMsg}
             <section className='containerSingleMovie overflow-x-hidden ' >
-            {data && <FirstSectionSingleMovie {...data} idParams={id ?? ''} />}
+                {data && <FirstSectionSingleMovie {...data} idParams={id ?? ''} />}
             </section>
             <section className='containerSingleMovie casualWrapper my-8 '>
                 <SecondSectionSingleMovie id={id ?? ''} status={data?.status} budget={data?.budget} revenue={data?.revenue} />
             </section>
-
         </>
     )
 }

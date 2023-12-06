@@ -11,10 +11,13 @@ const ReviewsSection = ({ id }: { id: string }) => {
 
     const [rest, setRest] = useState(false)
 
+    if (isError) {
+        return errMsg
+    }
+
 
     return (
         <>
-            {errMsg}
             <div className="containerSingleMovieReview">
                 {!isError && !isLoading && data?.results.length ? <p className=" headersSingleMovie">Reviews <span className=" text-myWhite opacity-80">{data?.results.length}</span></p> : <p className="headersSingleMovie ">Empty Reviews</p>}
             </div>
@@ -43,11 +46,12 @@ const ReviewsSection = ({ id }: { id: string }) => {
                             </div>
                         </div>
                         <div className="m-3">
-                            <p className=" lg:text-lg text-base">
-                                {!rest ? review.content.length ? review.content.length > 400 ? review.content.slice(0, 400) + '...' : review.content : 'No Content' : review.content}
+                            <p className="lg:text-lg text-base">
+                                {!rest && review.content.length > 400 ? review.content.slice(0, 400) + '...' : review.content}
                             </p>
                             <div className='flex my-2 gap-2'>
-                                <button className="lg:text-lg text-base font-semibold" onClick={() => setRest(prev => !prev)}>{rest ? 'Show Less' : 'Show More'}</button>
+                                {review.content.length > 400 && <button className="lg:text-lg text-base font-semibold" onClick={() => setRest(prev => !prev)}>{rest ? 'Show Less' : 'Show More'}</button>
+                                }
                             </div>
                         </div>
 

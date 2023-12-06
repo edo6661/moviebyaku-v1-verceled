@@ -14,7 +14,10 @@ const MoviePosters = () => {
         isLoading
     } = useImagesMovieQuery(id ?? '')
     const errMsg = isError && error && <ErrorMessage error={error} />
-    console.log(data)
+
+    if (isError) {
+        return errMsg
+    }
     return (
         <section className="containerSubSingleMovie">
 

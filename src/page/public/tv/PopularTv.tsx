@@ -31,6 +31,11 @@ const PopularMovies = () => {
         }
     }, [svg, dropdown])
 
+    if (isError) {
+        return errMsg
+    }
+
+
     return <NavTvs
         title="Popular Tv"
         errMsg={errMsg ?? undefined}

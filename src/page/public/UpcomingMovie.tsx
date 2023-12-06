@@ -31,6 +31,11 @@ const UpcomingMovie = () => {
         }
     }, [svg, dropdown])
 
+    if (isError) {
+        return errMsg
+    }
+
+
     return <NavMovies
         title="Upcoming Movies"
         errMsg={errMsg ?? undefined}

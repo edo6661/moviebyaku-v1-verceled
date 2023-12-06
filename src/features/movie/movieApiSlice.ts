@@ -144,6 +144,7 @@ export const movieApiSlice = apiSlice.injectEndpoints({
 		>({
 			query: ({ page, accountId }) => ({
 				url: `account/${accountId}/favorite/movie?language=en-US&page=${page}&sort_by=created_at.asc`,
+
 				validateStatus: (response, result) => {
 					return response.status === 200 && !result.isError;
 				},
@@ -274,6 +275,7 @@ export const movieApiSlice = apiSlice.injectEndpoints({
 		favoriteMovie: builder.mutation<ResponsePOST, AddFavorite>({
 			query: ({ account_id, media_type, media_id, favorite, session_id }) => {
 				const url = `account/${account_id}/favorite?session_id${session_id}`;
+
 				if (account_id === undefined && account_id !== '') {
 					throw new Error('you must have account_id');
 				}

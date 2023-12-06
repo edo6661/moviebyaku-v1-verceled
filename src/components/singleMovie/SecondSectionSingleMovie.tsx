@@ -19,19 +19,22 @@ const SecondSectionSingleMovie = ({ id, status, budget, revenue }: Props) => {
 
     const errMsg = isError && error && <ErrorMessage error={error} />
 
+    if (isError) {
+        return errMsg
+    }
+
 
     return (
         <>
             <div className=" items-center">
                 <h4 className="text-black dark:text-white headersSingleMovie mb-4 containerScrollSingleMovie">{!isLoading && !isError && credits?.cast?.length ? 'Top Billed Cast' : 'Empty Cast'}</h4>
             </div>
-            {errMsg}
             <article className=' secondContainerSingleDetails text-black dark:text-white'>
 
                 <div className='containerScrollSingleMovie'>
                     {credits?.cast.slice(0, 12).map((credit) => {
                         return (
-                        <CreditSingleMovie key={credit.id} {...credit} />
+                            <CreditSingleMovie key={credit.id} {...credit} />
                         )
                     })}
                 </div>

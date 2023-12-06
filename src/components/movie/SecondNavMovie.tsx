@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { useState } from "react";
-import { Link } from 'react-router-dom';
-import secondNavStuff from '../../helpers/secondNavStuff';
+import { Link, useLocation } from 'react-router-dom';
+import secondNavStuff, { secondNavPerson } from '../../helpers/secondNavStuff';
 import { ddVars, mdRotateVars } from '../../locale/HeaderVars';
 
 const SecondNavMovie = () => {
@@ -11,10 +11,16 @@ const SecondNavMovie = () => {
     const trueDd = (i: string) => setShowDd(prev => ({ ...prev, [i]: true }))
     const falseDd = (i: string) => setShowDd(prev => ({ ...prev, [i]: false }))
 
+    const location = useLocation();
+
+    const personPath = location.pathname.includes('person');
+
+    const stuffs = personPath ? secondNavPerson : secondNavStuff
+
     return (
         <section className="containerSecondNav relative">
             <article className='' >
-                {secondNavStuff.map((stuff, i) =>
+                {stuffs.map((stuff, i) =>
                     <div className="innerSecondNav" key={stuff.title} onMouseLeave={() => falseDd(i.toString())}>
                         <div className={`detailsSecondNav ${showDd[i] ? ' opacity-50' : ''}`} onMouseEnter={() => trueDd(i.toString())} >
                             <p className=' select-none'>{stuff.title}</p>

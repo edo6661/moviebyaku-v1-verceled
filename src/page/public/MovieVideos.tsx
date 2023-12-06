@@ -13,6 +13,11 @@ const MovieVideos = () => {
         isLoading
     } = useVideosMovieQuery(id ?? '')
     const errMsg = isError && error && <ErrorMessage error={error} />
+
+    if (isError) {
+        return errMsg
+    }
+
     return (
         <section className="containerSubSingleMovie">
 

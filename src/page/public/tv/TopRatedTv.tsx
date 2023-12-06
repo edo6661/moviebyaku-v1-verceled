@@ -31,6 +31,11 @@ const TopRatedTv = () => {
         }
     }, [svg, dropdown])
 
+    if (isError) {
+        return errMsg
+    }
+
+
     return <NavTvs
         title="Toprated Tv"
         errMsg={errMsg ?? undefined}

@@ -17,6 +17,11 @@ const MovieReviews = () => {
 
     const handleRest = (i: number) => setRest(prev => ({ ...prev, [i]: !(prev[i] || false) }))
 
+    if (isError) {
+        return errMsg
+    }
+
+
     return (
         <section className="containerSubSingleMovie">
             {errMsg}

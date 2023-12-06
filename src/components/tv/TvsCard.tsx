@@ -22,7 +22,7 @@ const TvsCard = ({ tv, i, button, handleClick }: Props) => {
         <div className="relative flex flex-col" key={tv.id}>
             <div className="relative flex flex-col" key={tv.id}>
                 <div className="relative w-fit">
-                    <Link className='rounded-xl' to={`/tv/${tv.id}/main`}>
+                    <Link className='rounded-xl' to={`/tv/${tv.id}`}>
                         <motion.img
                             src={baseImageUrl + tv.poster_path} alt={tv.name}
                             loading='lazy'

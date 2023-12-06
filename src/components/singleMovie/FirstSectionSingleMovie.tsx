@@ -109,7 +109,6 @@ const FirstSectionSingleMovie = ({ title, release_date, backdrop_path, poster_pa
                                 </p>
                             </button>
                         )}
-
                     </div>
                     <p className=' text-myWhite opacity-80'>{tagline}</p>
                     <p className="sm:text-xl text-lg font-semibold">{overview?.length ? 'Overview' : 'No Overview'}</p>

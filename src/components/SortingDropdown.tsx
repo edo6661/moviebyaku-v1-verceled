@@ -35,7 +35,7 @@ const SortingDropdown = ({ svg, dropdown, handleSvg, handleDropdown, title, stuf
                             {dropdown && (
                                 <motion.ul
                                     variants={contentVars} initial="initial" animate={svgAnimate} exit="exit"
-                                    className='text-base font-light shadowCard px-3 rounded-xl'>
+                                    className='text-base dateSingleMovie shadowCard px-3 rounded-xl'>
                                     {stuff.map(s =>
                                         <motion.li
                                             variants={contentVars} initial="initial" animate={svgAnimate} exit="exit"

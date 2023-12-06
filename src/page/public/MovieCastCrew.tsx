@@ -43,6 +43,9 @@ const MovieCastCrew = () => {
     }, []);
 
 
+    if (isError) {
+        return errMsg
+    }
 
     return (
         <section className="containerSubSingleMovie  ">

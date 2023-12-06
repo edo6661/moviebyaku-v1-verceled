@@ -422,4 +422,17 @@
 	.detailsSorting {
 		@apply text-start px-5 py-4 rounded-xl mt-8;
 	}
+	/* ! people popular */
+	.containerPopularPeople {
+		@apply grid grid-cols-base-auto-fit gap-4;
+	}
+	.innerPopularPeople {
+		@apply flex flex-col gap-2 shadowCard rounded-xl;
+	}
+	.innerPopularPeople > a > img {
+		@apply rounded-t-xl rounded-b-sm hover:opacity-60 transition-all duration-300;
+	}
+	.detailsPopularPeople {
+		@apply pb-3 px-3 flex flex-col gap-2;
+	}
 }

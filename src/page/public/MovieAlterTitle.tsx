@@ -27,7 +27,10 @@ const MovieAlterTitle = () => {
         setCountryCounts(counts);
     }, [data]);
 
-    // ! terahir
+    if (isError) {
+        return errMsg
+    }
+
 
     return (
         <section className="containerSubSingleMovie">
@@ -63,9 +66,9 @@ const MovieAlterTitle = () => {
                         }) : <h2 className='text-3xl font-bold text-center'>No Videos</h2>}
                     </div>
                     <div className=" secondDetailsAlterSingleMovie">
-                        {data?.titles.length && data?.titles.map((title) => {
+                        {data?.titles.length && data?.titles.map((title, i) => {
                             return (
-                                <div className='grid grid-cols-2' id={title.iso_3166_1} >
+                                <div key={i} className='grid grid-cols-2' id={title.iso_3166_1} >
                                     <div className=' thirdDetailsAlterSingleMovie'>
                                         <Flag code={title.iso_3166_1} className=" w-7" />
                                         <p className=' font-semibold text-white'>{countries.getName(title.iso_3166_1, 'en', { select: 'official' })}</p>

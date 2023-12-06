@@ -31,6 +31,11 @@ const AiringTv = () => {
         }
     }, [svg, dropdown])
 
+    if (isError) {
+        return errMsg
+    }
+
+
     return <NavTvs
         title="Airing Tv"
         errMsg={errMsg ?? undefined}

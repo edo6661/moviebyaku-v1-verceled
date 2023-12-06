@@ -9,7 +9,7 @@ const getErrorMessage = (error: unknown) => {
 };
 
 const TemporaryError = ({ error }: { error?: string | Error }) => (
-    <h2 className='text-3xl font-bold text-center'>
+    <h2 className='text-3xl font-bold text-center mt-24'>
         {error ? (typeof error === 'string' ? error : error.message) : 'Unknown error'}
     </h2>
 );

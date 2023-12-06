@@ -31,6 +31,11 @@ const TopRatedMovie = () => {
         }
     }, [svg, dropdown])
 
+    if (isError) {
+        return errMsg
+    }
+
+
     return <NavMovies
         title="Toprated Movies"
         errMsg={errMsg ?? undefined}

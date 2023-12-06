@@ -6,4 +6,5 @@ type Keyword = {
 type DataKeywords = {
 	id: number;
 	keywords: Keyword[];
+	results: Keyword[];
 };

@@ -22,7 +22,7 @@ const MovieCard = ({ movie, i, button, handleClick }: Props) => {
         <div className="relative flex flex-col" key={movie.id}>
             <div className="relative flex flex-col" key={movie.id}>
                 <div className="relative w-fit">
-                    <Link className='rounded-xl' to={`/movie/${movie.id}/main`}>
+                    <Link className='rounded-xl' to={`/movie/${movie.id}`}>
                         <motion.img
                             src={baseImageUrl + movie.poster_path} alt={movie.title}
                             loading='lazy'
