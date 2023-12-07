@@ -40,7 +40,7 @@ const RecomsTv = ({ poster_path, name, first_air_date, id }: TvRecommendationRes
                             <SliderMenu id={id.toString()} />
                         </motion.div>}
                 </AnimatePresence>
-                <Link to={`/movie/${id}`} className='imgSliderMedia block w-52 '>
+                <Link to={`/movie/${id}`} className='linkSliderMedia '>
                     <img className="imgSliderMedia hoveredPoster" src={baseImageUrl + poster_path} alt={name} />
                 </Link>
                 <p className='sm:text-xl text-lg font-semibold '>{name}</p>

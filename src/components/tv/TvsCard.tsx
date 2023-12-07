@@ -20,7 +20,7 @@ const TvsCard = ({ tv, i, button, handleClick }: Props) => {
 
     return (
         <div className="relative flex flex-col" key={tv.id}>
-            <div className="relative flex flex-col" key={tv.id}>
+            <div className="relative flex flex-col mx-auto" key={tv.id}>
                 <div className="relative w-fit">
                     <Link className='rounded-xl' to={`/tv/${tv.id}`}>
                         <motion.img

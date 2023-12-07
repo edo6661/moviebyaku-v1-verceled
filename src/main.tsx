@@ -106,6 +106,7 @@ const router = createBrowserRouter(
 
         <Route path='search/:keyword' element={<SearchPage />} />
         <Route path='popular-people' element={<PopularPeople />} />
+        
         <Route path="movies" element={<Movies />} >
           <Route index element={<HomePageMovies />} />
           <Route element={<PopularMovies />} path='popular' />

@@ -12,7 +12,7 @@ const CreditSingleMovie = ({ name, character, profile_path, id }: CastMember) =>
             whileInView="animation"
             viewport={{ once: true }}
         >
-            <Link to={`person/${id}`}>
+            <Link to={`/person/${id}`}>
                 <img src={`${baseImageUrl}${profile_path}`} alt={name}
                     className=' h-[216px] hoveredPoster '
                 />

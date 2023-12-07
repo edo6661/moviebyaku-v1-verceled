@@ -45,6 +45,19 @@ const Header = () => {
 
 
     const toggle = () => setOpen(prev => !prev)
+    const closeToggle = () => setOpen(false)
+
+    const handleClickOutside = (e: MouseEvent) => {
+        const target = e.target as Element;
+        if (target.className !== 'containerMobileNav') {
+            closeToggle()
+        }
+    }
+
+    useEffect(() => {
+        window.addEventListener('click', handleClickOutside)
+        return () => window.removeEventListener('click', handleClickOutside)
+    }, [])
 
     return (
         < header className=' fixed w-full z-50 ' ref={scope} >
@@ -66,11 +79,15 @@ const Header = () => {
                         <div className="headerInner">
                             {img}
                         </div>
-                        <div className='flex items-center gap-4 re'>
+                        <div className='flex items-center gap-4'>
                             <button onClick={handleSearch}>{<FaSearch size={21} />}</button>
-                            <motion.button onClick={toggle}
+                            <motion.button onClick={(e) => {
+                                e.stopPropagation();
+                                toggle()
+                            }}
                                 variants={smRotateVars}
-                                animate={open ? 'open' : 'close'}>
+                                animate={open ? 'open' : 'close'}
+                            >
                                 <GiHamburgerMenu size={24} />
                             </motion.button>
                         </div>

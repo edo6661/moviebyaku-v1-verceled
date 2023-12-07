@@ -20,9 +20,9 @@ const SortingDropdown = ({ svg, dropdown, handleSvg, handleDropdown, title, stuf
         <AnimatePresence>
             <motion.div className='containerSorting'
                 variants={btnVars} initial="initial" animate={svg && !dropdown ? 'animate' : dropdown ? 'dropdown' : ''} exit="exit">
-                <div className='innerSorting' onClick={handleSvg}>
+                <div className='innerSorting justify-between' onClick={handleSvg}>
                     <button className='' >{title}</button>
-                    <div className='flex relative '>
+                    <div className='flex relative w-fit '>
                         <div className='iconSorting'><FaMinus size={25} color={svg ? '#1F4699' : ''} /></div>
                         <div className={`iconSorting  ${svgStyle} `}><FaMinus color={svg ? '#1F4699' : ''} size={25} /></div>
                     </div>

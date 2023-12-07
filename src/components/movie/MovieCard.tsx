@@ -19,17 +19,17 @@ const MovieCard = ({ movie, i, button, handleClick }: Props) => {
     const date = new Date(movie.release_date.split('T')[0]).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })
 
     return (
-        <div className="relative flex flex-col" key={movie.id}>
-            <div className="relative flex flex-col" key={movie.id}>
-                <div className="relative w-fit">
-                    <Link className='rounded-xl' to={`/movie/${movie.id}`}>
+        <div className="relative flex flex-col " key={movie.id}>
+            <div className="relative flex flex-col mx-auto " key={movie.id}>
+                <div className="relative w-fit " >
+                    <Link className='w-full' to={`/movie/${movie.id}`}>
                         <motion.img
                             src={baseImageUrl + movie.poster_path} alt={movie.title}
                             loading='lazy'
                             variants={imageVars}
                             initial="initial"
                             animate={button[i] ? 'animation' : ''}
-                            className={`rounded-t-xl imagePopularDetails h-80`}
+                            className={`imgSliderMedia hoveredPoster w-full`}
                         />
                     </Link>
                     <div>

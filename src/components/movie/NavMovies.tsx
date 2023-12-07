@@ -26,7 +26,7 @@ const NavMovies = ({ title, errMsg, data, allMovies, button, handleClick, isLoad
                     <div className="innerMediaLinks">
                         <SortingDropdown svg={svg} handleDropdown={handleDropdown} dropdown={dropdown} handleSvg={handleSvg} title='Sort' stuff={sortingDropdownStuff} />
                     </div>
-                    <div className=" detailsMediaLinks">
+                    <div className=" detailsMediaLinks  ">
                         {data?.results ? allMovies.map((movie, i) => (
                             <MovieCard key={i} movie={movie} i={i} button={button} handleClick={handleClick} />
                         )) : !isLoading && <h2 className='text-3xl font-bold text-center'>No {title}</h2>}

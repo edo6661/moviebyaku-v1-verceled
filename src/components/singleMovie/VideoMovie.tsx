@@ -10,7 +10,7 @@ const VideoMovie = ({ id, name, videoKey }: VideoResult) => {
             viewport={{ once: true }}
         >
             <iframe
-                width="560"
+                width="360"
                 height="315"
                 src={`https://www.youtube.com/embed/${videoKey}`}
                 title={name}

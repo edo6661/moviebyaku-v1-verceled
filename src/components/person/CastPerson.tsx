@@ -43,7 +43,7 @@ const CastPerson = ({ poster_path, title, release_date, id, first_air_date, name
                             <SliderMenu id={id.toString()} media_type={media_type} />
                         </motion.div>}
                 </AnimatePresence>
-                <Link to={link} className='imgSliderMedia block w-52  '>
+                <Link to={link} className='linkSliderMedia  '>
                     <img className="imgSliderMedia hoveredPoster " src={baseImageUrl + poster_path} alt={title} />
                 </Link>
                 <p className='text-lg'>{name ? name : title}</p>

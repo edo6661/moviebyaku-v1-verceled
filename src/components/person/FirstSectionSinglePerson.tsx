@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useCreditsPeopleQuery } from '../../features/people/peopleApiSlice';
@@ -24,9 +25,9 @@ const FirstSectionSinglePerson = ({ also_known_as, biography, birthday, known_fo
 
     return (
         <article className='text-base' >
-            <div className='grid grid-cols-2 sm:grid-cols-3 z-10 casualWrapper my-8  innerSingleMovie'>
-                <div className={`z-10 mx-0 sm:col-span-1 col-span-full containerPoster flex flex-col gap-4`} >
-                    <img className=" mx-auto" src={`${baseImageUrl}${profile_path}`} alt={name} />
+            <div className='containerSinglePerson'>
+                <div className={`innerSinglePerson`} >
+                    <img className=" mx-auto rounded-0" src={`${baseImageUrl}${profile_path}`} alt={name} />
                 </div>
                 <div className='detailsSingleMovie '>
                     <h2 className=' '>{name} </h2>
@@ -40,7 +41,7 @@ const FirstSectionSinglePerson = ({ also_known_as, biography, birthday, known_fo
                         )}
                     </div>
                 </div>
-                <div className=' sm:col-span-1 col-span-2 sm:mt-5 flex flex-col gap-3 shadowCard py-3 px-4 rounded-xl'>
+                <div className=' detailsSinglePerson'>
                     <h5 className='text-xl font-semibold mb-2'>Personal Info</h5>
                     <div className='flex flex-col gap-2'>
                         <div className='flex flex-col'>
@@ -65,7 +66,7 @@ const FirstSectionSinglePerson = ({ also_known_as, biography, birthday, known_fo
                         </div>
                     </div>
                 </div>
-                <div className="sm:ml-10 sm:mt-5 col-span-2 detailsSingleMovie ml-0 ">
+                <div className="secondDetailsSinglePerson ">
                     <h4 className='text-xl font-semibold mb-4'>Known For</h4>
                     <div className='containerScrollSingleMovie '>
                         {sortedCast.sort((a, b) => b.popularity - a.popularity).slice(0, 12).map((cast) => {

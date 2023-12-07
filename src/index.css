@@ -59,7 +59,7 @@
 		@apply max-w-7xl px-4 mx-auto;
 	}
 	.title {
-		@apply font-semibold text-lg;
+		@apply font-semibold text-lg mt-3;
 	}
 	.btnSc {
 		@apply transition-all duration-300 text-xl bg-transparent shadow-none hover:bg-lightBlue text-white font-semibold;
@@ -224,7 +224,7 @@
 		@apply z-10 mx-auto sm:col-span-1 col-span-full;
 	}
 	.containerPoster img {
-		@apply rounded-2xl sm:w-full w-80;
+		@apply sm:rounded-2xl rounded-none sm:w-full w-80;
 	}
 	.innerSingleMovie {
 		@apply grid grid-cols-2 sm:grid-cols-3 z-10 casualWrapper my-8 sm:gap-1 gap-8;
@@ -319,8 +319,12 @@
 	.singleMovieScrollContainer {
 		@apply w-fit h-fit mb-4;
 	}
+
 	.imgSliderMedia {
-		@apply h-[315px] mb-4 mr-2 rounded-xl;
+		@apply sm:w-auto w-32 mb-4 mr-2 rounded-xl;
+	}
+	.linkSliderMedia {
+		@apply imgSliderMedia block w-32 sm:w-52;
 	}
 	.shadowButtonImgSliderMedia {
 		@apply shadowCard opacity-80;
@@ -395,16 +399,16 @@
 	}
 	/* ! links nav */
 	.containerMediaLinks {
-		@apply grid grid-cols-3 gap-6;
+		@apply grid sm:grid-cols-3 gap-6;
 	}
 	.innerMediaLinks {
-		@apply flex flex-col gap-4;
+		@apply flex flex-col gap-4 sm:col-span-1 col-span-2;
 	}
 	.sortButton {
 		@apply flex justify-between w-full  flex-1 text-start px-5 py-4 rounded-xl text-xl font-semibold cursor-pointer;
 	}
 	.detailsMediaLinks {
-		@apply col-span-2  grid-cols-links-auto-fit grid gap-x-3 gap-y-6;
+		@apply col-span-2 grid-cols-md-auto-fit sm:grid-cols-links-auto-fit grid sm:gap-x-6 gap-x-3 gap-y-6;
 	}
 	.buttonShowMore {
 		@apply col-span-full bg-darkBlue rounded-xl p-3;
@@ -434,5 +438,17 @@
 	}
 	.detailsPopularPeople {
 		@apply pb-3 px-3 flex flex-col gap-2;
+	}
+	.containerSinglePerson {
+		@apply grid grid-cols-2 sm:grid-cols-3 z-10 casualWrapper my-8  innerSingleMovie;
+	}
+	.innerSinglePerson {
+		@apply z-10 mx-0 sm:col-span-1 col-span-full containerPoster flex flex-col gap-4;
+	}
+	.detailsSinglePerson {
+		@apply sm:col-span-1 col-span-2 sm:mt-5 flex flex-col gap-3 shadowCard py-3 px-4 rounded-xl;
+	}
+	.secondDetailsSinglePerson {
+		@apply sm:ml-10 sm:mt-5 col-span-2 detailsSingleMovie ml-0;
 	}
 }

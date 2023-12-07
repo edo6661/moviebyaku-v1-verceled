@@ -67,14 +67,8 @@ const SecondSectionSingleMovie = ({ id, status, budget, revenue }: Props) => {
                 <div className=" secondContainerSingleMovie">
                     <RecomsSingleMovie id={id} />
                 </div>
-                <div className="containerDetailsSingleMovie">
-                    <p>Something</p>
-                </div>
                 <div className=" secondContainerSingleMovie">
                     <SimiliarSingleMovie id={id} />
-                </div>
-                <div className="containerDetailsSingleMovie">
-                    <p>Something</p>
                 </div>
             </article>
         </>

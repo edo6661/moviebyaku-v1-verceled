@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { useState } from "react";
 import { Link, useLocation } from 'react-router-dom';
-import secondNavStuff, { secondNavPerson } from '../../helpers/secondNavStuff';
+import secondNavStuff, { secondNavPerson, secondNavTv } from '../../helpers/secondNavStuff';
 import { ddVars, mdRotateVars } from '../../locale/HeaderVars';
 
 const SecondNavMovie = () => {
@@ -14,8 +14,9 @@ const SecondNavMovie = () => {
     const location = useLocation();
 
     const personPath = location.pathname.includes('person');
+    const tvPath = location.pathname.includes('tv');
 
-    const stuffs = personPath ? secondNavPerson : secondNavStuff
+    const stuffs = personPath ? secondNavPerson : tvPath ? secondNavTv : secondNavStuff
 
     return (
         <section className="containerSecondNav relative">

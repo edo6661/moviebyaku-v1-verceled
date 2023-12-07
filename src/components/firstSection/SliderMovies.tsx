@@ -1,5 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { AnimatePresence, motion } from 'framer-motion';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { HiOutlineDotsCircleHorizontal } from 'react-icons/hi';
 import { Link } from 'react-router-dom';
 import useWindowWidth from '../../hooks/useWindowWidth';
@@ -24,6 +25,10 @@ const SliderMovies = ({ id, poster_path, title, release_date, i, backdrop_path, 
     const [button, setButton] = useState<Record<string, boolean>>({})
     // ! Fungsi ini membalik nilai dari properti dengan kunci i dalam objek button. Jika properti tersebut belum ada dalam objek button, maka nilai defaultnya adalah false.
     const handleClick = (i: string) => setButton(prev => ({ ...prev, [i]: !(prev[i] || false) }))
+    const falseOptions = (i: string) => setButton(prev => ({ ...prev, [i]: false }))
+    const trueOptions = (i: string) => setButton(prev => ({ ...prev, [i]: true }))
+
+
     const trueBp = () => setActiveBackdropPath?.(backdrop_path)
     const imageWidth = width > 400 ? 'xlImagePopularDetails' : 'smImagePopularyDetails'
     const src = 'https://image.tmdb.org/t/p/original/'
@@ -31,6 +36,22 @@ const SliderMovies = ({ id, poster_path, title, release_date, i, backdrop_path, 
     let percentageVote;
 
     if (vote_average) percentageVote = Math.round(vote_average * 10)
+
+    const handleClickOutside = (e: MouseEvent) => {
+        const target = e.target as Element
+        if (target.className !== 'buttonMenuPopularDetails') {
+            falseOptions(i.toString())
+        }
+    }
+
+
+    useEffect(() => {
+        window.addEventListener('click', handleClickOutside)
+
+        return () => {
+            window.removeEventListener('click', handleClickOutside)
+        }
+    }, [])
 
     return (
         <motion.div key={id}
@@ -61,14 +82,24 @@ const SliderMovies = ({ id, poster_path, title, release_date, i, backdrop_path, 
                         variants={optionVars}
                         initial="initial" whileHover="hover" exit="exit"
                         className=' buttonPopularDetails'
-                        onClick={() => handleClick(i.toString())}>
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            handleClick(i.toString())
+                        }}>
                         <HiOutlineDotsCircleHorizontal size={25} color="#4B0082" />
                     </motion.button>
                     <AnimatePresence>
                         {button[i] &&
                             <motion.div
                                 className=' buttonMenuPopularDetails'
-                                onMouseLeave={() => handleClick(i.toString())}
+                                onMouseLeave={(e) => {
+                                    e.stopPropagation();
+                                    falseOptions(i.toString())
+                                }}
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    trueOptions(i.toString())
+                                }}
                                 variants={appearedCardVars}
                                 animate="animation"
                                 initial="initial"
@@ -82,7 +113,7 @@ const SliderMovies = ({ id, poster_path, title, release_date, i, backdrop_path, 
                 <p className='title'>{title}</p>
                 <p className=''>{release_date}</p>
             </div>
-        </motion.div>
+        </motion.div >
 
     )
 }
