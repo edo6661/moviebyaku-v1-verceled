@@ -2,13 +2,13 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { useState } from 'react';
 import { useTrendingMoviesDayQuery, useTrendingMoviesWeekQuery } from '../../features/movie/movieApiSlice';
 import ErrorMessage from '../errAndLoading/TemporaryError';
+import SkeletonFirstSection from './SkeletonFirstSection';
 import SliderMovies from './SliderMovies';
-
 
 const FirstSection = () => {
 
     const { data: dayData, isError: isErrDay, error: errDay, isLoading: loadingDay } = useTrendingMoviesDayQuery(1)
-    const { data: weekData, isError: isErrWeek, error: errWeek } = useTrendingMoviesWeekQuery(1)
+    const { data: weekData, isError: isErrWeek, error: errWeek, isLoading: loadingWeek } = useTrendingMoviesWeekQuery(1)
     const [day, setDay] = useState(false)
 
     const dayTrue = day && 'textGradient cursor-pointer'
@@ -51,18 +51,18 @@ const FirstSection = () => {
     const dayElement = (
         <div className={`${containerDay} containerPopularMovies `}
         >
-            {dayData?.results.map((movie, i: number) =>
+            {!loadingDay ? dayData?.results.map((movie, i: number) =>
                 <SliderMovies key={movie.id} {...movie} i={i} />
-            )}
+            ) : <SkeletonFirstSection />}
         </div>
     )
 
     const weekElement = (
         <div className={`${containerWeek} containerPopularMovies`}
         >
-            {weekData?.results.map((movie, i: number) =>
+            {!loadingWeek ? weekData?.results.map((movie, i: number) =>
                 <SliderMovies key={movie.id} {...movie} i={i} />
-            )}
+            ) : <SkeletonFirstSection />}
         </div>
     )
 

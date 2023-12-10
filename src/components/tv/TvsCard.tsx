@@ -30,6 +30,7 @@ const TvsCard = ({ tv, i, button, handleClick }: Props) => {
                             initial="initial"
                             animate={button[i] ? 'animation' : ''}
                             className={`imgSliderMedia hoveredPoster w-full max-h-[21.25rem]`}
+
                         />
                     </Link>
                     <div>

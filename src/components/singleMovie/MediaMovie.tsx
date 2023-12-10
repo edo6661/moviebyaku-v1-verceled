@@ -21,7 +21,8 @@ const MediaMovie = ({ id }: { id: string }) => {
     const videosTrue = activeButton === 'videos'
     const postersTrue = activeButton === 'posters'
     const backdropsTrue = activeButton === 'backdrops'
-    const elementVideos = videosTrue && !loadingV && !isErrV && videos?.results.filter(video => video.site === 'YouTube').slice(0, 12).map((video) => {
+
+    const elementVideos = videosTrue && videos?.results.filter(video => video.site === 'YouTube').slice(0, 12).map((video) => {
         return (
             <VideoMovie
                 {...video}
@@ -30,26 +31,30 @@ const MediaMovie = ({ id }: { id: string }) => {
             />
         )
     })
+
     const elementPosters = postersTrue && !loadingI && !isErrI && (
-        images?.posters.slice(0, 12).map((poster) => {
+        images?.posters.slice(0, 12).map((poster, i) => {
             return (
-                <motion.img className=" imgSliderMedia" src={`${baseImageUrl}${poster.file_path}`} alt="Posters"
+                <motion.img key={i} className=" imgSliderMedia" src={`${baseImageUrl}${poster.file_path}`} alt="Posters"
                     variants={scrollerVars}
                     initial="initial"
                     whileInView="animation"
                     viewport={{ once: true }}
+                    loading='lazy'
                 />
             )
         })
     )
     const elementBackdrops = backdropsTrue && !loadingI && !isErrI && (
-        images?.backdrops.slice(0, 12).map((poster) => {
+        images?.backdrops.slice(0, 12).map((poster, i) => {
             return (
-                <motion.img className=" imgSliderMedia" src={`${baseImageUrl}${poster.file_path}`} alt="backdrops"
+                <motion.img key={i} className=" imgSliderMedia" src={`${baseImageUrl}${poster.file_path}`} alt="backdrops"
                     variants={scrollerVars}
                     initial="initial"
                     whileInView="animation"
                     viewport={{ once: true }}
+                    loading='lazy'
+
                 />
             )
         })

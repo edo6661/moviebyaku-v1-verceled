@@ -38,6 +38,7 @@ const MediaTv = ({ id }: { id: string }) => {
                     initial="initial"
                     whileInView="animation"
                     viewport={{ once: true }}
+                    loading='lazy'
                 />
             )
         })
@@ -50,6 +51,7 @@ const MediaTv = ({ id }: { id: string }) => {
                     initial="initial"
                     whileInView="animation"
                     viewport={{ once: true }}
+                    loading='lazy'
                 />
             )
         })

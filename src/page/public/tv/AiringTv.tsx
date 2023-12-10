@@ -21,7 +21,7 @@ const AiringTv = () => {
 
     const { data: airingTv, isError: isErrU, error: errU, isLoading: isLoadU } = useAiringTodayTvQuery(page);
     const { data: sortData, isError: isErr, error: err } = useSortTvQuery({ page, sort_by: sort, genre_id: activeGenreIds })
-    const { data, isError, error } = useGenresTvQuery()
+    const { data, isError, error, isLoading } = useGenresTvQuery()
 
     const errMsg = (isError && error) ? <ErrorMessage error={error} /> : null;
     const errMsgS = (isErr && err) ? <ErrorMessage error={err} /> : null;
@@ -115,6 +115,8 @@ const AiringTv = () => {
         genres={data && data?.genres}
         handleActiveGenre={handleActiveGenre}
         isActiveGenre={isActiveGenre}
+        loadingGenre={isLoading}
+
     />
 }
 

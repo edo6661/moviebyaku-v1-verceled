@@ -4,6 +4,8 @@ import ErrorMessage from "../../components/errAndLoading/TemporaryError";
 import SecondNavMovie from "../../components/movie/SecondNavMovie";
 import { useMovieByIdQuery } from "../../features/movie/movieApiSlice";
 const Movie = () => {
+
+
     const { id } = useParams()
     const location = useLocation();
     const isMainPage = location.pathname === `/movie/${id}/` || location.pathname === `/movie/${id}`;
@@ -15,6 +17,7 @@ const Movie = () => {
     if (isError) {
         return errMsg
     }
+
 
     return (
         <>

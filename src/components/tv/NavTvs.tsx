@@ -1,5 +1,7 @@
 import SortingDropdown from '../SortingDropdown';
 import GenreButton from '../movie/GenreButton';
+import SkeletonGenre from '../movie/SkeletonGenre';
+import SkeletonNav from '../movie/SkeletonNav';
 import TvsCard from './TvsCard';
 
 interface Props {
@@ -21,13 +23,15 @@ interface Props {
     genres?: Genre[] | undefined;
     handleActiveGenre: (id: string) => void;
     isActiveGenre: Record<string, boolean>;
+    loadingGenre: boolean
 
 }
-const NavTvs = ({ title, errMsg, data, allMovies, button, handleClick, isLoading, nextPage, svg, handleDropdown, dropdown, handleSvg, sortingDropdownStuff, handleSort, sort, genres, isActiveGenre, handleActiveGenre }: Props) => {
+const NavTvs = ({ title, errMsg, data, allMovies, button, handleClick, isLoading, nextPage, svg, handleDropdown, dropdown, handleSvg, sortingDropdownStuff, handleSort, sort, genres, isActiveGenre, handleActiveGenre, loadingGenre }: Props) => {
     const elementTvs = <div className=" detailsMediaLinks">
-        {data?.results.length ? allMovies.map((tv, i) => (
+        {!isLoading ? data?.results.length ? allMovies.map((tv, i) => (
             <TvsCard key={tv.id} tv={tv} i={i} button={button} handleClick={handleClick} />
-        )) : !isLoading && <h2 className='text-3xl font-bold text-center'>No {title}</h2>}
+        )) : !isLoading && <h2 className='text-3xl font-bold text-center'>No {title}</h2>
+            : <SkeletonNav />}
 
         {!isLoading && allMovies.length > 0 && allMovies.length % 20 === 0 ? (
             <button className=" buttonShowMore"
@@ -41,9 +45,9 @@ const NavTvs = ({ title, errMsg, data, allMovies, button, handleClick, isLoading
         <SortingDropdown handleSort={handleSort} svg={svg} handleDropdown={handleDropdown} dropdown={dropdown} sort={sort} handleSvg={handleSvg} title='Sort' stuff={sortingDropdownStuff} />
         <p className='text-lg font-semibold ml-1'>Genres</p>
         <div className='flex flex-wrap gap-2'>
-            {genres?.map((genre) => (
+        {!loadingGenre ? genres?.map((genre) => (
                 <GenreButton key={genre.id} genre={genre} isActiveGenre={isActiveGenre} handleActiveGenre={handleActiveGenre} />
-            ))}
+            )) : <SkeletonGenre />}
         </div>
     </div>
 

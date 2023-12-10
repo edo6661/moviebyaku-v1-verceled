@@ -29,7 +29,7 @@ const MediaItem = ({ media }: { media: ResultMulti | MovieSearchResult | TvSearc
     return (
         <div key={media.id} className=" innerDetailsSearchPage">
             <Link className="h-full" to={`/${to}/${media.id}`}>
-                <img src={imgSrc} alt={media.poster_path} />
+                <img loading="lazy" src={imgSrc} alt={media.poster_path} />
             </Link>
             <div className="secondDetailsSearchPage">
                 <p className={`${styleText} sm:text-lg text-sm font-semibold`}>{title || name}</p>

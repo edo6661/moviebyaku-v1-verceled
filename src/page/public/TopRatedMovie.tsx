@@ -18,7 +18,7 @@ const TopRatedMovie = () => {
 
     const { data: topRatedData, isError: isErrU, error: errU, isLoading: isLoadU } = useTopRatedMoviesQuery(page);
     const { data: sortData, isError: isErr, error: err } = useSortMovieQuery({ page, sort_by: sort, genre_id: activeGenreIds })
-    const { data, isError, error } = useGenresMovieQuery()
+    const { data, isError, error, isLoading } = useGenresMovieQuery()
 
     const errMsg = (isError && error) ? <ErrorMessage error={error} /> : null;
     const errMsgS = (isErr && err) ? <ErrorMessage error={err} /> : null;
@@ -113,6 +113,8 @@ const TopRatedMovie = () => {
         handleActiveGenre={handleActiveGenre}
         isActiveGenre={isActiveGenre}
         handleTitle={handleToprated}
+        loadingGenre={isLoading}
+
     />
 }
 

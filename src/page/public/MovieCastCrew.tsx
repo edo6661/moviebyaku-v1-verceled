@@ -57,7 +57,7 @@ const MovieCastCrew = () => {
                         return (
                             <div key={i} className="flex gap-4 shadowCardl
                              rounded-xl">
-                                <img className=" w-20 rounded-xl" src={baseImageUrl + cast.profile_path} alt={cast.name} />
+                                <img loading="lazy" className=" w-20 rounded-xl" src={baseImageUrl + cast.profile_path} alt={cast.name} />
                                 <div className="flex flex-col mt-2">
                                     <p className=" font-semibold dark:text-white text-black">{cast.name}</p>
                                     <p className="detailsNumberAlter text-start">{cast.known_for_department}</p>

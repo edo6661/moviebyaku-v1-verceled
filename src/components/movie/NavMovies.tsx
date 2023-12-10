@@ -1,6 +1,8 @@
 import SortingDropdown from '../SortingDropdown';
 import GenreButton from './GenreButton';
 import MovieCard from './MovieCard';
+import SkeletonGenre from './SkeletonGenre';
+import SkeletonNav from './SkeletonNav';
 
 interface Props {
     title: string;
@@ -22,25 +24,27 @@ interface Props {
     handleActiveGenre: (id: string) => void;
     isActiveGenre: Record<string, boolean>;
     handleTitle?: () => void
+    loadingGenre: boolean;
 }
-const NavMovies = ({ title, errMsg, data, allMovies, button, handleClick, isLoading, nextPage, svg, handleDropdown, dropdown, handleSvg, sortingDropdownStuff, sort, handleSort, genres, handleActiveGenre, isActiveGenre, handleTitle }: Props) => {
+const NavMovies = ({ title, errMsg, data, allMovies, button, handleClick, isLoading, nextPage, svg, handleDropdown, dropdown, handleSvg, sortingDropdownStuff, sort, handleSort, genres, handleActiveGenre, isActiveGenre, handleTitle, loadingGenre }: Props) => {
 
 
     const elementSorting = <div className="innerMediaLinks">
         <SortingDropdown sort={sort} svg={svg} handleDropdown={handleDropdown} dropdown={dropdown} handleSvg={handleSvg} title='Sort' stuff={sortingDropdownStuff} handleSort={handleSort} />
         <p className='text-lg font-semibold ml-1'>Genres</p>
         <div className='flex flex-wrap gap-2'>
-            {genres?.map((genre) => (
+            {!loadingGenre ? genres?.map((genre) => (
                 <GenreButton key={`movie-${genre.id}`} genre={genre} isActiveGenre={isActiveGenre} handleActiveGenre={handleActiveGenre} />
-            ))}
+            )) : <SkeletonGenre />}
         </div>
     </div>
 
 
     const elementMovies = <div className=" detailsMediaLinks  ">
-        {!isLoading && data?.results.length ? allMovies.map((movie, i) => (
+        {!isLoading ? data?.results.length ? allMovies.map((movie, i) => (
             <MovieCard key={i} movie={movie} i={i} button={button} handleClick={handleClick} />
-        )) : !isLoading && <h2 className='text-3xl font-bold text-center'>No {title}</h2>}
+        )) : !isLoading && <h2 className='text-3xl font-bold text-center'>No {title}</h2>
+            : <SkeletonNav />}
 
         {!isLoading && allMovies.length > 0 && allMovies.length % 20 === 0 ? (
             <button className=" buttonShowMore h-12"

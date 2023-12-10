@@ -17,7 +17,7 @@ const PopularMovies = () => {
     const activeGenreIds = Object.keys(isActiveGenre).filter(id => isActiveGenre[id]).join(',')
 
     const { data: sortData, isError: isErr, error: err, isLoading: isLoad } = useSortTvQuery({ page, sort_by: sort, genre_id: activeGenreIds })
-    const { data, isError, error } = useGenresTvQuery()
+    const { data, isError, error, isLoading } = useGenresTvQuery()
 
     const errMsgS = (err && isErr) ? <ErrorMessage error={err} /> : null;
     const errMsg = (isError && error) ? <ErrorMessage error={error} /> : null;
@@ -93,6 +93,7 @@ const PopularMovies = () => {
         genres={data && data?.genres}
         handleActiveGenre={handleActiveGenre}
         isActiveGenre={isActiveGenre}
+        loadingGenre={isLoading}
     />
 }
 

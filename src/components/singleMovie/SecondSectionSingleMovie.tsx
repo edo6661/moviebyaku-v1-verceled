@@ -1,11 +1,11 @@
-import { useCreditsMovieQuery } from "../../features/movie/movieApiSlice";
-import ErrorMessage from "../errAndLoading/TemporaryError";
+import { useCreditsMovieQuery } from '../../features/movie/movieApiSlice';
+import ErrorMessage from '../errAndLoading/TemporaryError';
 import AlterTitles from './AlterTitles';
-import CreditSingleMovie from "./CreditSingleMovie";
-import MediaMovie from "./MediaMovie";
-import MovieKeywords from "./MovieKeywords";
+import CreditSingleMovie from './CreditSingleMovie';
+import MediaMovie from './MediaMovie';
+import MovieKeywords from './MovieKeywords';
 import RecomsSingleMovie from "./RecomsSingleMovie";
-import ReviewsSection from "./ReviewsSection";
+import ReviewsSection from './ReviewsSection';
 import SimiliarSingleMovie from "./SimiliarSingleMovie";
 
 interface Props {
@@ -59,6 +59,7 @@ const SecondSectionSingleMovie = ({ id, status, budget, revenue }: Props) => {
                     <MovieKeywords id={id} />
                 </div>
                 <div className=" secondContainerSingleMovie">
+                    {/* yang nyebabkan error banyak warn */}
                     <MediaMovie id={id} />
                 </div>
                 <div className="containerDetailsSingleMovie">

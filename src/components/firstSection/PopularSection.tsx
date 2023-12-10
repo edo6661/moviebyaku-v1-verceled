@@ -5,6 +5,7 @@ import { usePopularTvQuery } from '../../features/tv/tvApiSlice';
 import useWindowWidth from '../../hooks/useWindowWidth';
 import baseImageUrl from '../../utils/baseImgUrl';
 import ErrorMessage from '../errAndLoading/TemporaryError';
+import SkeletonFirstSection from './SkeletonFirstSection';
 import SliderMovies from './SliderMovies';
 import SliderTv from './SliderTv';
 
@@ -14,8 +15,8 @@ const PopularSection = () => {
     const [day, setDay] = useState(false)
     const [activeBackdropPath, setActiveBackdropPath] = useState('');
 
-    const { data: moviesData, isError: isErrDay, error: errDay } = usePopularMoviesQuery(1)
-    const { data: tvData, isError: isErrWeek, error: errWeek } = usePopularTvQuery(1)
+    const { data: moviesData, isError: isErrDay, error: errDay, isLoading: isLoadingM } = usePopularMoviesQuery(1)
+    const { data: tvData, isError: isErrWeek, error: errWeek, isLoading: isLoadingT } = usePopularTvQuery(1)
 
 
     const dayTrue = day && 'textGradient cursor-pointer'
@@ -80,18 +81,18 @@ const PopularSection = () => {
         <div className={`${containerWeek} containerPopularMovies`}
             style={{ willChange: 'transform, opacity' }}
         >
-            {moviesData?.results.map((movie, i: number) =>
+            {!isLoadingM ? moviesData?.results.map((movie, i: number) =>
                 <SliderMovies key={movie.id} {...movie} i={i} setActiveBackdropPath={setActiveBackdropPath} />
-            )}
+            ) : <SkeletonFirstSection />}
         </div>
     )
     const tvElement = (
         <div className={`${containerDay} containerPopularMovies `}
             style={{ willChange: 'transform, opacity' }}
         >
-            {tvData?.results.map((tv, i: number) =>
+            {!isLoadingT ? tvData?.results.map((tv, i: number) =>
                 <SliderTv key={tv.id} {...tv} i={i} setActiveBackdropPath={setActiveBackdropPath} />
-            )}
+            ) : <SkeletonFirstSection />}
         </div>
     )
 

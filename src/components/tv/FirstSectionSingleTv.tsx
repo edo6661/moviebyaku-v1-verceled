@@ -10,7 +10,7 @@ import PercentageVote from "../singleMovie/PercentageVote";
 
 const FirstSectionSingleTv = ({ name, first_air_date, backdrop_path, poster_path, id, idParams, vote_average, genres, tagline, overview }: ResultByIdTv) => {
 
-    const { favorite, watchlist, setFavorite, setWatchlist, profile, sessionId, expanded } = useProvider()
+    const { favorite, watchlist, setFavorite, setWatchlist, profile, sessionId } = useProvider()
 
     const [addFavorite, { isLoading: loadingFav, isError: isErrFav, error: errFav }] = useFavoriteMovieMutation();
     const [addWatchlist, { isLoading: loadingWl, isError: isErrWl, error: errWl }] = useWatchListMovieMutation();
@@ -87,7 +87,7 @@ const FirstSectionSingleTv = ({ name, first_air_date, backdrop_path, poster_path
             <div className='backdropSingleMovie backDrop  '></div>
             <img className='backDrop -z-10' src={backdrop} alt="" />
             <div className='innerSingleMovie'>
-                <div className={`containerPoster bg-[url()] z-20`} onClick={expanded}>
+                <div className={`containerPoster bg-[url()] z-20`} >
                     <img src={`${baseImageUrl}${poster_path}`} alt={name} />
                 </div>
                 <div className='detailsSingleMovie  '>

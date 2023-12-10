@@ -3,7 +3,7 @@ import { FaStar } from "react-icons/fa"
 import { useParams } from "react-router-dom"
 import ErrorMessage from "../../components/errAndLoading/TemporaryError"
 import { useReviewsMovieQuery } from "../../features/movie/movieApiSlice"
-import baseImageUrl from "../../utils/baseImgUrl"
+import baseImageUrl, { defaultImg } from "../../utils/baseImgUrl"
 
 const MovieReviews = () => {
     const { id } = useParams()
@@ -21,18 +21,22 @@ const MovieReviews = () => {
     }
 
 
+    const randomImg = defaultImg[Math.floor(Math.random() * defaultImg.length)]
+
     return (
         <section className="containerSubSingleMovie">
             {errMsg}
             <article className="casualWrapper p-0">
                 <div className=" grid md:grid-cols-2 ">
-                    {data?.results.length ? data?.results.filter(result => result.author_details.avatar_path !== null).map((result, i) => {
+                    {data?.results.length ? data?.results.map((result, i) => {
+                        const url = result.author_details.avatar_path ? baseImageUrl + result.author_details.avatar_path : randomImg
+
                         return (
                             <div className=" shadowCard rounded-xl flex flex-col "
                                 key={result.id}>
                                 <div className="m-3 flex gap-6">
                                     <img className="w-16 h-16 rounded-full"
-                                        src={baseImageUrl + result.author_details.avatar_path} alt={result.author} />
+                                        src={url} />
                                     <div className="flex flex-col">
                                         <p className=" font-semibold">
                                             {result.author}

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { FaStar } from "react-icons/fa";
 import { useReviewsMovieQuery } from "../../features/movie/movieApiSlice";
-import baseImageUrl from "../../utils/baseImgUrl";
+import baseImageUrl, { defaultImg } from "../../utils/baseImgUrl";
 import ErrorMessage from "../errAndLoading/TemporaryError";
 
 const ReviewsSection = ({ id }: { id: string }) => {
@@ -15,18 +15,21 @@ const ReviewsSection = ({ id }: { id: string }) => {
         return errMsg
     }
 
+    const randomImages = defaultImg[Math.floor(Math.random() * defaultImg.length)]
+
 
     return (
         <>
             <div className="containerSingleMovieReview">
                 {!isError && !isLoading && data?.results.length ? <p className=" headersSingleMovie">Reviews <span className=" text-myWhite opacity-80">{data?.results.length}</span></p> : <p className="headersSingleMovie ">Empty Reviews</p>}
             </div>
-            {data?.results.length ? data?.results.filter(review => review.author_details.avatar_path !== null).slice(0, 1).map((review) => {
+            {data?.results.length ? data?.results.slice(0, 1).map((review) => {
+                const url = review.author_details.avatar_path ? baseImageUrl + review.author_details.avatar_path : randomImages
                 return (
                     <div key={review.id} className="  innerSingleMovieReview">
                         <div className="detailsSingleMovieReview">
                             <div>
-                                <img src={`${baseImageUrl}${review.author_details.avatar_path}`} alt={review.author} />
+                                <img src={url} alt={review.author} />
                             </div>
                             <div>
                                 <p className=" font-semibold">

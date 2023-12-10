@@ -14,7 +14,7 @@ export const ContextProvider = ({ children }: Props) => {
     const [requestToken, setRequestToken] = useState("")
     const [profile, setProfile] = useState<ResponseAccount>(initialProfile);
     const [sessionId, setSessionId] = useState('')
-const [imageExpand, setImageExpand] = useState(true)
+    const [isExpandImage, setIsExpandImages] = useState(false)
 
     const temporaryArg = { account_id: profile.id.toString(), page: '1', session_id: sessionId };
     const { data: favoriteStatus } = useFavoriteStatusQuery(temporaryArg);
@@ -29,8 +29,8 @@ const [imageExpand, setImageExpand] = useState(true)
 
     // ! image expand single page
 
-    const expanded = () => setImageExpand(true)
-    const notExpanded = () => setImageExpand(false)
+    const trueExpandImage = () => setIsExpandImages(true)
+    const falseExpandImage = () => setIsExpandImages(false)
 
     return (
         <context.Provider value={{
@@ -41,7 +41,7 @@ const [imageExpand, setImageExpand] = useState(true)
             // ! request token
             requestToken, setRequestToken, profile, setProfile, setSessionId, sessionId,
             // ! image expand single page
-            imageExpand, setImageExpand, expanded, notExpanded
+            isExpandImage, setIsExpandImages, trueExpandImage, falseExpandImage
         }}>
             {children}
         </context.Provider>

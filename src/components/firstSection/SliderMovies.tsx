@@ -44,7 +44,6 @@ const SliderMovies = ({ id, poster_path, title, release_date, i, backdrop_path, 
         }
     }
 
-
     useEffect(() => {
         window.addEventListener('click', handleClickOutside)
 
@@ -110,7 +109,7 @@ const SliderMovies = ({ id, poster_path, title, release_date, i, backdrop_path, 
                 </div>
             </div>
             <div className="containerPopularDetails gap-2">
-                <p className='title'>{title}</p>
+                <p className='title'>{title.length > 24 ? title.slice(0, 24) + '...' : title}</p>
                 <p className=''>{release_date}</p>
             </div>
         </motion.div >

@@ -44,7 +44,7 @@ const CastPerson = ({ poster_path, title, release_date, id, first_air_date, name
                         </motion.div>}
                 </AnimatePresence>
                 <Link to={link} className='linkSliderMedia  '>
-                    <img className="imgSliderMedia hoveredPoster " src={baseImageUrl + poster_path} alt={title} />
+                    <img loading='lazy' className="imgSliderMedia hoveredPoster " src={baseImageUrl + poster_path} alt={title} />
                 </Link>
                 <p className='text-lg'>{name ? name : title}</p>
                 <p className='sm:text-lg text-base'>{date}</p>
