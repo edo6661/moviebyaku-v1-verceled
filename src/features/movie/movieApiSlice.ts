@@ -21,6 +21,24 @@ export const movieApiSlice = apiSlice.injectEndpoints({
 					  ]
 					: [{ type: 'Movie', id: 'POPULAR' }],
 		}),
+		sortMovie: builder.query<FirstSectionMovie, Sort>({
+			query: ({ page, sort_by = 'popularity.desc', genre_id }) => ({
+				url: `discover/movie?language=en-US&page=${page}&sort_by=${sort_by}&with_genres=${genre_id}`,
+				validateStatus: (response, result) => {
+					return response.status === 200 && !result.isError;
+				},
+			}),
+			providesTags: (result, _error, { sort_by }) =>
+				result
+					? [
+							...result.results.map((movie) => ({
+								type: 'Movie' as const,
+								id: movie.id + sort_by ? sort_by : 'popularity.desc',
+							})),
+							{ type: 'Movie', id: sort_by },
+					  ]
+					: [{ type: 'Movie', id: sort_by }],
+		}),
 
 		trendingMoviesWeek: builder.query<FirstSectionMovie, number>({
 			query: (page) => ({
@@ -162,7 +180,7 @@ export const movieApiSlice = apiSlice.injectEndpoints({
 					  ]
 					: [{ type: 'Movie', id: 'FAVORITE' }],
 		}),
-		genresMovie: builder.query<FavoriteResponse, void>({
+		genresMovie: builder.query<Genres, void>({
 			query: () => ({
 				url: `genre/movie/list?language=en`,
 				validateStatus: (response, result) => {
@@ -172,7 +190,7 @@ export const movieApiSlice = apiSlice.injectEndpoints({
 			providesTags: (result) =>
 				result
 					? [
-							...result.results.map(
+							...result.genres.map(
 								(movie) => ({
 									type: 'Movie' as const,
 									id: movie.id,
@@ -502,4 +520,5 @@ export const {
 	useWatchListMovieMutation,
 	useRatingMovieMutation,
 	useRemoveRatingMovieMutation,
+	useSortMovieQuery,
 } = movieApiSlice;

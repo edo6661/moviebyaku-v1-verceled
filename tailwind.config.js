@@ -27,6 +27,8 @@ export default {
 				lightMain: '#928EB9',
 				lightBlue: '#8298e4',
 				darkBlue: '#1F4699',
+				darkScClr: '#16456b',
+				lightScClr: '#99d1ff',
 				nude: '#F0D9BD',
 				darkerNude: '#DBA879',
 				bInput: '#868e96',

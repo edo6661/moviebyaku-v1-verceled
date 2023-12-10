@@ -6,7 +6,6 @@ import ErrorMessage from "../errAndLoading/TemporaryError";
 const AlterTv = ({ id }: { id: string }) => {
     const { data: alters, isError: isErrK, error: errK, isLoading } = useAlterTitleTvQuery(id);
     const errMsgK = isErrK && errK && <ErrorMessage error={errK} />
-    console.log(alters)
     return (
         <>
             {errMsgK}

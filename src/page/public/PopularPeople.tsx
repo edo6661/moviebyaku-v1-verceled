@@ -46,7 +46,7 @@ const PopularPeople = () => {
                                         {person.known_for.map((k, i, a) => {
                                             return (
                                                 <span key={k.id}
-                                                    className='dateSingleMovie'>
+                                                    className='dateSingleMovie font-normal dark:text-white text-black'>
                                                     {(i === a.length - 1 && a.length > 1) ? ', and ' : ''}
                                                     {k.original_name}
                                                     {k.original_title}

@@ -21,37 +21,37 @@ const searchApiSlice = apiSlice.injectEndpoints({
 					  ]
 					: [{ type: 'Search', id: 'COLLECTION' }],
 		}),
-		searchMovie: build.query<MovieSearchData, string>({
-			query: (keyword) => ({
-				url: `search/movie?query=${keyword}`,
-				validateStatus(response, result) {
-					return response.status === 200 && !result.isError;
+		searchMovie: build.query<MovieSearchData, { query: string; page: string }>({
+			query: ({ query, page }) => ({
+				url: `search/movie?query=${query}&include_adult=false&language=en-US&page=${page}`,
+				validateStatus: (res, resu) => {
+					return res.status === 200 && !resu.isError;
 				},
 			}),
 			providesTags: (result) =>
 				result
 					? [
-							...result.results.map((search) => ({
+							...result.results.map((movie) => ({
 								type: 'Search' as const,
-								id: search.id,
+								id: movie.id,
 							})),
 							{ type: 'Search', id: 'MOVIE' },
 					  ]
 					: [{ type: 'Search', id: 'MOVIE' }],
 		}),
-		searchTv: build.query<TvSearchData, string>({
-			query: (keyword) => ({
-				url: `search/tv?query=${keyword}`,
-				validateStatus(response, result) {
-					return response.status === 200 && !result.isError;
+		searchTv: build.query<DataMulti, { query: string; page: string }>({
+			query: ({ query, page }) => ({
+				url: `search/tv?query=${query}&include_adult=false&language=en-US&page=${page}`,
+				validateStatus: (res, resu) => {
+					return res.status === 200 && !resu.isError;
 				},
 			}),
 			providesTags: (result) =>
 				result
 					? [
-							...result.results.map((search) => ({
+							...result.results.map((movie) => ({
 								type: 'Search' as const,
-								id: search.id,
+								id: movie.id,
 							})),
 							{ type: 'Search', id: 'TV' },
 					  ]
@@ -89,9 +89,9 @@ const searchApiSlice = apiSlice.injectEndpoints({
 								type: 'Search' as const,
 								id: movie.id,
 							})),
-							{ type: 'Search', id: 'SEARCHMULTI' },
+							{ type: 'Search', id: 'MULTI' },
 					  ]
-					: [{ type: 'Search', id: 'SEARCHMULTI' }],
+					: [{ type: 'Search', id: 'MULTI' }],
 		}),
 	}),
 });

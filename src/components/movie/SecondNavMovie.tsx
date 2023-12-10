@@ -26,8 +26,8 @@ const SecondNavMovie = () => {
                         <div className={`detailsSecondNav ${showDd[i] ? ' opacity-50' : ''}`} onMouseEnter={() => trueDd(i.toString())} >
                             <p className=' select-none'>{stuff.title}</p>
                             <motion.div variants={mdRotateVars} animate={showDd[i] ? 'open' : 'close'}>
-                                <svg width="15" height="15" viewBox="0 0 20 20">
-                                    <path d="M0 7 L 20 7 L 10 16" />
+                                <svg width="15" height="15" viewBox="0 0 20 20" className=''>
+                                    <path className=' fill-darkerMain' d="M0 7 L 20 7 L 10 16" />
                                 </svg>
                             </motion.div>
                         </div>

@@ -3,10 +3,10 @@ import { useState } from 'react';
 import { usePopularMoviesQuery } from '../../features/movie/movieApiSlice';
 import { usePopularTvQuery } from '../../features/tv/tvApiSlice';
 import useWindowWidth from '../../hooks/useWindowWidth';
+import baseImageUrl from '../../utils/baseImgUrl';
 import ErrorMessage from '../errAndLoading/TemporaryError';
 import SliderMovies from './SliderMovies';
 import SliderTv from './SliderTv';
-import baseImageUrl from '../../utils/baseImgUrl';
 
 const PopularSection = () => {
 

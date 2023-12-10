@@ -29,7 +29,7 @@ const TvsCard = ({ tv, i, button, handleClick }: Props) => {
                             variants={imageVars}
                             initial="initial"
                             animate={button[i] ? 'animation' : ''}
-                            className={`rounded-t-xl imagePopularDetails h-80`}
+                            className={`imgSliderMedia hoveredPoster w-full max-h-[21.25rem]`}
                         />
                     </Link>
                     <div>

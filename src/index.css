@@ -14,12 +14,15 @@
 			transparent
 		);
 	}
-	* {
+	h1,
+	h2,
+	h3,
+	h4 {
 		text-wrap: balance;
 	}
 	header,
 	footer {
-		@apply font-playfair font-bold sm:text-2xl text-xl text-white;
+		@apply font-playfair font-bold sm:text-2xl text-xl text-white bg-lightBlue dark:bg-darkBlue py-3;
 	}
 	body {
 		@apply font-sans text-base dark:bg-black dark:text-myWhite text-black bg-myWhite;
@@ -76,10 +79,6 @@
 		background: url(../public/toast.png);
 	}
 	/* ! nav */
-	header,
-	footer {
-		@apply bg-lightBlue dark:bg-darkBlue py-3;
-	}
 	.headerContainer {
 		@apply flex justify-between items-center;
 	}
@@ -142,7 +141,7 @@
 		@apply rounded-md  object-cover opacity-100 hover:opacity-60 transition-all duration-300;
 	}
 	.xlImagePopularDetails {
-		@apply min-w-[10rem] min-h-[10rem];
+		@apply min-w-[11rem] min-h-[11rem];
 	}
 	.smImagePopularyDetails {
 		@apply min-w-[7rem] min-h-[7rem];
@@ -189,7 +188,7 @@
 	}
 	/* ! container second nav movies */
 	.containerSecondNav {
-		@apply mt-[4.5rem] p-4 bg-white text-black z-40;
+		@apply mt-[4.5rem] p-4 text-white dark:bg-darkScClr bg-lightScClr  z-40;
 	}
 	.containerSecondNav article {
 		@apply mx-auto flex casualWrapper justify-center lg:gap-8 md:gap-6 sm:gap-4 gap-2;
@@ -321,7 +320,7 @@
 	}
 
 	.imgSliderMedia {
-		@apply sm:w-auto w-32 mb-4 mr-2 rounded-xl;
+		@apply sm:w-52 w-32 mb-4 mr-2 rounded-xl;
 	}
 	.linkSliderMedia {
 		@apply imgSliderMedia block w-32 sm:w-52;
@@ -440,7 +439,7 @@
 		@apply pb-3 px-3 flex flex-col gap-2;
 	}
 	.containerSinglePerson {
-		@apply grid grid-cols-2 sm:grid-cols-3 z-10 casualWrapper my-8  innerSingleMovie;
+		@apply grid grid-cols-2 sm:grid-cols-3 z-10 casualWrapper my-8  innerSingleMovie dark:text-white text-black;
 	}
 	.innerSinglePerson {
 		@apply z-10 mx-0 sm:col-span-1 col-span-full containerPoster flex flex-col gap-4;
@@ -450,5 +449,33 @@
 	}
 	.secondDetailsSinglePerson {
 		@apply sm:ml-10 sm:mt-5 col-span-2 detailsSingleMovie ml-0;
+	}
+	/* ! search page & pagi */
+	.containerSearchPage {
+		@apply px-5 py-4 rounded-t-xl dark:bg-darkBlue bg-lightBlue flex flex-col;
+	}
+	.containerSearchPage > h2 {
+		@apply font-bold text-2xl text-white;
+	}
+	.sortingSearch {
+		@apply hoveredPoster text-xl px-5 py-4 flex justify-between;
+	}
+	.sortingSearch > span {
+		@apply dark:text-myWhite dark:opacity-80 text-black opacity-40;
+	}
+	.detailsSearchPage {
+		@apply col-span-2 py-4 flex flex-col gap-4;
+	}
+	.innerDetailsSearchPage {
+		@apply flex gap-4 shadowCard rounded-xl;
+	}
+	.innerDetailsSearchPage > a > img {
+		@apply sm:max-w-[7rem] max-w-[4.5rem]  h-full  rounded-l-xl hoveredPoster;
+	}
+	.secondDetailsSearchPage {
+		@apply flex flex-col mt-4;
+	}
+	.buttonPagination {
+		@apply text-white dark:bg-darkScClr bg-lightScClr px-3 py-2 transition-all;
 	}
 }

@@ -27,7 +27,7 @@ const TvSliderMenu = ({ id }: { id: string }) => {
 
     const handleFav = async () => {
         if (isErrFav) {
-            console.log(errFav)
+            console.error(errFav)
             return toast('you must have an account id')
         } else {
             await addFavorite(argFav)
@@ -36,7 +36,7 @@ const TvSliderMenu = ({ id }: { id: string }) => {
     }
     const handleWl = async () => {
         if (isErrWl) {
-            console.log(errWl)
+            console.error(errWl)
             return toast('you must have an account id')
         } else {
             await addWatchlist(argWl)

@@ -31,6 +31,8 @@ const TvAlterTitle = () => {
         return errMsg
     }
 
+    const uniqueCountries = Array.from(new Set(data?.titles.map(title => countries.getName(title.iso_3166_1, 'en', { select: 'official' }))));
+
     return (
         <section className="containerSubSingleMovie">
             {errMsg}
@@ -45,8 +47,12 @@ const TvAlterTitle = () => {
                                 <p className="detailsNumberAlter">{data?.results.length}</p>
                             </div>
                         </div>
-                        {data?.results.length ? data?.results.map((title, i) => {
-                            const countryName = countries.getName(title.iso_3166_1, 'en', { select: 'official' });
+                        {data?.results.length ? uniqueCountries.map((countryName, i) => {
+
+                            const title = data?.titles.find(title => countries.getName(title.iso_3166_1, 'en', { select: 'official' }) === countryName);
+
+                            if (!title) return null
+
                             const scroller = () => {
                                 if (title && title.iso_3166_1) {
                                     const element = document.getElementById(title.iso_3166_1);

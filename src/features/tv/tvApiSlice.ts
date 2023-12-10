@@ -3,6 +3,24 @@ import { apiSlice } from '../../api/apiSlice';
 
 export const tvApiSlice = apiSlice.injectEndpoints({
 	endpoints: (builder) => ({
+		sortTv: builder.query<PopularTvResult, Sort>({
+			query: ({ page, sort_by = 'popularity.desc', genre_id }) => ({
+				url: `discover/tv?language=en-US&page=${page}&sort_by=${sort_by}&with_genres=${genre_id}`,
+				validateStatus: (response, result) => {
+					return response.status === 200 && !result.isError;
+				},
+			}),
+			providesTags: (result, _error, { sort_by }) =>
+				result
+					? [
+							...result.results.map((tv) => ({
+								type: 'Tv' as const,
+								id: tv.id + sort_by ? sort_by : 'popularity.desc',
+							})),
+							{ type: 'Tv', id: sort_by },
+					  ]
+					: [{ type: 'Tv', id: sort_by }],
+		}),
 		popularTv: builder.query<PopularTvResult, number | null>({
 			query: (page) => ({
 				url: `tv/popular?language=en-US&page=${page}`,
@@ -309,7 +327,7 @@ export const tvApiSlice = apiSlice.injectEndpoints({
 					  ]
 					: [{ type: 'Tv', id: 'FAVORITE' }],
 		}),
-		genresTv: builder.query<FavoriteResponse, void>({
+		genresTv: builder.query<Genres, void>({
 			query: () => ({
 				url: `genre/tv/list?language=en`,
 				validateStatus: (response, result) => {
@@ -319,7 +337,7 @@ export const tvApiSlice = apiSlice.injectEndpoints({
 			providesTags: (result) =>
 				result
 					? [
-							...result.results.map(
+							...result.genres.map(
 								(tv) => ({
 									type: 'Tv' as const,
 									id: tv.id,
@@ -397,6 +415,7 @@ export const tvApiSlice = apiSlice.injectEndpoints({
 
 export const {
 	usePopularTvQuery,
+	useSortTvQuery,
 	useTopRatedTvQuery,
 	useOnTheAirTvQuery,
 	useAiringTodayTvQuery,

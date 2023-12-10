@@ -12,7 +12,6 @@ const MovieRelease = () => {
     const { id } = useParams()
     const { data, isError, error, isLoading } = useReleaseDatesQuery(id ?? '')
     const errMsg = isError && error && <ErrorMessage error={error} />
-    console.log(data)
     const [countryCounts, setCountryCounts] = useState<Record<string, number>>({});
 
     useEffect(() => {
@@ -31,6 +30,8 @@ const MovieRelease = () => {
         return errMsg
     }
 
+    const uniqueCountries = Array.from(new Set(data?.results.map(title => countries.getName(title.iso_3166_1, 'en', { select: 'official' }))))
+
     return (
         <section className="containerSubSingleMovie">
             {errMsg}
@@ -45,11 +46,15 @@ const MovieRelease = () => {
                                 <p className="detailsNumberAlter">{data?.results.length}</p>
                             </div>
                         </div>
-                        {data?.results.map((release, i) => {
-                            const countryName = countries.getName(release.iso_3166_1, 'en', { select: 'official' });
+                        {data?.results.length ? uniqueCountries.map((countryName, i) => {
+
+                            const title = data.results.find(title => countries.getName(title.iso_3166_1, 'en', { select: 'official' }) === countryName)
+
+                            if (!title) return null
+
                             const scroller = () => {
-                                if (release && release.iso_3166_1) {
-                                    const element = document.getElementById(release.iso_3166_1);
+                                if (title && title.iso_3166_1) {
+                                    const element = document.getElementById(title.iso_3166_1);
                                     if (element) {
                                         // ! getBoundingClientRect().top memberikan posisi elemen relatif terhadap viewport
                                         const y = element.getBoundingClientRect().top + window.scrollY - 73;
@@ -60,10 +65,10 @@ const MovieRelease = () => {
                             return (
                                 <div key={i} className="secondContainerAlterSingleMovie" onClick={scroller} >
                                     <p className="  col-span-2 ">{countryName}</p>
-                                    <p className="detailsNumberAlter dark:text-white text-black">{countryCounts[release.iso_3166_1]}</p>
+                                    <p className="detailsNumberAlter dark:text-white text-black">{countryCounts[title.iso_3166_1]}</p>
                                 </div>
                             )
-                        })}
+                        }) : <h2 className='text-3xl font-bold text-center'>No Movie Release</h2>}
                     </div>
                     <div className=" secondDetailsAlterSingleMovie">
                         {data?.results.map((release, i) => {

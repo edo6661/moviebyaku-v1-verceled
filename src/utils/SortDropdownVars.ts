@@ -16,7 +16,7 @@ export const btnVars = {
 			duration: 0.2,
 			ease: [0.12, 0, 0.39, 0],
 		},
-		height: 260,
+		height: 230,
 	},
 };
 export const contentVars = {
@@ -26,7 +26,7 @@ export const contentVars = {
 		blur: '8px',
 	},
 	animate: {
-		y: 10,
+		y: 5,
 		opacity: 1,
 		blur: '0',
 		transition: {
@@ -46,11 +46,4 @@ export const contentVars = {
 	},
 };
 
-export const sortingDropdownStuff = [
-	'Popularity Desc',
-	'Popularity Asc',
-	'Rating Desc',
-	'Rating Asc',
-	'Release Desc',
-	'Release Asc',
-];
+export const sortingDropdownStuff = ['popularity.desc', 'vote_count.desc'];

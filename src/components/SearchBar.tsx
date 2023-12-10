@@ -6,6 +6,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useSearchMultiQuery } from '../features/search/searchApiSlice';
 import useProvider from "../hooks/useProvider";
 import searchBarVars from '../locale/searchBarVars';
+import ErrorMessage from './errAndLoading/TemporaryError';
 
 
 const SearchBar = () => {
@@ -17,7 +18,9 @@ const SearchBar = () => {
     }
 
     const { data, isError, error } = useSearchMultiQuery({ query: searchTerm, page: '1' })
-    if (isError) console.log(error)
+    if (isError) {
+        return <ErrorMessage error={error} />
+    }
     const activated = searchTerm !== ''
 
     const activatedVars = {
@@ -53,7 +56,7 @@ const SearchBar = () => {
                         <form action="" className='innerSearchBar' onSubmit={handleSubmitTerm}>
                             <button><FaSearch color="#acacac" /></button>
                             <input type="text"
-                                className='' placeholder='Search Movie or ...'
+                                className=' font-normal' placeholder='Search Movie or ...'
                                 onChange={handleTerm}
                                 value={searchTerm}
                             />
@@ -73,10 +76,10 @@ const SearchBar = () => {
                                         return (
                                             <div
                                                 key={movie.id}
-                                                className="  flex items-center gap-3 py-[2px] border-b-bInput border-opacity-20 border-solid border-b-2">
+                                                className="  flex items-center gap-3 py-[2px] border-b-bInput border-opacity-20 border-solid border-b-2 text-opacity-80 text-black">
                                                 <span>{media}</span>
                                                 <Link to={url} className="flex gap-1 hover:opacity-60 transition-all duration-150 justify-between w-full">
-                                                    <div className="flex gap-1">
+                                                    <div className="flex gap-1 ">
                                                         <p> {title ? title : 'empty from api'}</p>
                                                         <p>{release && `(${release.substring(0, 4)})`}</p>
                                                         <p>{firstAir && `(${firstAir.substring(0, 4)})`}</p>

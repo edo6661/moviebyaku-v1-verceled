@@ -40,6 +40,9 @@ type MultiSearchData = {
 };
 
 type MovieSearchResult = {
+	known_for_department: string;
+
+	profile_path: string;
 	adult: boolean;
 	backdrop_path: string;
 	genre_ids: number[];
@@ -52,8 +55,12 @@ type MovieSearchResult = {
 	release_date: string;
 	title: string;
 	video: boolean;
+	media_type: string;
+
 	vote_average: number;
 	vote_count: number;
+	first_air_date: string;
+	name: string;
 };
 
 type MovieSearchData = {
@@ -64,7 +71,12 @@ type MovieSearchData = {
 };
 
 type TvSearchResult = {
+	known_for_department: string;
+	profile_path: string;
 	adult: boolean;
+	release_date: string;
+	media_type: string;
+	title: string;
 	backdrop_path: string | null;
 	genre_ids: number[];
 	id: number;
@@ -125,6 +137,7 @@ type PersonSearchData = {
 };
 
 interface ResultMulti {
+	known_for_department: string;
 	adult: boolean;
 	backdrop_path: string;
 	id: number;
@@ -142,6 +155,7 @@ interface ResultMulti {
 	vote_count: number;
 	first_air_date: string;
 	name: string;
+	profile_path: string;
 }
 
 interface DataMulti {

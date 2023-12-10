@@ -68,14 +68,8 @@ const SecondSectionSingleTv = ({ id, status, type, original_language }: Props) =
                 <div className=" secondContainerSingleMovie">
                     <RecomsSingleTv id={id} />
                 </div>
-                <div className="containerDetailsSingleMovie">
-                    <p>Something</p>
-                </div>
                 <div className=" secondContainerSingleMovie">
                     <SimiliarTv id={id} />
-                </div>
-                <div className="containerDetailsSingleMovie">
-                    <p>Something</p>
                 </div>
             </article>
         </>

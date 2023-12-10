@@ -11,7 +11,6 @@ const MovieReviews = () => {
         isLoading
     } = useReviewsMovieQuery(id ?? '')
     const errMsg = isError && error && <ErrorMessage error={error} />
-    console.log(data)
 
     const [rest, setRest] = useState<Record<number, boolean>>({})
 
